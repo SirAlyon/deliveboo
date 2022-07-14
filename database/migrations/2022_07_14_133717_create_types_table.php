@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 class CreateTypesTable extends Migration
 {
     /**
@@ -30,4 +31,6 @@ class CreateTypesTable extends Migration
     {
         Schema::dropIfExists('types');
     }
+
+
 }
