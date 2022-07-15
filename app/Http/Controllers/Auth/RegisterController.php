@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Type;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -23,6 +24,13 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    public function showRegistrationForm()
+    {
+        $types = Type::all();
+        //dd($types);
+        return view('auth.register', compact('types'));
+    }
 
     /**
      * Where to redirect users after registration.
@@ -50,25 +58,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         //dd($data);
-/*         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'restaurant_name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'vat' => ['required', 'string', 'max:30'],
-            'image' => ['nullable', 'string'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]); */
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'lastname' => ['required', 'string', 'max:255'],
             'restaurant_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'vat' => ['required', 'string', 'max:30'],
+            'types' => ['required'],
+            'image' => ['nullable', 'image', 'max:50'],
         ]);
+
     }
 
     /**
@@ -79,18 +81,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //dd($data);
-        return User::create([
+        
+        $new_user = User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'email' => $data['email'],
             'lastname' => $data['lastname'],
             'restaurant_name' => $data['restaurant_name'],
             'address' => $data['address'],
             'vat' => $data['vat'],
         ]);
 
-        /* 
-            'image' => $data['image'], */
+        if(request()->hasFile('image')) {
+            $image = request()->file('image')->getClientOriginalName();
+            request()->file('image')->storeAs('/storage/restaurant_img', $new_user->id . '/' . $image, '');
+            $new_user->update(['image' => $image]);
+        }
+
+        $new_user->types()->sync($data['types']);
+
+        return $new_user;
+
+
+
+        
     }
 }
