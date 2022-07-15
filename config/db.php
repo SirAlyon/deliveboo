@@ -52,71 +52,71 @@ return [
             'name' => 'Antipasti caldi',
             'description' => 'Lorem ipsum dolor',
             'price' => '10.99',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Antipasti freddi',
             'description' => 'Lorem ipsum dolor',
             'price' => '9.99',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/59524/pexels-photo-59524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/59524/pexels-photo-59524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Pasta allo scoglio',
             'description' => 'Lorem ipsum dolor',
             'price' => '12.80',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/921374/pexels-photo-921374.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/921374/pexels-photo-921374.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Risotto',
             'description' => 'Lorem ipsum dolor',
             'price' => '15.60',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/2067418/pexels-photo-2067418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/2067418/pexels-photo-2067418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Braciole',
             'description' => 'Lorem ipsum dolor',
             'price' => '15.00',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/11749407/pexels-photo-11749407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/11749407/pexels-photo-11749407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Verdure in padella',
             'description' => 'Lorem ipsum dolor',
             'price' => '7.50',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/11213759/pexels-photo-11213759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/11213759/pexels-photo-11213759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Tiramisù',
             'description' => 'Lorem ipsum dolor',
             'price' => '6.00',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/6328588/pexels-photo-6328588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/6328588/pexels-photo-6328588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Gelato',
             'description' => 'Lorem ipsum dolor',
             'price' => '6.00',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/1362534/pexels-photo-1362534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/1362534/pexels-photo-1362534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Coca Cola',
             'description' => 'Lorem ipsum dolor',
             'price' => '3.00',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ],
         [
             'name' => 'Birra',
             'description' => 'Lorem ipsum dolor',
             'price' => '4.00',
-            'visibility' => 'TRUE',
-            'img' => 'https://images.pexels.com/photos/1672304/pexels-photo-1672304.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+            'visibility' => 1,
+            'image' => 'https://images.pexels.com/photos/1672304/pexels-photo-1672304.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ]
     ]
 
