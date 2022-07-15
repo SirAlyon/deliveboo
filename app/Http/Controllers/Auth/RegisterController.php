@@ -62,13 +62,16 @@ class RegisterController extends Controller
         ]); */
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'lastname' => ['required', 'string', 'max:255'],
             'restaurant_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'vat' => ['required', 'string', 'max:30'],
+            'types' => ['required'],
+            'image' => ['nullable', 'string', 'max:255'],
         ]);
+
     }
 
     /**
@@ -79,18 +82,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //dd($data);
-        return User::create([
+        
+        $new_user = User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'email' => $data['email'],
             'lastname' => $data['lastname'],
             'restaurant_name' => $data['restaurant_name'],
             'address' => $data['address'],
             'vat' => $data['vat'],
+            'image' => $data['image']
         ]);
 
-        /* 
-            'image' => $data['image'], */
+        $new_user->types()->sync($data['types']);
+
+        return $new_user;
+
+
+
+        
     }
 }
