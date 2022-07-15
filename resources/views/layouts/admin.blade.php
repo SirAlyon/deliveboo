@@ -48,12 +48,12 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{route('admin.dashboard')}}">
                                     Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{route('admin.products.index')}}">
                                     Products
                                 </a>
                             </li>
