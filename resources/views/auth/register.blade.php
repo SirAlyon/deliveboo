@@ -83,11 +83,16 @@
 
                         <div class="mb-3">
                             <label for="types" class="form-label">Restaurant Types</label>
-                            <select multiple class="form-select" name="types[]" id="types" aria-label="types">
+                            <select multiple class="form-select @error('restaurant_name') is-invalid @enderror" name="types[]" id="types" aria-label="types">
                                 @foreach ($types as $type)
                                 <option value="{{$type->id}}" {{ (collect(old('types'))->contains($type->id)) ? 'selected':'' }}>{{$type->name}}</option>
                                 @endforeach
                             </select>
+                            @error('types')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="mb-3 row">

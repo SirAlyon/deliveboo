@@ -60,15 +60,15 @@ class RegisterController extends Controller
         //dd($data);
 
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:2', 'max:50'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'restaurant_name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'min:2', 'max:50'],
+            'restaurant_name' => ['required', 'string', 'max:70'],
             'address' => ['required', 'string', 'max:255'],
             'vat' => ['required', 'string', 'max:30'],
-            'types' => ['required'],
-            'image' => ['nullable', 'image', 'max:50'],
+            'types' => ['exists:types,id,name','required'],
+            'image' => ['nullable', 'file', 'image', 'max:50', 'mimetypes:image/jpeg,/image/png,image/svg,image/jpg'],
         ]);
 
     }
