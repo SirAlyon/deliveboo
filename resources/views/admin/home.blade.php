@@ -16,7 +16,7 @@
 
                     {{ __('You are logged in!') }}
                     <div class="button mt-3">
-                        <a class="btn btn-primary" href="{{route('admin.posts.index')}}" role="button">Go to Dashboard</a>
+                        test
                     </div>
                 </div>
             </div>
