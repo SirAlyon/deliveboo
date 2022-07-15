@@ -23,7 +23,7 @@
 
 <body>
     <!-- Add navigation links -->
-    <div id="root"></div>
+    <div id="root"> </div>
 </body>
 
 </html>
