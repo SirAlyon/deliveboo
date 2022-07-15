@@ -5154,16 +5154,13 @@ __webpack_require__.r(__webpack_exports__);
       menu_items: [{
         route_name: 'home',
         route_text: 'Home'
-      }
-      /* {
-          route_name: 'about',
-          route_text: 'About'
-      },
-      {
-          route_name: 'posts',
-          route_text: 'Posts'
-      } */
-      ]
+      }, {
+        route_name: 'restaurant',
+        route_text: 'Restaurant'
+      }, {
+        route_name: 'checkout',
+        route_text: 'Checkout'
+      }]
     };
   }
 });
@@ -5283,7 +5280,7 @@ var render = function render() {
         name: "home"
       }
     }
-  }, [_c("h1", [_vm._v("Boolpress")])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  }, [_c("h1", [_vm._v("DeliveBoo")])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "collapse navbar-collapse",
     attrs: {
       id: "navbarSupportedContent"
@@ -5293,7 +5290,7 @@ var render = function render() {
   }, _vm._l(_vm.menu_items, function (item) {
     return _c("li", {
       key: item,
-      staticClass: "nav-item"
+      staticClass: "nav-item px-3"
     }, [_c("router-link", {
       attrs: {
         to: {
