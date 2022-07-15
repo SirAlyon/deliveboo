@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
+
+    protected $fillable = ['name','description','price','visibility', 'image'];
+ 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
