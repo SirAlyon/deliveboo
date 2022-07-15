@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <router-link class="navbar-brand" :to="{name: 'home'}">
-                <h1>Boolpress</h1>
+                <h1>DeliveBoo</h1>
             </router-link>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="">
@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item" v-for="item in menu_items" :key="item">
+                    <li class="nav-item px-3" v-for="item in menu_items" :key="item">
                         <router-link :to="{name: item.route_name}">
                             {{item.route_text}}
                         </router-link>
@@ -42,14 +42,14 @@
                         route_name: 'home',
                         route_text: 'Home'
                     },
-                    /* {
-                        route_name: 'about',
-                        route_text: 'About'
+                    {
+                        route_name: 'restaurant',
+                        route_text: 'Restaurant'
                     },
                     {
-                        route_name: 'posts',
-                        route_text: 'Posts'
-                    } */
+                        route_name: 'checkout',
+                        route_text: 'Checkout'
+                    }
                 ]
             }
         }
