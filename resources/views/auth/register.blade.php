@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('vat') }}</label>
+                            <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }}</label>
 
                             <div class="col-md-6">
                                 <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
@@ -81,13 +81,18 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="types" class="form-label">Restaurant Types</label>
-                            <select multiple class="form-select @error('restaurant_name') is-invalid @enderror" name="types[]" id="types" aria-label="types">
-                                @foreach ($types as $type)
-                                <option value="{{$type->id}}" {{ (collect(old('types'))->contains($type->id)) ? 'selected':'' }}>{{$type->name}}</option>
-                                @endforeach
-                            </select>
+
+                        <div class="mb-3 row">
+                            <label for="types" class="col-md-4 col-form-label text-md-right">Restaurant Types</label>
+
+                            <div class="col-md-6">
+                                <select multiple class="form-select @error('restaurant_name') is-invalid @enderror" name="types[]" id="types" aria-label="types">
+                                    @foreach ($types as $type)
+                                    <option value="{{$type->id}}" {{ (collect(old('types'))->contains($type->id)) ? 'selected':'' }}>{{$type->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             @error('types')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -109,9 +114,11 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Image</label>
-                            <input type="file" name="image" id="image" class="pl-0 pt-1 form-control @error('image') is-invalid @enderror" placeholder="Insert image" aria-describedby="helpimage">
+                        <div class="mb-3 row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Image</label>
+                            <div class="col-md-6">
+                                <input type="file" name="image" id="image" class="pl-0 pt-1 form-control @error('image') is-invalid @enderror" placeholder="Insert image" aria-describedby="helpimage">
+                            </div>
                         </div>
 
                         <div class="mb-3 row">
