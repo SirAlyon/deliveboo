@@ -60,15 +60,15 @@ class RegisterController extends Controller
         //dd($data);
 
         return Validator::make($data, [
-            'name' => ['required', 'string', 'min:2', 'max:50'],
+            'name' => ['required', 'string', 'min:2','max:50'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'lastname' => ['required', 'string', 'min:2', 'max:50'],
-            'restaurant_name' => ['required', 'string', 'max:70'],
-            'address' => ['required', 'string', 'max:255'],
-            'vat' => ['required', 'string', 'max:30'],
-            'types' => ['exists:types,id,name','required'],
-            'image' => ['nullable', 'file', 'image', 'max:50', 'mimetypes:image/jpeg,/image/png,image/svg,image/jpg'],
+            'restaurant_name' => ['required', 'string', 'min:2', 'max:70'],
+            'address' => ['required', 'string', 'min:2', 'max:255'],
+            'vat' => ['required', 'string', 'min:2', 'max:30'],
+            'types' => ['exists:types,id','required'],
+            'image' => ['nullable', 'file', 'image', 'max:50', 'mimetypes:image/jpeg,image/png,image/jpg,image/svg'],
         ]);
 
     }
@@ -94,7 +94,7 @@ class RegisterController extends Controller
 
         if(request()->hasFile('image')) {
             $image = request()->file('image')->getClientOriginalName();
-            request()->file('image')->storeAs('/storage/restaurant_img', $new_user->id . '/' . $image, '');
+            request()->file('image')->storeAs('/restaurant_img', $new_user->id . '/' . $image, '');
             $new_user->update(['image' => $image]);
         }
 
