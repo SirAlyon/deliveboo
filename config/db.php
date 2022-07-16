@@ -118,6 +118,34 @@ return [
             'visibility' => 1,
             'image' => 'https://images.pexels.com/photos/1672304/pexels-photo-1672304.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         ]
+    ],
+    'orders' => [
+        [
+            'guest_name' => 'Alessio',
+            'guest_lastname' => 'Sada',
+            'guest_email' => 'alessiosada04@gmail.com',
+            'guest_address' => 'Viale Monza 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 49.99
+            
+        ],
+        [
+            'guest_name' => 'Francesca',
+            'guest_lastname' => 'Huda',
+            'guest_email' => 'francesca@gmail.com',
+            'guest_address' => 'Viale Marche 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 29.99
+            
+        ],
+        [
+            'guest_name' => 'Kiba',
+            'guest_lastname' => 'Inu',
+            'guest_email' => 'kiba@gmail.com',
+            'guest_address' => 'Viale Monza 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 19.99
+        ],
     ]
 
 ];
