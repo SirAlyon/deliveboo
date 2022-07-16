@@ -7,16 +7,26 @@
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3 row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
+                           
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                <small class="text-muted">Max 50 characters | Only letters</small>
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -26,11 +36,11 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('lastname') }}</label>
+                            <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Lastname') }}</label>
 
                             <div class="col-md-6">
                                 <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
-
+                                <small class="text-muted">Max 50 characters | Only letters</small>
                                 @error('lastname')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -40,11 +50,11 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">{{ __('restaurant_name') }}</label>
+                            <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">{{ __('Restaurant Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="restaurant_name" type="text" class="form-control @error('restaurant_name') is-invalid @enderror" name="restaurant_name" value="{{ old('restaurant_name') }}" required autocomplete="restaurant_name" autofocus>
-
+                                <small class="text-muted">Max 70 characters</small>
                                 @error('restaurant_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -58,7 +68,7 @@
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
-
+                                <small class="text-muted">Max 255 characters</small>
                                 @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -68,11 +78,11 @@
                         </div>
 
                         <div class="mb-3 row">
-                            <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('vat') }}</label>
+                            <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }}</label>
 
                             <div class="col-md-6">
                                 <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
-
+                                <small class="text-muted">Max 30 characters</small>
                                 @error('vat')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -81,13 +91,24 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="types" class="form-label">Restaurant Types</label>
-                            <select multiple class="form-select" name="types[]" id="types" aria-label="types">
-                                @foreach ($types as $type)
-                                <option value="{{$type->id}}" {{ (collect(old('types'))->contains($type->id)) ? 'selected':'' }}>{{$type->name}}</option>
-                                @endforeach
-                            </select>
+
+                        <div class="mb-3 row">
+                            <label for="types" class="col-md-4 col-form-label text-md-right">Restaurant Types</label>
+
+                            <div class="col-md-6">
+                                <select multiple class="form-select @error('restaurant_name') is-invalid @enderror" name="types[]" id="types" aria-label="types">
+                                    @foreach ($types as $type)
+                                    <option value="{{$type->id}}" {{ (collect(old('types'))->contains($type->id)) ? 'selected':'' }}>{{$type->name}}</option>
+                                    @endforeach
+                                </select>
+                                <small class="text-muted">Select one or more types</small>
+                            </div>
+
+                            @error('types')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="mb-3 row">
@@ -104,9 +125,12 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Image</label>
-                            <input type="file" name="image" id="image" class="pl-0 pt-1 form-control @error('image') is-invalid @enderror" placeholder="Insert image" aria-describedby="helpimage">
+                        <div class="mb-3 row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Image</label>
+                            <div class="col-md-6">
+                                <input type="file" name="image" id="image" class="pl-0 pt-1 form-control @error('image') is-invalid @enderror" placeholder="Insert image" aria-describedby="helpimage">
+                                <small class="text-muted">File format: jpeg,jpg,svg,png</small>
+                            </div>
                         </div>
 
                         <div class="mb-3 row">
