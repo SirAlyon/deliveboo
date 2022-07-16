@@ -7,7 +7,7 @@
 
 @include('partials.errors')
 
-<form action="{{route('admin.products.store')}}" method="post">
+<form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
 @csrf 
 
 <div class="mb-3">
@@ -31,6 +31,11 @@
 <div class="mb-3">
   <label for="description" class="form-label @error('description') is-invalid @enderror">Description</label>
   <textarea class="form-control" name="description" id="description" rows="5">{{old('description')}}</textarea>
+</div>
+
+<div class="form-check form-switch mb-3">
+  <label class="form-check-label" for="visibility">Visibility</label>
+  <input class="form-check-input" type="checkbox" name="visibility" id="visibility" checked>
 </div>
 
 <button type="submit" class="btn btn-primary text-white">Add Product</button>

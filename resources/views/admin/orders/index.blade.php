@@ -32,7 +32,7 @@
             <th>{{$order->guest_email}}</th>
             <th>{{$order->guest_address}}</th>
             <th>{{$order->guest_phone_number}}</th>
-            <th>$ {{$order->total_price}}</th>
+            <th>€ {{$order->total_price}}</th>
             <th>
               <a class="btn btn-primary" href="{{route('admin.orders.show', $order->id)}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
