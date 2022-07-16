@@ -12,7 +12,7 @@
 
 <div class="mb-3">
   <label for="name" class="form-label">Name</label>
-  <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="product name" aria-describedby="namehelper" value="{{old('name', $product->name)}}">
+  <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="product name" aria-describedby="namehelper" value="{{old('name')}}">
   <small id="namehelper" class="text-muted">type the product name</small>
 </div>
 
