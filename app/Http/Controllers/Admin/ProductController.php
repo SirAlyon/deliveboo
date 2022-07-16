@@ -82,11 +82,19 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
         //dd($request->all());
 
-        $val_data = $request->validated();
+        //$val_data = $request->validated();
+
+        $val_data = $request->validate([
+            'name' => ['required', 'max:50'],
+            'price' => ['required', 'numeric', 'between:0,99.99'],
+            'image' => ['nullable'],
+            'description' => ['nullable']
+
+        ]);
         //dd($val_data);
 
         $product->update($val_data);

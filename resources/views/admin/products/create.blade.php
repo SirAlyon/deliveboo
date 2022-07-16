@@ -18,7 +18,7 @@
 
 <div class="mb-3">
   <label for="price" class="form-label">Price</label>
-  <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror" placeholder="product price" aria-describedby="pricehelper" value="{{old('price')}}">
+  <input type="number" name="price" id="price" step="0.10" class="form-control @error('price') is-invalid @enderror" placeholder="product price" aria-describedby="pricehelper" value="{{old('price')}}">
   <small id="pricehelper" class="text-muted">Insert the price</small>
 </div>
 
