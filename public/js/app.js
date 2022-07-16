@@ -41203,9 +41203,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/deliveboo/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/deliveboo/resources/sass/app.scss */"./resources/sass/app.scss");
 module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/deliveboo/resources/sass/admin.scss */"./resources/sass/admin.scss");
+=======
+__webpack_require__(/*! C:\MAMP\htdocs\final\deliveboo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\MAMP\htdocs\final\deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\final\deliveboo\resources\sass\admin.scss */"./resources/sass/admin.scss");
+>>>>>>> c93b895508723cdd3a3790cda04fa90f00daadbf
 
 
 /***/ })

@@ -57016,7 +57016,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/deliveboo/resources/js/front.js */"./resources/js/front.js");
+=======
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\final\deliveboo\resources\js\front.js */"./resources/js/front.js");
+>>>>>>> c93b895508723cdd3a3790cda04fa90f00daadbf
 
 
 /***/ })
