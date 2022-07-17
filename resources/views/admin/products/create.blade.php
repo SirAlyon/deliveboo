@@ -7,13 +7,14 @@
 
 @include('partials.errors')
 
-<form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data" novalidate>
 @csrf 
 
 <div class="mb-3">
   <label for="name" class="form-label">Name</label>
   <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="product name" aria-describedby="namehelper" value="{{old('name')}}">
   <small id="namehelper" class="text-muted">type the product name</small>
+  <div class="valid-feedback">Looks good!</div>
 </div>
 
 <div class="mb-3">
@@ -42,5 +43,10 @@
 </form>
 </div>
 
+<script>
+   //Client Side Validation
 
+ let name = document.getElementById('name')
+ console.log(name, 'test');
+</script>
 @endsection
