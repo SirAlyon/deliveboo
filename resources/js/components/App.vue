@@ -1,29 +1,16 @@
 <template>
+
+    <!-- header -->
     <div>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <router-link class="navbar-brand" :to="{name: 'home'}">
-                <h1>Boolpress</h1>
+                <img class="brand_logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/Deliveroo_logo.svg/1920px-Deliveroo_logo.svg.png" alt="brand_logo">
             </router-link>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item" v-for="item in menu_items" :key="item">
-                        <router-link :to="{name: item.route_name}">
-                            {{item.route_text}}
-                        </router-link>
-                    </li>
-                </ul>
-
+            <nav>
                 <!-- Right Side Of Navbar -->
-
-
-            </div>
+                <button class="login_btn" role="button"><a href="/login"> Login </a></button>
+            </nav>
         </div>
     </nav>
 
@@ -35,23 +22,42 @@
 <script>
     export default {
         name: 'App',
-        data(){
-            return{
-                menu_items:[
-                    {
-                        route_name: 'home',
-                        route_text: 'Home'
-                    },
-                    /* {
-                        route_name: 'about',
-                        route_text: 'About'
-                    },
-                    {
-                        route_name: 'posts',
-                        route_text: 'Posts'
-                    } */
-                ]
-            }
-        }
     }
 </script>
+
+<style lang="scss" scoped>
+
+.brand_logo{
+    height: 50px;
+    width: auto;
+}
+
+
+.login_btn {
+
+  align-items: center;
+  background-color: #00c1b2; //brand-color
+  border: 0 solid #E2E8F0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  color: #1A202C;
+  display: inline-flex;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 50px;
+  justify-content: center;
+  line-height: 24px;
+  overflow-wrap: break-word;
+  padding: 18px 60px;
+  text-decoration: none;
+  width: auto;
+  border-radius: 8px;
+  cursor: pointer;
+
+  a{
+      color:white;
+      text-decoration: none;
+  }
+}
+</style>
