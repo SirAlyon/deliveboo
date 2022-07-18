@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Type;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class RestaurantController extends Controller
 {
     public function index()
     {
-        return Type::orderByDesc('id')->paginate(9);
+        return User::with(['types'])->orderByDesc('id')->paginate(9);
     }
 }
