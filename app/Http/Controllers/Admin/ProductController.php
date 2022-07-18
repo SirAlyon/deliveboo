@@ -112,6 +112,10 @@ class ProductController extends Controller
           } else {
             return Redirect::to('/admin');
           }
+
+          if($request->has('visibility')){
+            $val_data['visibility'] = 0;
+           } 
         
     }
 

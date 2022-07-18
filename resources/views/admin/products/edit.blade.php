@@ -26,7 +26,7 @@
 
 <div class="d-flex">
        <div class="media me-4">
-            <img class="shadow" width="150" src="{{asset('storage/' .$product->image)}}" alt="{{$product->name}} image">
+            <img class="shadow" width="150" src="{{asset('storage/' . $product->image)}}" alt="{{$product->name}}">
        </div>
 
        <div class="mb-3">
@@ -43,6 +43,11 @@
   </textarea>
 </div>
 
+<div class="form-check form-switch mb-3">
+  <label class="form-check-label" for="visibility">Visibility</label>
+  <input class="form-check-input" type="checkbox" name="visibility" id="visibility" checked>
+</div>
+ 
 <button type="submit" class="btn btn-primary text-white">Update Product</button>
 </form>
 </div>
