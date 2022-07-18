@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 use App\Models\Product;
- use Illuminate\Http\Request;
- use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
- use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -15,7 +18,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response    
      */
     public function index()
     {
@@ -42,7 +45,7 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\ProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request, Product $product)
     {
         //dd($request->all());
 
@@ -83,9 +86,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, User $user)
     {
-        return view('admin.products.show', compact('product'));
+        if ($user->can('view', $product)) {
+            return view('admin.products.show', compact('product'));
+
+            
+          } else {
+            return Redirect::to('/admin');
+          }
 
     }
 
@@ -95,10 +104,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Product $product, User $user)
     {
-        return view('admin.products.edit', compact('product'));
+        if ($user->can('update', $product)) {
+            return view('admin.products.edit', compact('product'));
 
+          } else {
+            return Redirect::to('/admin');
+          }
+        
     }
 
     /**
@@ -115,8 +129,8 @@ class ProductController extends Controller
         //$val_data = $request->validated();
 
         $val_data = $request->validate([
-            'name' => ['required', 'max:50'],
-            'price' => ['required', 'numeric', 'between:0,99.99'],
+            'name' => ['required', Rule::unique('products')->ignore($product), 'max:50'],
+            'price' => ['required', 'numeric', 'between:0,999.99'],
             'image' => ['nullable'],
             'description' => ['nullable']
 

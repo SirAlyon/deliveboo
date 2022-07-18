@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::middleware('auth')->name('admin.')->namespace('Admin')->prefix('admin')->group(function ()
 {
+    
     Route::get('/', 'HomeController@index')->name('dashboard');
 
     Route::resource('products', 'ProductController');
