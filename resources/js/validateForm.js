@@ -17,12 +17,13 @@ inputs.forEach(input =>{
       if (fileExtension !== 'jpg' || fileExtension !== 'png' || fileExtension !== 'jpeg' || fileExtension !== 'svg'){
         input.value = ""
       }
-    }  
-    
-    if (input.type === 'number'){
-      console.log(input.type === 'number');
+    }else if(input.type === 'number'){
+      let fileExtension = input.value.slice((Math.max(0, input.value.lastIndexOf(".")) || Infinity) + 1);
+      console.log(fileExtension);
+      if (fileExtension !== 'jpg' || fileExtension !== 'png' || fileExtension !== 'jpeg' || fileExtension !== 'svg'){
+        input.value = ""
+      }
     }
-    
   })
 })
 
@@ -56,8 +57,6 @@ Array.prototype.slice.call(forms).forEach((form) => {
         if (fileExtension !== 'jpg' || fileExtension !== 'png' || fileExtension !== 'jpeg' || fileExtension !== 'svg'){
           input.value = ""
         }
-      }else if(input.value == 'number'){
-        console.log(event.keyCode !== 69);
       }
       
     }) 
