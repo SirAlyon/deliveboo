@@ -35,19 +35,11 @@
     <div class="container mymt">
         <h2 class="text-center mt-4 display-3 ">Oggi cosa vorresti mangiare? </h2>
         <div class="row row-cols-6 g-3 mt-1">
-<<<<<<< HEAD
             <div class="col" v-for="type in types" :key="type.id">
                 <div class="my_cat_card">
                     <img class="cat_image image_fluid" :src="type.image" alt="type.name">
                     <div class="card_text">
                         <h4>{{type.name}}</h4>
-=======
-            <div class="col">
-                <div class="my_cat_card">
-                    <img class="cat_image image_fluid" src="https://images.pexels.com/photos/11961854/pexels-photo-11961854.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
-                    <div class="card_text">
-                        <h4>Colazione</h4>
->>>>>>> 22-create-storage
                     </div>
                 </div>
             </div>
@@ -61,7 +53,6 @@
     <div class="container">
         <h2 class="text-center mt-4 display-3 ">Ristoranti</h2>
         <div class="row row-cols-3 g-3 mt-1">
-<<<<<<< HEAD
             <div class="col" v-for="restaurant in restaurants" :key="restaurant.id">
                 <div class="my_rest_card">
                     <div class="card_image">
@@ -75,16 +66,6 @@
                                 {{type.name}}
                             </li>
                         </ul>
-=======
-            <div class="col">
-                <div class="my_rest_card">
-                    <div class="card_image">
-                        <img class="image_fluid" src="https://images.pexels.com/photos/11961854/pexels-photo-11961854.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
-                        <span class="h6">CONSEGNA GRATUITA</span>
-                    </div>
-                    <div class="card_text">
-                        <h4>nome ristorante</h4>
->>>>>>> 22-create-storage
 
                     </div>
                 </div>
