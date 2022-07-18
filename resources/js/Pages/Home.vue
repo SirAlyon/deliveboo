@@ -53,14 +53,19 @@
     <div class="container">
         <h2 class="text-center mt-4 display-3 ">Ristoranti</h2>
         <div class="row row-cols-3 g-3 mt-1">
-            <div class="col">
+            <div class="col" v-for="restaurant in restaurants" :key="restaurant.id">
                 <div class="my_rest_card">
                     <div class="card_image">
-                        <img class="image_fluid" src="https://images.pexels.com/photos/11961854/pexels-photo-11961854.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
+                        <img class="image_fluid" :src="'storage/restaurant_img' + '/' + restaurant.id + '/' + restaurant.image" alt="">
                         <span class="h6">CONSEGNA GRATUITA</span>
                     </div>
                     <div class="card_text">
-                        <h4>nome ristorante</h4>
+                        <h4>{{restaurant.name}}</h4>
+                        <ul>
+                            <li v-for="type in restaurant.types" :key="type.id">
+                                {{type.name}}
+                            </li>
+                        </ul>
 
                     </div>
                 </div>
@@ -83,14 +88,15 @@ export default ({
     data() {
         return {
             types : '',
+            restaurants: '',
         }
     },
 
     mounted() {
-        axios.get('/api/types').then(response => {
+        axios.get('/api/restaurants').then(response => {
             console.log(response);
-            this.types = response.data.data
-            console.log(this.types);
+            this.restaurants = response.data.data
+            console.log(this.restaurants);
         }).catch(error => {
             console.error(error);
         })
