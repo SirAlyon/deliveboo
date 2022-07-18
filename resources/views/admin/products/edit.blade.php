@@ -8,7 +8,7 @@
 
 @include('partials.errors')
 
-<form action="{{route('admin.products.update', $product->id)}}" method="post">
+<form action="{{route('admin.products.update', $product->id)}}" method="post" enctype="multipart/form-data">
 @csrf 
 @method('PUT')
 
@@ -26,7 +26,7 @@
 
 <div class="d-flex">
        <div class="media me-4">
-            <img class="shadow" width="150" src="{{$product->image}}" alt="{{$product->name}}">
+            <img class="shadow" width="150" src="{{asset('storage/' .$product->image)}}" alt="{{$product->name}} image">
        </div>
 
        <div class="mb-3">

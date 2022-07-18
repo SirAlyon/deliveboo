@@ -31,8 +31,8 @@
                 <tr>
                     <td scope="row">{{$product->id}}</td>
                     <td>{{$product->name}}</td>
-                    <td>{{$product->price}}</td>
-                    <td><img  width="100" src="{{$product->image}}" alt="Cover image {{$product->name}}"></td>
+                    <td>€ {{$product->price}}</td>
+                    <td><img  width="100" src="{{asset('storage/' . $product->image)}}" alt="Cover image {{$product->name}}"></td>
                     <td>
                         <a class="btn btn-success btn-sm text-white" href="{{route('admin.products.show', $product->id)}}"> 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
