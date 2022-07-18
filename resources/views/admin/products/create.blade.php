@@ -18,7 +18,7 @@
 
 <div class="mb-3">
   <label for="price" class="form-label">Price</label>
-  <input type="number" name="price" id="price" step="0.01" class="form-control @error('price') is-invalid @enderror" placeholder="5" aria-describedby="pricehelper" value="{{old('price')}}" pattern="[0-9]+" min="0" max="999" required>
+  <input type="number" name="price" id="price" step="0.01" class="form-control @error('price') is-invalid @enderror" placeholder="5" aria-describedby="pricehelper" value="{{old('price')}}" min="0" max="999" required>
   <div class="invalid-feedback">Product price is invalid!</div>
 </div>
 

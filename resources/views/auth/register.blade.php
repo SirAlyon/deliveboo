@@ -81,8 +81,8 @@
                             <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
-                                <small class="text-muted">Max 30 characters</small>
+                                <input id="vat" type="number" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus required >
+                                <small class="text-muted">Your vat 11 numbers</small>
                                 @error('vat')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

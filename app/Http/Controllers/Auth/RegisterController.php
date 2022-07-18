@@ -64,9 +64,9 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'lastname' => ['required', 'string', 'min:2', 'max:50', 'regex:/^[a-zA-Z ]*$/'],
-            'restaurant_name' => ['required', 'string', 'unique:users', 'min:2', 'max:70'],
+            'restaurant_name' => ['required', 'string', 'min:2', 'max:70'],
             'address' => ['required', 'string', 'min:2', 'max:255'],
-            'vat' => ['required', 'string', 'min:2', 'max:30'],
+            'vat' => ['required', 'integer','unique:users'],
             'types' => ['exists:types,id','required'],
             'image' => ['nullable', 'file', 'image', 'max:50', 'mimetypes:image/jpeg,image/png,image/jpg,image/svg'],
         ]);
