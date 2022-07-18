@@ -59,6 +59,21 @@
 
 export default ({
     name:'Home',
+    data() {
+        return {
+            types : '',
+        }
+    },
+
+    mounted() {
+        axios.get('/api/types').then(response => {
+            console.log(response);
+            this.types = response.data.data
+            console.log(this.types);
+        }).catch(error => {
+            console.error(error);
+        })
+    }
 
 })
 </script>
