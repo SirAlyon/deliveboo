@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'address' => ['required', 'string', 'min:2', 'max:255'],
             'vat' => ['required', 'string', 'min:2', 'max:30'],
             'types' => ['exists:types,id','required'],
-            'image' => ['nullable', 'file', 'image', 'max:50', 'mimetypes:image/jpeg,image/png,image/jpg,image/svg'],
+            'image' => ['nullable', 'file', 'image', 'max:250', 'mimetypes:image/jpeg,image/png,image/jpg,image/svg'],
         ]);
 
     }
