@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+<<<<<<< HEAD
+=======
+
+Route::get('types', 'API\TypeController@index');
+>>>>>>> parent of 6c08280 (Merge branch 'dev' of https://github.com/SirAlyon/deliveboo into dev)
