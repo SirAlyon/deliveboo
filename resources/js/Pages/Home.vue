@@ -96,7 +96,11 @@
     <div class="container">
       <h2 class="text-center mt-4 display-3">Ristoranti</h2>
       <div class="row row-cols-3 g-3 mt-1">
-        <div class="col" v-for="restaurant in filteredTypes" :key="restaurant.id">
+        <div
+          class="col"
+          v-for="restaurant in filteredTypes"
+          :key="restaurant.id"
+        >
           <div class="my_rest_card">
             <div class="card_image">
               <img
@@ -174,21 +178,24 @@ export default {
 
   computed: {
     filterTypes() {
-        return this.restaurants.filter(restaurant => {
-            //console.log(restaurant);
-            restaurant.types.forEach(type => {
-                //console.log(type);
-                console.log(this.checkedTypes);
+      return this.restaurants.filter((restaurant) => {
+        //console.log(restaurant);
+        restaurant.types.forEach((type) => {
+          //console.log(type);
+          console.log(this.checkedTypes);
 
-                if(this.checkedTypes.includes(type.name)){
-                    this.filteredTypes.push(restaurant)
-                    //console.log(this.filteredTypes);
-                }
-                
-            });
-        })
-    }
-  }
+          if (this.checkedTypes.includes(type.name)) {
+            //console.log(type.name);
+            while (!this.filteredTypes.includes(restaurant)) {
+              this.filteredTypes.push(restaurant);
+            }
+
+            //console.log(this.filteredTypes);
+          }
+        });
+      });
+    },
+  },
 };
 </script>
 
