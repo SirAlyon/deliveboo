@@ -85,6 +85,10 @@
             :value="type.name"
             :id="type.name"
             v-model="checkedTypes"
+
+            @change="filterReustarants()"
+
+
           />
           {{ type.name }}
         </label>
@@ -96,11 +100,9 @@
     <div class="container">
       <h2 class="text-center mt-4 display-3">Ristoranti</h2>
       <div class="row row-cols-3 g-3 mt-1">
-        <div
-          class="col"
-          v-for="restaurant in filteredTypes"
-          :key="restaurant.id"
-        >
+
+        <div class="col" v-for="restaurant in filteredReustarants" :key="restaurant.id">
+
           <div class="my_rest_card">
             <div class="card_image">
               <img
@@ -137,9 +139,11 @@ export default {
   data() {
     return {
       types: "",
-      restaurants: "",
+
+      restaurants: [],
       checkedTypes: [],
-      filteredTypes: [],
+      filteredReustarants: []
+
     };
   },
 
@@ -150,6 +154,9 @@ export default {
         .then((response) => {
           //console.log(response);
           this.restaurants = response.data.data;
+
+          this.filteredReustarants = this.restaurants
+
           //console.log(this.restaurants);
         })
         .catch((error) => {
@@ -169,6 +176,23 @@ export default {
           console.error(error);
         });
     },
+
+    filterReustarants(){
+        if(this.checkedTypes.length > 0) {
+            this.filteredReustarants = [];
+        } else {
+            this.filteredReustarants = this.restaurants;
+        }
+
+        this.restaurants.forEach(restaurant =>{
+            restaurant.types.forEach(type =>{
+                if(this.checkedTypes.includes(type.name) && !this.filteredReustarants.includes(restaurant)){
+                    this.filteredReustarants.push(restaurant)
+                }   
+            })
+        })
+    }
+
   },
 
   mounted() {
@@ -194,6 +218,7 @@ export default {
       });
     },
   },
+
 };
 </script>
 
