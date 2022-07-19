@@ -10,6 +10,6 @@ class TypeController extends Controller
 {
     public function index()
     {
-        return Type::orderByDesc('id')->get();
+        return Type::orderByDesc('id')->paginate(9);
     }
 }

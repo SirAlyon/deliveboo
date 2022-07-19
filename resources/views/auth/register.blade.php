@@ -18,7 +18,7 @@
                 @endif
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" novalidate class="needs-validation">
                         @csrf
 
                         <div class="mb-3 row">
@@ -26,6 +26,7 @@
                            
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <div class="invalid-feedback">Your name is invalid!</div>
                                 <small class="text-muted">Max 50 characters | Only letters</small>
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -40,6 +41,7 @@
 
                             <div class="col-md-6">
                                 <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                <div class="invalid-feedback">Lastname is invalid!</div>
                                 <small class="text-muted">Max 50 characters | Only letters</small>
                                 @error('lastname')
                                 <span class="invalid-feedback" role="alert">
@@ -54,6 +56,7 @@
 
                             <div class="col-md-6">
                                 <input id="restaurant_name" type="text" class="form-control @error('restaurant_name') is-invalid @enderror" name="restaurant_name" value="{{ old('restaurant_name') }}" required autocomplete="restaurant_name" autofocus>
+                                <div class="invalid-feedback">Restaurant Name is invalid!</div>
                                 <small class="text-muted">Max 70 characters</small>
                                 @error('restaurant_name')
                                 <span class="invalid-feedback" role="alert">
@@ -68,6 +71,7 @@
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+                                <div class="invalid-feedback">Your Address is invalid!</div>
                                 <small class="text-muted">Max 255 characters</small>
                                 @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -81,8 +85,9 @@
                             <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
-                                <small class="text-muted">Max 30 characters</small>
+                                <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" pattern="[0-9]+"  maxlength="11" autocomplete="vat" autofocus required >
+                                <div class="invalid-feedback">Your VAT is invalid!</div>
+                                <small class="text-muted">Your vat 11 numbers</small>
                                 @error('vat')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -96,7 +101,7 @@
                             <label for="types" class="col-md-4 col-form-label text-md-right">Restaurant Types</label>
 
                             <div class="col-md-6">
-                                <select multiple class="form-select @error('restaurant_name') is-invalid @enderror" name="types[]" id="types" aria-label="types">
+                                <select multiple class="form-select form-control @error('restaurant_name') is-invalid @enderror" name="types[]" id="types" aria-label="types" required>
                                     @foreach ($types as $type)
                                     <option value="{{$type->id}}" {{ (collect(old('types'))->contains($type->id)) ? 'selected':'' }}>{{$type->name}}</option>
                                     @endforeach
@@ -137,7 +142,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" minlength="8">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -151,7 +156,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" minlength="8">
                             </div>
                         </div>
 
