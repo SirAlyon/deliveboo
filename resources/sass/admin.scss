@@ -56,12 +56,37 @@ body {
     background-color: #009688;
 }
 
-.icon {
+.icon-dash {
     vertical-align: sub;
     margin-right: 5px;
     font-size: 10px;
     color: #868689e0;
 }
+
+.icon-dashboard{
+    background-color: #035336;
+    top: -31px;
+    position: absolute;
+    border-radius: 0.75rem;
+    padding: 15px;
+    color: white !important;
+}
+
+.order{
+    background-color: #D81B60 !important;
+}
+
+.btn-green{
+    background-color: #426658;
+}
+
+.weekend{
+    position: absolute;
+    left: 70px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
 .sidebar .nav-link {
     font-weight: 500;
     color: white;
