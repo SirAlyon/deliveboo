@@ -45,7 +45,7 @@
 
 <div class="form-check form-switch mb-3">
   <label class="form-check-label" for="visibility">Visibility</label>
-  <input class="form-check-input" type="checkbox" name="visibility" id="visibility" checked>
+  <input class="form-check-input" type="checkbox" name="visibility" id="visibility" {{ ($product->visibility == 0) ? "checked" : "" }} >
 </div>
  
 <button type="submit" class="btn btn-primary text-white">Update Product</button>

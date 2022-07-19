@@ -1,14 +1,15 @@
 let inputs = document.querySelectorAll('.form-control')
 
 inputs.forEach(input =>{
-  console.log(input.type);
+  console.log(input.type, input.id);
 
-  input.addEventListener('keydown', function() {
+
+  input.addEventListener('keyup', function() {
     if (input.type === 'text' || input.type === 'textarea'){
       if(input.value.trim().length == 0){
         input.value = ""
       } 
-      console.log(input.value);
+      //console.log(input.value);
       input.value = input.value.split('  ').join(' ') 
 
     }else if(input.type === 'file'){
@@ -22,6 +23,20 @@ inputs.forEach(input =>{
       console.log(fileExtension);
       if (fileExtension !== 'jpg' || fileExtension !== 'png' || fileExtension !== 'jpeg' || fileExtension !== 'svg'){
         input.value = ""
+      }
+    }
+    
+    if(input.id === 'vat'){
+      console.log(input.value, input.value.length);
+      if(input.value.length !== 11 || isNaN(Number(input.value))){
+        console.log(Number.isNaN(input.value), Number(input.value));
+        input.classList.remove('is-valid')
+
+        input.classList.add('is-invalid')
+      }else{
+        input.classList.add('is-valid')
+
+        input.classList.remove('is-invalid')
       }
     }
   })

@@ -112,11 +112,6 @@ class ProductController extends Controller
           } else {
             return Redirect::to('/admin');
           }
-
-          if($request->has('visibility')){
-            $val_data['visibility'] = 0;
-           } 
-        
     }
 
     /**
@@ -139,6 +134,13 @@ class ProductController extends Controller
             'description' => ['nullable']
 
         ]);
+
+        if($request->has('visibility')){
+            $val_data['visibility'] = 0;
+        }else{
+            $val_data['visibility'] = 1;
+        }
+
         //dd($val_data);
 
         if($request->hasFile('image')){ //ddd($request->hasFile('image'))  == ALTRA VERSIONE CON API DI LARAVEL

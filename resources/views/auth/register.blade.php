@@ -85,7 +85,7 @@
                             <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="vat" type="number" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus required >
+                                <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" pattern="[0-9]+"  maxlength="11" autocomplete="vat" autofocus required >
                                 <div class="invalid-feedback">Your VAT is invalid!</div>
                                 <small class="text-muted">Your vat 11 numbers</small>
                                 @error('vat')
@@ -142,7 +142,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" minlength="8">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -156,7 +156,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" minlength="8">
                             </div>
                         </div>
 
