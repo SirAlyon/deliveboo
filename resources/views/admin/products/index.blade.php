@@ -28,7 +28,7 @@
 
             <tbody class="text-center">
             @forelse($products as $product)
-                <tr >
+                <tr class="{{ ($product->visibility == 1) ? "not-visible" : "" }}">
                     <td scope="row">{{$product->id}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->price}}</td>
