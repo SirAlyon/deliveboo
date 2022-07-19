@@ -29,7 +29,9 @@
 
     <!-- prodotti del ristorante -->
 
+
     <div class="container text-center display-5 mt-4 p-4">
+        <div class="hr_separator mb-4"></div>
       <div>I Nostri Piatti</div>
     </div>
 
@@ -57,6 +59,12 @@
         </div>
       </div>
     </div>
+
+    <!-- separatore per vedere meglio le card -->
+
+    <div class="container">
+        fjfir
+    </div>
   </div>
 </template>
 
@@ -79,9 +87,19 @@ export default {
 
 // prodotti ristorante
 
+.hr_separator{
+    width: 50%;
+    border: 1px solid #00c1b2;
+    border-radius:5px;
+    margin: auto;
+
+}
+
 .my_plate_card {
   padding: 1rem;
   text-align: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 10px;
 
   .card_image {
     position: relative;
@@ -119,17 +137,14 @@ export default {
         }
       
         hr {
-          border: 0;
-          height: 3px;
+          height: 2px;
           width: 20%;
           background-color: #00c1b2;
           margin: 16px 0 16px;
         }
       
         .product_btn{
-              position: absolute;
-              bottom: -30px;
-              right: 30px;
+
               background-color: rgba(red, 0.95);
               color:white;
         }
