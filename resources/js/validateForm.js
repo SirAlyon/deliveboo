@@ -11,6 +11,15 @@ inputs.forEach(input =>{
       } 
       //console.log(input.value);
       input.value = input.value.split('  ').join(' ') 
+      if (input.value.length < 3){
+        input.classList.remove('is-valid')
+
+        input.classList.add('is-invalid')
+      }else{
+        input.classList.add('is-valid')
+
+        input.classList.remove('is-invalid')
+      }
 
     }else if(input.type === 'file'){
       let fileExtension = input.value.slice((Math.max(0, input.value.lastIndexOf(".")) || Infinity) + 1);
@@ -18,11 +27,20 @@ inputs.forEach(input =>{
       if (fileExtension !== 'jpg' || fileExtension !== 'png' || fileExtension !== 'jpeg' || fileExtension !== 'svg'){
         input.value = ""
       }
-    }else if(input.type === 'number'){
-      let fileExtension = input.value.slice((Math.max(0, input.value.lastIndexOf(".")) || Infinity) + 1);
-      console.log(fileExtension);
-      if (fileExtension !== 'jpg' || fileExtension !== 'png' || fileExtension !== 'jpeg' || fileExtension !== 'svg'){
-        input.value = ""
+    }
+
+    
+    if(input.id === 'price'){
+      console.log(Number(input.value), input.value.length);
+
+      if(Number(input.value) == 0 || input.value.includes('.') && input.value.split('.')[1].length > 2){
+        input.classList.remove('is-valid')
+
+        input.classList.add('is-invalid')
+      }else{
+        input.classList.add('is-valid')
+
+        input.classList.remove('is-invalid')
       }
     }
     

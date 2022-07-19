@@ -12,7 +12,7 @@
 
 <div class="mb-3">
   <label for="name" class="form-label">Name</label>
-  <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Pizza Margherita" aria-describedby="namehelper" value="{{old('name')}}"  min="2" max="50" required>
+  <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Pizza Margherita" aria-describedby="namehelper" value="{{old('name')}}"  minlength="2" maxlength="50" required>
   <div class="invalid-feedback">Product name is invalid!</div>
 </div>
 
