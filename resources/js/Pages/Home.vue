@@ -137,7 +137,7 @@ export default {
   data() {
     return {
       types: "",
-      restaurants: "",
+      restaurants: [],
       checkedTypes: [],
       filteredTypes: [],
     };
@@ -148,7 +148,7 @@ export default {
       axios
         .get("/api/restaurants")
         .then((response) => {
-          //console.log(response);
+          console.log(response);
           this.restaurants = response.data.data;
           //console.log(this.restaurants);
         })
@@ -161,7 +161,7 @@ export default {
       axios
         .get("/api/types")
         .then((response) => {
-          //console.log(response);
+          console.log(response);
           this.types = response.data;
           //console.log(this.types);
         })
@@ -177,24 +177,27 @@ export default {
   },
 
   computed: {
-    filterTypes() {
+   filterTypes() {
       return this.restaurants.filter((restaurant) => {
         //console.log(restaurant);
-        restaurant.types.forEach((type) => {
+        return restaurant.types.forEach((type) => {
           //console.log(type);
-          console.log(this.checkedTypes);
-
-          if (this.checkedTypes.includes(type.name)) {
-            //console.log(type.name);
+          if (this.checkedTypes.includes(type.name)){
             while (!this.filteredTypes.includes(restaurant)) {
               this.filteredTypes.push(restaurant);
+              console.log(this.filteredTypes);
             }
-
-            //console.log(this.filteredTypes);
-          }
+          } 
+            
         });
       });
     },
+
+    // filteredTypes: function () {
+    //     return this.restaurants.filter(function (restaurant) {
+    //       return this.checkedTypes.includes(restaurant.types);
+    //     }, this);
+    //   },
   },
 };
 </script>
