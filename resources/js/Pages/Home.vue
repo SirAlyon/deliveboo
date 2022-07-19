@@ -85,6 +85,7 @@
             :value="type.name"
             :id="type.name"
             v-model="checkedTypes"
+            @change="filterReustarants()"
           />
           {{ type.name }}
         </label>
@@ -96,11 +97,7 @@
     <div class="container">
       <h2 class="text-center mt-4 display-3">Ristoranti</h2>
       <div class="row row-cols-3 g-3 mt-1">
-        <div
-          class="col"
-          v-for="restaurant in filteredTypes"
-          :key="restaurant.id"
-        >
+        <div class="col" v-for="restaurant in filteredReustarants" :key="restaurant.id">
           <div class="my_rest_card">
             <div class="card_image">
               <img
@@ -139,7 +136,7 @@ export default {
       types: "",
       restaurants: [],
       checkedTypes: [],
-      filteredTypes: [],
+      filteredReustarants: []
     };
   },
 
@@ -148,8 +145,9 @@ export default {
       axios
         .get("/api/restaurants")
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           this.restaurants = response.data.data;
+          this.filteredReustarants = this.restaurants
           //console.log(this.restaurants);
         })
         .catch((error) => {
@@ -161,7 +159,7 @@ export default {
       axios
         .get("/api/types")
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           this.types = response.data;
           //console.log(this.types);
         })
@@ -169,35 +167,26 @@ export default {
           console.error(error);
         });
     },
+    filterReustarants(){
+        if(this.checkedTypes.length > 0) {
+            this.filteredReustarants = [];
+        } else {
+            this.filteredReustarants = this.restaurants;
+        }
+
+        this.restaurants.forEach(restaurant =>{
+            restaurant.types.forEach(type =>{
+                if(this.checkedTypes.includes(type.name) && !this.filteredReustarants.includes(restaurant)){
+                    this.filteredReustarants.push(restaurant)
+                }   
+            })
+        })
+    }
   },
 
   mounted() {
     this.getTypes();
     this.getRestaurants();
-  },
-
-  computed: {
-   filterTypes() {
-      return this.restaurants.filter((restaurant) => {
-        //console.log(restaurant);
-        return restaurant.types.forEach((type) => {
-          //console.log(type);
-          if (this.checkedTypes.includes(type.name)){
-            while (!this.filteredTypes.includes(restaurant)) {
-              this.filteredTypes.push(restaurant);
-              console.log(this.filteredTypes);
-            }
-          } 
-            
-        });
-      });
-    },
-
-    // filteredTypes: function () {
-    //     return this.restaurants.filter(function (restaurant) {
-    //       return this.checkedTypes.includes(restaurant.types);
-    //     }, this);
-    //   },
   },
 };
 </script>
