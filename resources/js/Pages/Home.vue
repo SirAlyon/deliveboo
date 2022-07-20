@@ -142,7 +142,8 @@ export default {
 
       restaurants: [],
       checkedTypes: [],
-      filteredReustarants: []
+      filteredReustarants: [],
+      loading: true,
 
     };
   },
@@ -156,7 +157,7 @@ export default {
           this.restaurants = response.data.data;
 
           this.filteredReustarants = this.restaurants
-
+          this.loading = false;
           //console.log(this.restaurants);
         })
         .catch((error) => {
@@ -169,8 +170,9 @@ export default {
         .get("/api/types")
         .then((response) => {
           //console.log(response);
-          this.types = response.data;
+          this.types = response.data.data;
           //console.log(this.types);
+          this.loading = false;
         })
         .catch((error) => {
           console.error(error);
