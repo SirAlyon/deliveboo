@@ -12,4 +12,19 @@ class RestaurantController extends Controller
     {
         return User::with(['types'])->orderByDesc('id')->paginate(9);
     }
+
+    public function show($id)
+    {
+        $restaurant = User::with(['types', 'products'])->where('id', $id)->first();
+        if ($restaurant) {
+            return $restaurant;
+        } else {
+            return response()->json(
+                [
+                    'status_code' => 404,
+                    'status_message' => 'Page Not Found'
+                ]
+            );
+        }
+    }
 }
