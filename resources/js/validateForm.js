@@ -21,13 +21,16 @@ inputs.forEach(input =>{
         input.classList.remove('is-invalid')
       }
 
-    }/* else if(input.type === 'file'){
-      let fileExtension = input.value.slice((Math.max(0, input.value.lastIndexOf(".")) || Infinity) + 1);
+    }else if(input.type === 'file'){
+      let fileExtension = input.value.split('.').pop();
+      
+      let allowedExtensione = ['jpg', 'png', 'jpeg', 'gif']
       console.log(fileExtension);
-      if (fileExtension !== 'jpg' || fileExtension !== 'png' || fileExtension !== 'jpeg' || fileExtension !== 'svg'){
+      if (!allowedExtensione.includes(fileExtension)){
+        console.log('deleted', fileExtension === 'jpg');
         input.value = ""
       }
-    } */
+    }
 
     
     if(input.id === 'price'){

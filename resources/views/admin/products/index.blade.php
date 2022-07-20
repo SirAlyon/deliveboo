@@ -28,11 +28,11 @@
 
             <tbody class="text-center">
             @forelse($products as $product)
-                <tr class="{{ ($product->visibility == 1) ? "not-visible" : "" }}">
-                    <td scope="row">{{$product->id}}</td>
-                    <td>{{$product->name}}</td>
-                    <td>{{$product->price}}</td>
-                    <td><img  width="140" height="100" class="text-center" src="{{asset('storage/' . $product->image)}}" alt="image {{$product->name}}"></td>
+                <tr class="{{ ($product->visibility == 1) ? "bg-not-visible" : "" }}">
+                    <td scope="row" class="{{ ($product->visibility == 1) ? "not-visible" : "" }}">{{$product->id}}</td>
+                    <td class="{{ ($product->visibility == 1) ? "not-visible" : "" }}">{{$product->name}}</td>
+                    <td class="{{ ($product->visibility == 1) ? "not-visible" : "" }}">{{$product->price}}</td>
+                    <td class="{{ ($product->visibility == 1) ? "not-visible" : "" }}"><img  width="140" height="100" class="text-center" src="{{asset('storage/' . $product->image)}}" alt="image {{$product->name}}"></td>
                     <td class="d-flex flex-column">
                         <a class="btn btn-success btn-sm text-white mb-1" href="{{route('admin.products.show', $product->id)}}"> 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
