@@ -1,53 +1,6 @@
 <template>
   <div>
-    <!-- carousel -->
-    <div class="fluid-container my_carousel">
-      <div
-        id="carouselExampleCaptions"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="d-block w-100"
-              alt="#"
-            />
-            <div class="my_carousel_caption">
-              <h1>Carne</h1>
-              <p class="d-none d-md-block">
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="d-block w-100"
-              alt="#"
-            />
-            <div class="my_carousel_caption">
-              <h1>Pasta</h1>
-              <p class="d-none d-md-block">Some representative.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://images.pexels.com/photos/406152/pexels-photo-406152.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="d-block w-100"
-              alt="#"
-            />
-            <div class="my_carousel_caption">
-              <h1>Messicano</h1>
-              <p class="d-none d-md-block">
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
     <!-- tipologie -->
 
@@ -225,33 +178,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.carousel-inner {
-  font-family: Arial, Helvetica, sans-serif !important;
-
-  img {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    filter: contrast(0.5);
-  }
-  h1 {
-    font-size: 70px !important;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-
-  .my_carousel_caption {
-    position: absolute;
-    right: 15%;
-    bottom: 1.25rem;
-    left: 8%;
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-    color: #fff;
-    text-align: left;
-    font-size: 50px;
-  }
-}
 
 // Tipologie
 
