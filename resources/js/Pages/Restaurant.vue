@@ -50,20 +50,20 @@
 
     <div class="container">
       <div class="row row-cols-3 g-3 mt-1">
-        <div class="col">
+        <div class="col" v-for="product in restaurant.products" :key="product.id">
           <div class="my_plate_card">
             <div class="card_image">
               <img
-                src="https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=800"
+                :src="'/storage/' + '/' + product.image"
                 alt=""
               />
               <!-- prezzo -->
-              <span class="h5">prezzo</span>
+              <span class="h5">{{product.price}}</span>
             </div>
             <div class="card_text">
-              <h2 class="product_title pt-3">Nome piatto</h2>
+              <h2 class="product_title pt-3">{{product.name}}</h2>
               <hr />
-              <p>descrizione prodotto</p>
+              <p>{{product.description}}</p>
               <a href="#" class="product_btn btn">Aggiungi al carrello</a>
             </div>
           </div>
@@ -83,6 +83,7 @@ export default {
   data() {
     return {
       restaurant: "",
+      loading: true,
     };
   },
 

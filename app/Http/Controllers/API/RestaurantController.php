@@ -10,7 +10,7 @@ class RestaurantController extends Controller
 {
     public function index()
     {
-        return User::with(['types'])->orderByDesc('id')->paginate(9);
+        return User::with(['types'])->orderByDesc('id')->paginate(12);
     }
 
     public function show($id)

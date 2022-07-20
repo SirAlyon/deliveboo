@@ -175,7 +175,7 @@ export default {
       axios
         .get("/api/types")
         .then((response) => {
-          //console.log(response);
+          console.log(response);
           this.types = response.data.data;
           //console.log(this.types);
           this.loading = false;
