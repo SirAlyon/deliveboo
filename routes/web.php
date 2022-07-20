@@ -18,6 +18,7 @@ Auth::routes();
 
 
 
+
 Route::middleware('auth')->name('admin.')->namespace('Admin')->prefix('admin')->group(function ()
 {
     
