@@ -20,15 +20,15 @@ import Checkout from './Pages/Checkout';
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-  { path: '/', name:'home', component: Home },
-  { path: '/restaurant', name:'restaurant', component: Restaurant },
-  { path: '/checkout', name:'checkout', component: Checkout }
+    { path: '/', name: 'home', component: Home },
+    { path: '/restaurant/:id', name: 'restaurant', component: Restaurant },
+    { path: '/checkout', name: 'checkout', component: Checkout }
 ]
 
 // 3. Create the router instance and pass the `routes` option
 const router = new VueRouter({
     mode: 'history',
-  routes
+    routes
 })
 
 // 4. Create and mount the root instance

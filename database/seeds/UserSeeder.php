@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -27,5 +29,7 @@ class UserSeeder extends Seeder
             /* $new_restaurant->types = $restaurant['types']; */
 
             $new_restaurant->save();
+        }
     }
+}
 }

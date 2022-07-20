@@ -1,136 +1,143 @@
 <template>
-  <div>
-    <!-- carousel -->
-    <div class="fluid-container my_carousel">
-      <div
-        id="carouselExampleCaptions"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="d-block w-100"
-              alt="#"
-            />
-            <div class="my_carousel_caption">
-              <h1>Carne</h1>
-              <p class="d-none d-md-block">
-                Some representative placeholder content for the first slide.
-              </p>
+  <div v-if="!loading">
+    <div class="container-fluid main_content mt-3">
+      <div class="row">
+        <div class="col-2">
+          <!-- Filter Checkbox -->
+          <div class="choose_types d-flex flex-column align-items-start">
+            <h4>Seleziona uno o più tipologie</h4>
+            <div
+              class="btn-group"
+              role="group"
+              data-bs-toggle="buttons"
+              v-for="type in types"
+              :key="type.id"
+            >
+              <label class="btn btn-primary active bg-transparent border-0">
+                <input
+                  type="checkbox"
+                  class="me-2"
+                  :value="type.name"
+                  :id="type.name"
+                  v-model="checkedTypes"
+                  @change="filterReustarants()"
+                />
+                {{ type.name }}
+              </label>
             </div>
           </div>
-          <div class="carousel-item">
-            <img
-              src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="d-block w-100"
-              alt="#"
-            />
-            <div class="my_carousel_caption">
-              <h1>Pasta</h1>
-              <p class="d-none d-md-block">Some representative.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://images.pexels.com/photos/406152/pexels-photo-406152.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="d-block w-100"
-              alt="#"
-            />
-            <div class="my_carousel_caption">
-              <h1>Messicano</h1>
-              <p class="d-none d-md-block">
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
+          <!-- /.Filter Checboxes-->
         </div>
-      </div>
-    </div>
-
-    <!-- tipologie -->
-
-    <div class="container mymt">
-      <h2 class="text-center mt-4 display-3">Oggi cosa vorresti mangiare?</h2>
-      <div class="row row-cols-6 g-3 mt-1">
-        <div class="col" v-for="type in types" :key="type.id">
-          <div class="my_cat_card">
-            <img
-              class="cat_image image_fluid"
-              :src="type.image"
-              alt="type.name"
-            />
-            <div class="card_text">
-              <h4>{{ type.name }}</h4>
+        <!-- /.col-3 -->
+        <div class="col-10">
+          <div class="types_wrapper">
+            <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
+            <div class="row row-cols-6 g-3 mt-1 flex-nowrap overflow-auto">
+              <div class="col" v-for="type in types" :key="type.id">
+                <div class="my_cat_card">
+                  <img
+                    class="cat_image image_fluid"
+                    :src="type.image"
+                    alt="type.name"
+                  />
+                  <div class="card_text">
+                    <h4>{{ type.name }}</h4>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- /.tipologie -->
           </div>
-        </div>
-      </div>
-    </div>
+          <!-- /.types_wrapper -->
+          <!-- tipologie -->
 
-    <!-- Filter Checbox -->
-    <div class="choose_types text-center">
-      <div
-        class="btn-group"
-        role="group"
-        data-bs-toggle="buttons"
-        v-for="type in types"
-        :key="type.id"
-      >
-        <label class="btn btn-primary active">
-          <input
-            type="checkbox"
-            class="me-2"
-            :value="type.name"
-            :id="type.name"
-            v-model="checkedTypes"
+          <!-- ristoranti -->
+          <div class="restaurants_wrapper mt-4">
+            <h3 class="display-6">Ristoranti</h3>
+            <div class="row row-cols-4 g-3 mt-1" v-if="restaurants.length > 0">
+              <div
+                class="col"
+                v-for="restaurant in filteredReustarants"
+                :key="restaurant.id"
+              >
+                <div class="my_rest_card">
+                  <div class="card_image">
+                    <router-link
+                      :to="{
+                        name: 'restaurant',
+                        params: { id: restaurant.id },
+                      }"
+                    >
+                      <img
+                        class="image-fluid"
+                        src="img/coming_soon.jpeg"
+                        alt="coming soon image"
+                        v-if="restaurant.image === null"
+                      />
+                      <img
+                        class="image_fluid"
+                        :src="
+                          '/storage/restaurant_img' +
+                          '/' +
+                          restaurant.id +
+                          '/' +
+                          restaurant.image
+                        "
+                        alt="restaurant.name"
+                        v-else
+                      />
+                    </router-link>
 
-            @change="filterReustarants()"
+                    <span class="h6">CONSEGNA GRATUITA</span>
+                  </div>
+                  <div class="card_text">
+                    <router-link
+                    class="text-decoration-none text-reset"
+                      :to="{
+                        name: 'restaurant',
+                        params: { id: restaurant.id },
+                      }"
+                    >
+                      <h4>{{ restaurant.name }}</h4>
+                    </router-link>
 
-
-          />
-          {{ type.name }}
-        </label>
-      </div>
-    </div>
-
-    <!-- ristoranti -->
-
-    <div class="container">
-      <h2 class="text-center mt-4 display-3">Ristoranti</h2>
-      <div class="row row-cols-3 g-3 mt-1">
-
-        <div class="col" v-for="restaurant in filteredReustarants" :key="restaurant.id">
-
-          <div class="my_rest_card">
-            <div class="card_image">
-              <img
-                class="image_fluid"
-                :src="
-                  'storage/restaurant_img' +
-                  '/' +
-                  restaurant.id +
-                  '/' +
-                  restaurant.image
-                "
-                alt=""
-              />
-              <span class="h6">CONSEGNA GRATUITA</span>
+                    <div class="types_widget">
+                      <ul class="list-unstyled d-flex justify-content-center">
+                        <li
+                          class="ms-2"
+                          v-for="type in restaurant.types"
+                          :key="type.id"
+                        >
+                          {{ type.name }}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card_text">
-              <h4>{{ restaurant.name }}</h4>
-              <ul>
-                <li v-for="type in restaurant.types" :key="type.id">
-                  {{ type.name }}
-                </li>
-              </ul>
+            <div class="row" v-else>
+              <div class="col-12">
+                <h3 class="text-center">No restaurants yet!</h3>
+              </div>
             </div>
+            <!-- /.row -->
           </div>
+          <!-- /.restaurants_wrapper -->
+
+          <!-- /.ristoranti-->
         </div>
+        <!-- /.col-9 -->
       </div>
+      <!-- /.row -->
     </div>
+    <!-- /.container-fluid -->
   </div>
+  <div class="loader_wrapper" v-else>
+    <div class="loader"></div>
+    <!-- /.loader -->
+  </div>
+  <!-- /.loader_wrapper -->
 </template>
 
 <script>
@@ -142,8 +149,8 @@ export default {
 
       restaurants: [],
       checkedTypes: [],
-      filteredReustarants: []
-
+      filteredReustarants: [],
+      loading: true,
     };
   },
 
@@ -155,8 +162,8 @@ export default {
           //console.log(response);
           this.restaurants = response.data.data;
 
-          this.filteredReustarants = this.restaurants
-
+          this.filteredReustarants = this.restaurants;
+          this.loading = false;
           //console.log(this.restaurants);
         })
         .catch((error) => {
@@ -171,28 +178,31 @@ export default {
           //console.log(response);
           this.types = response.data.data;
           //console.log(this.types);
+          this.loading = false;
         })
         .catch((error) => {
           console.error(error);
         });
     },
 
-    filterReustarants(){
-        if(this.checkedTypes.length > 0) {
-            this.filteredReustarants = [];
-        } else {
-            this.filteredReustarants = this.restaurants;
-        }
+    filterReustarants() {
+      if (this.checkedTypes.length > 0) {
+        this.filteredReustarants = [];
+      } else {
+        this.filteredReustarants = this.restaurants;
+      }
 
-        this.restaurants.forEach(restaurant =>{
-            restaurant.types.forEach(type =>{
-                if(this.checkedTypes.includes(type.name) && !this.filteredReustarants.includes(restaurant)){
-                    this.filteredReustarants.push(restaurant)
-                }   
-            })
-        })
-    }
-
+      this.restaurants.forEach((restaurant) => {
+        restaurant.types.forEach((type) => {
+          if (
+            this.checkedTypes.includes(type.name) &&
+            !this.filteredReustarants.includes(restaurant)
+          ) {
+            this.filteredReustarants.push(restaurant);
+          }
+        });
+      });
+    },
   },
 
   mounted() {
@@ -218,47 +228,39 @@ export default {
       });
     },
   },
-
 };
 </script>
 
 <style lang="scss" scoped>
-.carousel-inner {
-  font-family: Arial, Helvetica, sans-serif !important;
+/* Loader */
+.loader_wrapper {
+  background-color: white;
+  height: 100vh;
+}
+.loader {
+  padding: 30px;
+  border: 10px solid #00ccbc;
+  box-shadow: 0 0 5px 1px #00ccbc;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: rotate 1s infinite linear;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+}
 
-  img {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    filter: contrast(0.5);
-  }
-  h1 {
-    font-size: 70px !important;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-
-  .my_carousel_caption {
-    position: absolute;
-    right: 15%;
-    bottom: 1.25rem;
-    left: 8%;
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-    color: #fff;
-    text-align: left;
-    font-size: 50px;
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
   }
 }
 
 // Tipologie
 
-.mymt {
-  margin-top: 100px !important;
+.restaurants.title {
+  font-weight: bold;
 }
-
 .my_cat_card {
-  padding: 1rem;
   text-align: center;
 
   .card_text {
