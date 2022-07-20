@@ -1,89 +1,96 @@
 <template>
-  <div>
-   
-
-    <!-- tipologie -->
-
-    <div class="container mymt">
-      <h2 class="text-center mt-4 display-3">Oggi cosa vorresti mangiare?</h2>
-      <div class="row row-cols-6 g-3 mt-1">
-        <div class="col" v-for="type in types" :key="type.id">
-          <div class="my_cat_card">
-            <img
-              class="cat_image image_fluid"
-              :src="type.image"
-              alt="type.name"
-            />
-            <div class="card_text">
-              <h4>{{ type.name }}</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Filter Checbox -->
-    <div class="choose_types text-center">
-      <div
-        class="btn-group"
-        role="group"
-        data-bs-toggle="buttons"
-        v-for="type in types"
-        :key="type.id"
-      >
-        <label class="btn btn-primary active">
-          <input
-            type="checkbox"
-            class="me-2"
-            :value="type.name"
-            :id="type.name"
-            v-model="checkedTypes"
-
-            @change="filterReustarants()"
-
-
-          />
-          {{ type.name }}
-        </label>
-      </div>
-    </div>
-
-    <!-- ristoranti -->
-
-    <div class="container">
-      <h2 class="text-center mt-4 display-3">Ristoranti</h2>
-      <div class="row row-cols-3 g-3 mt-1">
-
-        <div class="col" v-for="restaurant in filteredReustarants" :key="restaurant.id">
-
-          <div class="my_rest_card">
-            <div class="card_image">
+  <div v-if="!loading">
+    <div class="content">
+      <!-- tipologie -->
+      <div class="container mymt">
+        <h2 class="text-center mt-4 display-3">Oggi cosa vorresti mangiare?</h2>
+        <div class="row row-cols-6 g-3 mt-1">
+          <div class="col" v-for="type in types" :key="type.id">
+            <div class="my_cat_card">
               <img
-                class="image_fluid"
-                :src="
-                  'storage/restaurant_img' +
-                  '/' +
-                  restaurant.id +
-                  '/' +
-                  restaurant.image
-                "
-                alt=""
+                class="cat_image image_fluid"
+                :src="type.image"
+                alt="type.name"
               />
-              <span class="h6">CONSEGNA GRATUITA</span>
-            </div>
-            <div class="card_text">
-              <h4>{{ restaurant.name }}</h4>
-              <ul>
-                <li v-for="type in restaurant.types" :key="type.id">
-                  {{ type.name }}
-                </li>
-              </ul>
+              <div class="card_text">
+                <h4>{{ type.name }}</h4>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- /.tipologie -->
+
+      <!-- Filter Checkbox -->
+      <div class="choose_types text-center">
+        <div
+          class="btn-group"
+          role="group"
+          data-bs-toggle="buttons"
+          v-for="type in types"
+          :key="type.id"
+        >
+          <label class="btn btn-primary active">
+            <input
+              type="checkbox"
+              class="me-2"
+              :value="type.name"
+              :id="type.name"
+              v-model="checkedTypes"
+              @change="filterReustarants()"
+            />
+            {{ type.name }}
+          </label>
+        </div>
+      </div>
+      <!-- /.Filter Checboxes-->
+
+      <!-- ristoranti -->
+
+      <div class="container">
+        <h2 class="text-center mt-4 display-3">Ristoranti</h2>
+        <div class="row row-cols-3 g-3 mt-1">
+          <div
+            class="col"
+            v-for="restaurant in filteredReustarants"
+            :key="restaurant.id"
+          >
+            <div class="my_rest_card">
+              <div class="card_image">
+                <img
+                  class="image_fluid"
+                  :src="
+                    'storage/restaurant_img' +
+                    '/' +
+                    restaurant.id +
+                    '/' +
+                    restaurant.image
+                  "
+                  alt=""
+                />
+                <span class="h6">CONSEGNA GRATUITA</span>
+              </div>
+              <div class="card_text">
+                <h4>{{ restaurant.name }}</h4>
+                <ul>
+                  <li v-for="type in restaurant.types" :key="type.id">
+                    {{ type.name }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.ristoranti-->
     </div>
+    <!-- /.content -->
   </div>
+  <div class="loader_wrapper" v-else>
+      <div class="loader"></div>
+      <!-- /.loader -->
+    </div>
+    <!-- /.loader_wrapper -->
 </template>
 
 <script>
@@ -97,7 +104,6 @@ export default {
       checkedTypes: [],
       filteredReustarants: [],
       loading: true,
-
     };
   },
 
@@ -109,7 +115,7 @@ export default {
           //console.log(response);
           this.restaurants = response.data.data;
 
-          this.filteredReustarants = this.restaurants
+          this.filteredReustarants = this.restaurants;
           this.loading = false;
           //console.log(this.restaurants);
         })
@@ -132,22 +138,24 @@ export default {
         });
     },
 
-    filterReustarants(){
-        if(this.checkedTypes.length > 0) {
-            this.filteredReustarants = [];
-        } else {
-            this.filteredReustarants = this.restaurants;
-        }
+    filterReustarants() {
+      if (this.checkedTypes.length > 0) {
+        this.filteredReustarants = [];
+      } else {
+        this.filteredReustarants = this.restaurants;
+      }
 
-        this.restaurants.forEach(restaurant =>{
-            restaurant.types.forEach(type =>{
-                if(this.checkedTypes.includes(type.name) && !this.filteredReustarants.includes(restaurant)){
-                    this.filteredReustarants.push(restaurant)
-                }   
-            })
-        })
-    }
-
+      this.restaurants.forEach((restaurant) => {
+        restaurant.types.forEach((type) => {
+          if (
+            this.checkedTypes.includes(type.name) &&
+            !this.filteredReustarants.includes(restaurant)
+          ) {
+            this.filteredReustarants.push(restaurant);
+          }
+        });
+      });
+    },
   },
 
   mounted() {
@@ -173,11 +181,32 @@ export default {
       });
     },
   },
-
 };
 </script>
 
 <style lang="scss" scoped>
+/* Loader */
+.loader_wrapper {
+  background-color: white;
+  height: 100vh;
+}
+.loader {
+  padding: 30px;
+  border: 10px solid #00ccbc;
+  box-shadow: 0 0 5px 1px #00ccbc;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: rotate 1s infinite linear;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 // Tipologie
 

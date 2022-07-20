@@ -70,10 +70,13 @@
       </div>
     </header>
     <!-- /#site_header -->
-    <router-view></router-view>
-    
+
+    <main id="site_main">
+      <router-view></router-view>
+    </main>
+     <!-- /#site_main -->
     <footer id="site_footer">
-        <p class="text-center">Made with &hearts; by <em>Team 2</em></p>
+      <p class="text-center">Made with &hearts; by <em>Team 2</em></p>
     </footer>
     <!-- /#site_footer -->
   </div>
@@ -148,5 +151,4 @@ export default {
     font-size: 50px;
   }
 }
-
 </style>
