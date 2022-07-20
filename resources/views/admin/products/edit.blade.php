@@ -3,8 +3,8 @@
 
 @section('content')
 
-<div class="container">
-<h2 class="mt-4">Edit {{$product->name}}</h2>
+<div class="container" style="height: 700px; width: 700px;";>
+<h2 class="mt-4 mb-4">Edit <span class="text-secondary">{{$product->name}}</span> </h2>
 
 @include('partials.errors')
 
@@ -52,7 +52,7 @@
   <input class="form-check-input" type="checkbox" name="visibility" id="visibility" {{ ($product->visibility == 0) ? "checked" : "" }} >
 </div>
  
-<button type="submit" class="btn btn-primary text-white">Update Product</button>
+<button type="submit" class="btn btn-secondary text-white">Update Product</button>
 </form>
 </div>
 

@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="container-sm">
 
-<h2 class="mt-4">Create a new Product</h2>
+<h2 class="mt-4 mb-4">Create a new Product</h2>
 
 @include('partials.errors')
 
@@ -38,7 +38,7 @@
   <input class="form-check-input" type="checkbox" name="visibility" id="visibility" checked>
 </div>
 
-<button type="submit" class="btn btn-primary text-white">Add Product</button>
+<button type="submit" class="btn btn-dark text-white">Add Product</button>
 </form>
 </div>
 
