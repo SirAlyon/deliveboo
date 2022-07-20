@@ -49,7 +49,7 @@
 
       <div class="container">
         <h2 class="text-center mt-4 display-3">Ristoranti</h2>
-        <div class="row row-cols-3 g-3 mt-1">
+        <div class="row row-cols-3 g-3 mt-1" v-if="restaurants.length > 0">
           <div
             class="col"
             v-for="restaurant in filteredReustarants"
@@ -59,6 +59,12 @@
               <div class="card_image">
                 <img
                   class="image_fluid"
+                  src="img/coming_soon.jpeg"
+                  alt="coming soon image"
+                  v-if="restaurant.image === null"
+                />
+                <img
+                  class="image_fluid"
                   :src="
                     'storage/restaurant_img' +
                     '/' +
@@ -66,31 +72,40 @@
                     '/' +
                     restaurant.image
                   "
-                  alt=""
+                  alt="restaurant.name"
+                  v-else
                 />
                 <span class="h6">CONSEGNA GRATUITA</span>
               </div>
               <div class="card_text">
                 <h4>{{ restaurant.name }}</h4>
-                <ul>
-                  <li v-for="type in restaurant.types" :key="type.id">
-                    {{ type.name }}
-                  </li>
-                </ul>
+                <div class="types_widget">
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li class="ms-2" v-for="type in restaurant.types" :key="type.id">
+                      {{ type.name }}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="row" v-else>
+          <div class="col-12">
+            <h3 class="text-center">No restaurants yet!</h3>
+          </div>
+        </div>
+        <!-- /.row -->
       </div>
       <!-- /.ristoranti-->
     </div>
     <!-- /.content -->
   </div>
   <div class="loader_wrapper" v-else>
-      <div class="loader"></div>
-      <!-- /.loader -->
-    </div>
-    <!-- /.loader_wrapper -->
+    <div class="loader"></div>
+    <!-- /.loader -->
+  </div>
+  <!-- /.loader_wrapper -->
 </template>
 
 <script>
