@@ -2,7 +2,7 @@
   <div v-if="!loading">
     <div class="container-fluid main_content mt-3">
       <div class="row">
-        <div class="col-2 ">
+        <div class="col-2">
           <!-- Filter Checkbox -->
           <div class="choose_types d-flex flex-column align-items-start">
             <h4>Seleziona uno o più tipologie</h4>
@@ -31,9 +31,7 @@
         <!-- /.col-3 -->
         <div class="col-10">
           <div class="types_wrapper">
-            <h3 class="display-6">
-              Ristoranti che consegnano a Milano
-            </h3>
+            <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
             <div class="row row-cols-6 g-3 mt-1 flex-nowrap overflow-auto">
               <div class="col" v-for="type in types" :key="type.id">
                 <div class="my_cat_card">
@@ -64,28 +62,45 @@
               >
                 <div class="my_rest_card">
                   <div class="card_image">
-                    <img
-                      class="image_fluid"
-                      src="img/coming_soon.jpeg"
-                      alt="coming soon image"
-                      v-if="restaurant.image === null"
-                    />
-                    <img
-                      class="image_fluid"
-                      :src="
-                        'storage/restaurant_img' +
-                        '/' +
-                        restaurant.id +
-                        '/' +
-                        restaurant.image
-                      "
-                      alt="restaurant.name"
-                      v-else
-                    />
+                    <router-link
+                      :to="{
+                        name: 'restaurant',
+                        params: { id: restaurant.id },
+                      }"
+                    >
+                      <img
+                        class="image-fluid"
+                        src="img/coming_soon.jpeg"
+                        alt="coming soon image"
+                        v-if="restaurant.image === null"
+                      />
+                      <img
+                        class="image_fluid"
+                        :src="
+                          '/storage/restaurant_img' +
+                          '/' +
+                          restaurant.id +
+                          '/' +
+                          restaurant.image
+                        "
+                        alt="restaurant.name"
+                        v-else
+                      />
+                    </router-link>
+
                     <span class="h6">CONSEGNA GRATUITA</span>
                   </div>
                   <div class="card_text">
-                    <h4>{{ restaurant.name }}</h4>
+                    <router-link
+                    class="text-decoration-none text-reset"
+                      :to="{
+                        name: 'restaurant',
+                        params: { id: restaurant.id },
+                      }"
+                    >
+                      <h4>{{ restaurant.name }}</h4>
+                    </router-link>
+
                     <div class="types_widget">
                       <ul class="list-unstyled d-flex justify-content-center">
                         <li
