@@ -1,105 +1,122 @@
 <template>
   <div v-if="!loading">
-    <div class="content">
-      <!-- tipologie -->
-      <div class="container mymt">
-        <h2 class="text-center mt-4 display-3">Oggi cosa vorresti mangiare?</h2>
-        <div class="row row-cols-6 g-3 mt-1">
-          <div class="col" v-for="type in types" :key="type.id">
-            <div class="my_cat_card">
-              <img
-                class="cat_image image_fluid"
-                :src="type.image"
-                alt="type.name"
-              />
-              <div class="card_text">
-                <h4>{{ type.name }}</h4>
-              </div>
+    <div class="container-fluid main_content mt-3">
+      <div class="row">
+        <div class="col-2 ">
+          <!-- Filter Checkbox -->
+          <div class="choose_types d-flex flex-column align-items-start">
+            <h4>Seleziona uno o più tipologie</h4>
+            <div
+              class="btn-group"
+              role="group"
+              data-bs-toggle="buttons"
+              v-for="type in types"
+              :key="type.id"
+            >
+              <label class="btn btn-primary active bg-transparent border-0">
+                <input
+                  type="checkbox"
+                  class="me-2"
+                  :value="type.name"
+                  :id="type.name"
+                  v-model="checkedTypes"
+                  @change="filterReustarants()"
+                />
+                {{ type.name }}
+              </label>
             </div>
           </div>
+          <!-- /.Filter Checboxes-->
         </div>
-      </div>
-      <!-- /.tipologie -->
-
-      <!-- Filter Checkbox -->
-      <div class="choose_types text-center">
-        <div
-          class="btn-group"
-          role="group"
-          data-bs-toggle="buttons"
-          v-for="type in types"
-          :key="type.id"
-        >
-          <label class="btn btn-primary active">
-            <input
-              type="checkbox"
-              class="me-2"
-              :value="type.name"
-              :id="type.name"
-              v-model="checkedTypes"
-              @change="filterReustarants()"
-            />
-            {{ type.name }}
-          </label>
-        </div>
-      </div>
-      <!-- /.Filter Checboxes-->
-
-      <!-- ristoranti -->
-
-      <div class="container">
-        <h2 class="text-center mt-4 display-3">Ristoranti</h2>
-        <div class="row row-cols-3 g-3 mt-1" v-if="restaurants.length > 0">
-          <div
-            class="col"
-            v-for="restaurant in filteredReustarants"
-            :key="restaurant.id"
-          >
-            <div class="my_rest_card">
-              <div class="card_image">
-                <img
-                  class="image_fluid"
-                  src="img/coming_soon.jpeg"
-                  alt="coming soon image"
-                  v-if="restaurant.image === null"
-                />
-                <img
-                  class="image_fluid"
-                  :src="
-                    'storage/restaurant_img' +
-                    '/' +
-                    restaurant.id +
-                    '/' +
-                    restaurant.image
-                  "
-                  alt="restaurant.name"
-                  v-else
-                />
-                <span class="h6">CONSEGNA GRATUITA</span>
-              </div>
-              <div class="card_text">
-                <h4>{{ restaurant.name }}</h4>
-                <div class="types_widget">
-                  <ul class="list-unstyled d-flex justify-content-center">
-                    <li class="ms-2" v-for="type in restaurant.types" :key="type.id">
-                      {{ type.name }}
-                    </li>
-                  </ul>
+        <!-- /.col-3 -->
+        <div class="col-10">
+          <div class="types_wrapper">
+            <h3 class="display-6">
+              Ristoranti che consegnano a Milano
+            </h3>
+            <div class="row row-cols-6 g-3 mt-1 flex-nowrap overflow-auto">
+              <div class="col" v-for="type in types" :key="type.id">
+                <div class="my_cat_card">
+                  <img
+                    class="cat_image image_fluid"
+                    :src="type.image"
+                    alt="type.name"
+                  />
+                  <div class="card_text">
+                    <h4>{{ type.name }}</h4>
+                  </div>
                 </div>
               </div>
             </div>
+            <!-- /.tipologie -->
           </div>
-        </div>
-        <div class="row" v-else>
-          <div class="col-12">
-            <h3 class="text-center">No restaurants yet!</h3>
+          <!-- /.types_wrapper -->
+          <!-- tipologie -->
+
+          <!-- ristoranti -->
+          <div class="restaurants_wrapper mt-4">
+            <h3 class="display-6">Ristoranti</h3>
+            <div class="row row-cols-4 g-3 mt-1" v-if="restaurants.length > 0">
+              <div
+                class="col"
+                v-for="restaurant in filteredReustarants"
+                :key="restaurant.id"
+              >
+                <div class="my_rest_card">
+                  <div class="card_image">
+                    <img
+                      class="image_fluid"
+                      src="img/coming_soon.jpeg"
+                      alt="coming soon image"
+                      v-if="restaurant.image === null"
+                    />
+                    <img
+                      class="image_fluid"
+                      :src="
+                        'storage/restaurant_img' +
+                        '/' +
+                        restaurant.id +
+                        '/' +
+                        restaurant.image
+                      "
+                      alt="restaurant.name"
+                      v-else
+                    />
+                    <span class="h6">CONSEGNA GRATUITA</span>
+                  </div>
+                  <div class="card_text">
+                    <h4>{{ restaurant.name }}</h4>
+                    <div class="types_widget">
+                      <ul class="list-unstyled d-flex justify-content-center">
+                        <li
+                          class="ms-2"
+                          v-for="type in restaurant.types"
+                          :key="type.id"
+                        >
+                          {{ type.name }}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" v-else>
+              <div class="col-12">
+                <h3 class="text-center">No restaurants yet!</h3>
+              </div>
+            </div>
+            <!-- /.row -->
           </div>
+          <!-- /.restaurants_wrapper -->
+
+          <!-- /.ristoranti-->
         </div>
-        <!-- /.row -->
+        <!-- /.col-9 -->
       </div>
-      <!-- /.ristoranti-->
+      <!-- /.row -->
     </div>
-    <!-- /.content -->
+    <!-- /.container-fluid -->
   </div>
   <div class="loader_wrapper" v-else>
     <div class="loader"></div>
@@ -225,12 +242,10 @@ export default {
 
 // Tipologie
 
-.mymt {
-  margin-top: 100px !important;
+.restaurants.title {
+  font-weight: bold;
 }
-
 .my_cat_card {
-  padding: 1rem;
   text-align: center;
 
   .card_text {
