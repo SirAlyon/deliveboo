@@ -60,15 +60,15 @@ class RegisterController extends Controller
         //dd($data);
 
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:2','max:50', 'regex:/^[a-zA-Z ]*$/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'restaurant_name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'vat' => ['required', 'string', 'max:30'],
-            'types' => ['required'],
-            'image' => ['nullable', 'image', 'max:50'],
+            'lastname' => ['required', 'string', 'min:2', 'max:50', 'regex:/^[a-zA-Z ]*$/'],
+            'restaurant_name' => ['required', 'string', 'min:2', 'max:70'],
+            'address' => ['required', 'string', 'min:2', 'max:255'],
+            'vat' => ['required', 'integer','unique:users'],
+            'types' => ['exists:types,id','required'],
+            'image' => ['nullable', 'file', 'image', 'max:250', 'mimetypes:image/jpeg,image/png,image/jpg,image/svg'],
         ]);
 
     }
@@ -77,7 +77,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
@@ -94,7 +94,7 @@ class RegisterController extends Controller
 
         if(request()->hasFile('image')) {
             $image = request()->file('image')->getClientOriginalName();
-            request()->file('image')->storeAs('/storage/restaurant_img', $new_user->id . '/' . $image, '');
+            request()->file('image')->storeAs('/restaurant_img', $new_user->id . '/' . $image, '');
             $new_user->update(['image' => $image]);
         }
 

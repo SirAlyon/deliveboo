@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('lastname', 50)->required();
-            $table->string('restaurant_name', 70)->required()->unique();
+            $table->string('restaurant_name', 70)->required();
             $table->string('address')->required();
             $table->string('vat')->required()->unique();
             $table->string('image')->nullable();
