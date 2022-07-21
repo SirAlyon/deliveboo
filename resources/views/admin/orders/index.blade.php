@@ -4,8 +4,8 @@
 
 
 <div class="d-flex justify-content-between py-3">
-    <h1>All Orders</h1>
-    <div><a href="{{route('admin.orders.create')}}" class="btn btn-primary">Add Order</a></div>
+    <h1 class="fw-bold font-fa">All Orders</h1>
+    <div><a href="{{route('admin.orders.create')}}" class="btn btn-dark text-white">Add Order</a></div>
 </div>
 
 <table class="table table-striped  table-responsive table-light border-dark">

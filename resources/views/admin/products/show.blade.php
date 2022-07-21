@@ -13,7 +13,8 @@
       <h4>Ricevi in omaggio il nuovo formato di Coca Cola</h4>
       <p>{{$product->description}}</p>
       <p class="read-more">
-        <a href="{{route('admin.products.edit', $product->id)}}">Edit</a>
+        <a href="{{route('admin.products.edit', $product->id)}}" class="px-3">Edit</a>
+        <a href="{{route('admin.products.index')}}">Go back</a>
       </p>
     </div>
   </div>

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap);@import url(https://fonts.googleapis.com/css2?family=Prompt:wght@700&display=swap);@import url(https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap);@import url(https://fonts.googleapis.com/css2?family=Maven+Pro:wght@900&display=swap);@import url(https://fonts.googleapis.com/css2?family=Noticia+Text:wght@700&display=swap);@import url(https://fonts.googleapis.com/css2?family=Istok+Web:wght@700&display=swap);@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap);@charset "UTF-8";
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -10214,4 +10214,37 @@ textarea.form-control-lg {
 }
 .bg-head {
   background-color: #009688;
+}
+
+.btn-large {
+  padding: 8px 30px !important;
+  margin-top: 1rem;
+  background-color: rgba(44, 30, 78, 0.7882352941);
+}
+
+.btn-sm, .btn-group-sm > .btn {
+  padding: 5px 20px !important;
+  background-color: rgba(44, 30, 78, 0.7882352941);
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bg-color-body {
+  background-color: #deefdb;
+}
+
+.bg-card {
+  background-color: rgba(44, 30, 78, 0.7882352941);
+}
+
+h5, .h5 {
+  font-family: "Open Sans", sans-serif;
+}
+
+.logo-nav {
+  font-family: "Open Sans", sans-serif;
+  color: white;
 }
