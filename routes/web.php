@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 
+Route::get('test', 'Admin\TestController@index');
 
 
 Route::middleware('auth')->name('admin.')->namespace('Admin')->prefix('admin')->group(function ()
@@ -26,6 +27,7 @@ Route::middleware('auth')->name('admin.')->namespace('Admin')->prefix('admin')->
 
     Route::resource('products', 'ProductController');
     Route::resource('orders', 'OrderController');
+    
 
 });
 
