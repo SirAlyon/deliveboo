@@ -1,11 +1,15 @@
 <template>
-    
+  <div class="loader_wrapper">
+    <div class="loader"></div>
+    <!-- /.loader -->
+  </div>
+  <!-- /.loader_wrapper -->
 </template>
 
 <script>
 export default {
-    name: 'LoaderComponent'
-}
+  name: "LoaderComponent",
+};
 </script>
 
 <style lang="scss" scoped>
@@ -31,5 +35,4 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 </style>
