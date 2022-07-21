@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <div class="container mt-4">
       <div class="row row-cols-2">
         <div class="col restaurant_image">
@@ -18,13 +18,13 @@
               '/' +
               restaurant.image
             "
-            alt="restaurant.name"
+            alt="restaurant.restaurant_name"
             v-else
           />
         </div>
         <div class="col restaurant_info">
           <div class="title">
-            <h1 class="display-3 bg-light">{{ restaurant.name }}</h1>
+            <h1 class="display-3 bg-light">{{ restaurant.restaurant_name }}</h1>
           </div>
           <div class="info">
             <div class="tipologie mb-4">
@@ -58,7 +58,7 @@
                 alt=""
               />
               <!-- prezzo -->
-              <span class="h5">{{product.price}}</span>
+              <span class="h5">{{product.price}}€</span>
             </div>
             <div class="card_text">
               <h2 class="product_title pt-3">{{product.name}}</h2>
@@ -72,13 +72,14 @@
     </div>
 
     <!-- separatore per vedere meglio le card -->
-
-    <div class="container"></div>
   </div>
+  <LoaderComponent v-else></LoaderComponent>
 </template>
 
 <script>
+import LoaderComponent from '../components/LoaderComponent.vue';
 export default {
+  components: { LoaderComponent },
   name: "Restaurant",
   data() {
     return {
