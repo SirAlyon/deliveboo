@@ -4,7 +4,7 @@
 <div class="container">
 
     <div class="d-flex justify-content-between py-4">
-        <h1 class="fw-bolder">All Products</h1>
+        <h1 class="fw-bold font-fa">All Products</h1>
         <div><a href="{{route('admin.products.create')}}" class="btn btn-dark text-white">Add Product</a></div>
     </div>
 

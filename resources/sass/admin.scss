@@ -1,6 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-// Variables
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -9,6 +10,13 @@ body {
     font-size: .875rem;
 }
 
+.font-fa{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-side{
+  font-family: 'Montserrat', sans-serif;
+}
 .feather {
     width: 16px;
     height: 16px;
