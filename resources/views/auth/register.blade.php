@@ -25,7 +25,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
                            
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus minlength="3" maxlength="50">
                                 <div class="invalid-feedback">Your name is invalid!</div>
                                 <small class="text-muted">Max 50 characters | Only letters</small>
                                 @error('name')

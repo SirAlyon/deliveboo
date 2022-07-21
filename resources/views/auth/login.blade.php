@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" novalidate class="needs-validation">
                         @csrf
 
                         <div class="form-group row">
@@ -16,6 +16,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <div class="invalid-feedback">Your email is invalid!</div>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
