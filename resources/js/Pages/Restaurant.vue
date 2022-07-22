@@ -95,8 +95,11 @@ export default {
         .then((response) => {
           console.log(response.data);
           if (response.data.status_code === 404) {
-            this.loading = false;
+            console.log("page not found 404")
+            //this.loading = false;
+            this.$router.push({name:'not-found'} );
           } else {
+            console.log('page found')
             this.restaurant = response.data;
             this.loading = false;
           }

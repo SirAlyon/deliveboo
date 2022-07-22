@@ -9,6 +9,7 @@ Vue.use(VueRouter)
 import Home from './Pages/Home';
 import Restaurant from './Pages/Restaurant';
 import Checkout from './Pages/Checkout';
+import NotFound from './Pages/NotFound';
 
 // 1. Define route components.
 // These can be imported from other files
@@ -22,7 +23,10 @@ import Checkout from './Pages/Checkout';
 const routes = [
     { path: '/', name: 'home', component: Home },
     { path: '/restaurant/:id', name: 'restaurant', component: Restaurant },
-    { path: '/checkout', name: 'checkout', component: Checkout }
+    { path: '/checkout', name: 'checkout', component: Checkout },
+    { path: '/*', name: 'not-found', component: NotFound },
+
+
 ]
 
 // 3. Create the router instance and pass the `routes` option
