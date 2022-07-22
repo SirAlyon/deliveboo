@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('checkout/generate', 'BraintreeController@generate');
-Route::post('checkout/make/payment', 'BraintreeController@makePayment');
+Route::get('test', 'BraintreeController@index');
+//Route::post('test/payment', 'BraintreeController@makePayment');
 
 Route::get('restaurants', 'API\RestaurantController@index');
 Route::get('types', 'API\TypeController@index');

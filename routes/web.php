@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 
-Route::get('test', 'Admin\TestController@index');
+Route::get('test', 'BraintreeController@index');
+Route::post('checkout', 'BraintreeController@makePayment');
+
+
 
 
 Route::middleware('auth')->name('admin.')->namespace('Admin')->prefix('admin')->group(function ()
