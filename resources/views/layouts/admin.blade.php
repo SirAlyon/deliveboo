@@ -150,16 +150,17 @@
     country: "Canada",
     value: 441
     }];
-    console.log(data);
+    //console.log(data);
     xAxis.data.setAll(data);
     series.data.setAll(data);
 
-    function getData(){
+    /* const api = '/api/orders';
+    function getData(api){
         axios
-        .get("/api/order")
+        .get(api)
         .then((response) => {
           console.log(response);
-          this.restaurants = response.data.data;
+          this.api = response.data.data;
 
           this.filteredReustarants = this.restaurants
 
@@ -169,6 +170,9 @@
           console.error(error);
         });
     }
+    api = getData();
+    console.log(api);
+ */
 
 
     // Make stuff animate on load

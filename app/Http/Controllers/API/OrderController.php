@@ -10,7 +10,11 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return $data = Order::all();
-        ddd($data);
+        $data = Order::all();
+        $orders=[];
+        foreach ($data as $order){
+            array_push($orders, '€' . $order['total_price'], $order['created_at']->format('m'));
+        }
+        return $orders;
     }
 }
