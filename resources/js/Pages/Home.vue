@@ -2,38 +2,11 @@
   <div v-if="!loading">
     <div class="container-fluid main_content mt-3">
       <div class="row">
-        <div class="col-2">
-          <!-- Filter Checkbox -->
-          <div class="choose_types d-flex flex-column align-items-start">
-            <h4>Seleziona uno o più tipologie</h4>
-            <div
-              class="btn-group"
-              role="group"
-              data-bs-toggle="buttons"
-              v-for="type in types"
-              :key="type.id"
-            >
-              <label class="btn btn-primary active bg-transparent border-0">
-                <input
-                  type="checkbox"
-                  class="me-2"
-                  :value="type.name"
-                  :id="type.name"
-                  v-model="checkedTypes"
-                  @change="filterReustarants()"
-                />
-                {{ type.name }}
-              </label>
-            </div>
-          </div>
-          <!-- /.Filter Checboxes-->
-        </div>
-        <!-- /.col-3 -->
-        <div class="col-10">
+        <div class="col-12">
           <div class="types_wrapper">
             <h3 class="display-6">Che menù scegliere oggi?</h3>
-            <div class="row row-cols-6 g-3 mt-1 flex-nowrap overflow-auto">
-              <div class="col" v-for="type in types" :key="type.id">
+            <div class="row g-3 mt-1 flex-nowrap overflow-auto">
+              <div class="col-4 col-md-3 col-lg-2" v-for="type in types" :key="type.id">
                 <div class="my_cat_card position-relative">
                   <img
                     class="cat_image image_fluid"
