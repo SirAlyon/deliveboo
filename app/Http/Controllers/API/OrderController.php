@@ -11,10 +11,16 @@ class OrderController extends Controller
     public function index()
     {
         $data = Order::all();
-        $orders=[];
-        foreach ($data as $order){
-            array_push($orders, '€' . $order['total_price'], $order['created_at']->format('m'));
+        $orderToReturn = [];
+        for($i=1;$i<13;$i++){
+            $orderToReturn[]=['month'=> $i, 'value'=>0];
         }
-        return $orders;
+
+        foreach ($data as $order){
+            $month = $order['created_at']->format('m');
+            $orderToReturn[$month -1]['value'] += floatval($order['total_price']);
+        }
+
+        return $orderToReturn;
     }
 }
