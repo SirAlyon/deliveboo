@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('braintree/token', 'API\BraintreeController@index');
+Route::post('braintree/payment', 'API\BraintreeController@makePayment');
+
 
 Route::get('restaurants', 'API\RestaurantController@index');
 Route::get('restaurant/{restaurant:id}','API\RestaurantController@show');
