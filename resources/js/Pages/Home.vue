@@ -86,7 +86,7 @@
                     </router-link>
 
                     <div class="types_widget">
-                      <ul class="list-unstyled d-flex justify-content-center">
+                      <ul class="list-unstyled d-flex flex-column justify-content-center">
                         <li
                           class="ms-2"
                           v-for="type in restaurant.types"
