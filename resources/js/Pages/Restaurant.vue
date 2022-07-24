@@ -244,6 +244,7 @@ export default {
       }
       //console.log(cart);
       this.calculateTotal(qty);
+      this.saveShoppingCart();
     },
     calculateTotal() {
       let sum = 0;
@@ -263,13 +264,22 @@ export default {
         product.qty++;
       }
       this.calculateTotal(product.qty);
+      this.saveShoppingCart();
     },
     removeProduct(index) {
       //console.log('remove');
       const cart = this.shopping_cart;
       //console.log(cart);
       cart.splice(index, 1);
+      this.saveShoppingCart();
     },
+
+    saveShoppingCart() {
+      const parsed = JSON.stringify(this.shopping_cart);
+      localStorage.setItem('shopping_cart', parsed);
+      localStorage.setItem('total', this.total);
+    }
+
   },
   mounted() {
     this.getRestaurant();
