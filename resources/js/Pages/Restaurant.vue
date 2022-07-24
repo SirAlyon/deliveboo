@@ -1,6 +1,6 @@
 <template>
   <div v-if="!loading">
-    <div class="container mt-4">
+    <div class="container-fluid mt-4">
       <div class="row row-cols-2">
         <div class="col restaurant_image">
           <img
@@ -29,12 +29,17 @@
           <div class="info">
             <div class="tipologie mb-4">
               <strong>Tipologie:</strong>
-                <span class="ms-2" v-for="type in restaurant.types" :key="type.id">{{type.name}}</span>
-              </div>
+              <span
+                class="ms-2"
+                v-for="type in restaurant.types"
+                :key="type.id"
+                >{{ type.name }}</span
+              >
+            </div>
 
             <div class="address">
               <strong>Indirizzo:</strong>
-              <span>{{restaurant.address}}</span>
+              <span>{{ restaurant.address }}</span>
             </div>
           </div>
         </div>
@@ -43,33 +48,144 @@
 
     <!-- prodotti del ristorante -->
 
-    <div class="container text-center display-5 mt-4 p-4">
-      <div class="hr_separator mb-4"></div>
-      <div>I Nostri Piatti</div>
-    </div>
+    <section class="products">
+      <div class="container-fluid text-center display-5 mt-4 p-4">
+        <div class="hr_separator mb-4"></div>
+        <h2>I Nostri Piatti</h2>
+      </div>
 
-    <div class="container">
-      <div class="row row-cols-3 g-3 mt-1">
-        <div class="col" v-for="product in restaurant.products" :key="product.id">
-          <div class="my_plate_card">
-            <div class="card_image">
-              <img
-                :src="'/storage/' + '/' + product.image"
-                alt=""
-              />
-              <!-- prezzo -->
-              <span class="h5">{{product.price}}€</span>
-            </div>
-            <div class="card_text">
-              <h2 class="product_title pt-3">{{product.name}}</h2>
-              <hr />
-              <p>{{product.description}}</p>
-              <a href="#" class="product_btn btn">Aggiungi al carrello</a>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-8">
+            <div class="row row-cols-3 g-3 mt-1">
+              <div
+                class="col"
+                v-for="product in restaurant.products"
+                :key="product.id"
+              >
+                <div class="my_plate_card">
+                  <div class="card_image">
+                    <img :src="'/storage/' + '/' + product.image" alt="" />
+                    <!-- prezzo -->
+                    <span class="h5">{{ product.price }}€</span>
+                  </div>
+                  <div class="card_text">
+                    <h2 class="product_title pt-3">
+                      {{ product.name }}
+                    </h2>
+                    <hr />
+                    <p>{{ product.description }}</p>
+                    <button
+                      class="product_btn btn add_to_cart"
+                      @click="renderProductsInCart($event)"
+                      :data-product-img="product.image"
+                      :data-product-price="product.price"
+                      :data-product-name="product.name"
+                      :data-product-id="product.id"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- /.col-10 -->
+          <div class="col-4" v-if="shopping_cart.length > 0">
+            <div class="shopping_cart p-3">
+              <div class="row">
+                <div class="col-12">
+                  <h5>Il tuo ordine</h5>
+                </div>
+                <!-- /.col-12 -->
+              </div>
+              <!-- /.row -->
+              <div
+                class="row purchased_products mb-3"
+                v-for="(purchased_product, index) in shopping_cart"
+                :key="purchased_product.id"
+              >
+                <div class="col-6">
+                  <span class="name text-capitalize fs-5">
+                    {{ purchased_product.name }}
+                  </span>
+                  <!-- /.name -->
+                </div>
+                <!-- /.col-6 -->
+                <div
+                  class="col-6 d-flex align-items-center justify-content-end"
+                >
+                  <div class="circle">
+                    <a
+                      class="remove decoration-none"
+                      @click="changeQuantity('minus', purchased_product)"
+                      >-</a
+                    >
+                    <!-- /.remove -->
+                  </div>
+                  <!-- /.circle -->
+
+                  <span class="qty fs-5 mx-1">{{ purchased_product.qty }}</span>
+                  <div class="circle">
+                    <a
+                      class="add"
+                      @click="changeQuantity('plus', purchased_product)"
+                      >+</a
+                    >
+                    <!-- /.add -->
+                  </div>
+                  <!-- /.circle -->
+
+                  <span class="price ms-2 fs-5"
+                    >{{ purchased_product.price }}€</span
+                  >
+                  <a
+                    class="btn btn-danger ms-2 text-white"
+                    @click="removeProduct(index)"
+                    >Remove</a
+                  >
+                  <!-- /.btn btn-danger -->
+                </div>
+                <!-- /.col-6 -->
+              </div>
+
+              <!-- /.row purchased_products -->
+
+              <div class="row total">
+                <div class="col-6">
+                  <h5>Total:</h5>
+                </div>
+                <!-- /.col-6 -->
+                <div class="col-6 text-end">
+                  <h5 class="total fs-5" v-if="total >= 0">{{ total }}€</h5>
+                </div>
+                <!-- /.col-6 -->
+              </div>
+              <!-- /.row total -->
+              <!-- /.purchesed_product -->
+            </div>
+            <!-- /.shopping_cart -->
+          </div>
+          <!-- /.col-4 -->
+          <div class="col-4" v-else>
+            <div
+              class="
+                empty_shopping_cart
+                d-flex
+                justify-content-center
+                align-items-center
+              "
+            >
+              <h4 class="text-muted">The cart is empty!</h4>
+            </div>
+            <!-- /.empty_shopping_cart -->
+          </div>
+          <!-- /.col-4 -->
         </div>
+        <!-- /.row -->
       </div>
-    </div>
+    </section>
+    <!-- /.products -->
 
     <!-- separatore per vedere meglio le card -->
   </div>
@@ -77,7 +193,7 @@
 </template>
 
 <script>
-import LoaderComponent from '../components/LoaderComponent.vue';
+import LoaderComponent from "../components/LoaderComponent.vue";
 export default {
   components: { LoaderComponent },
   name: "Restaurant",
@@ -85,9 +201,11 @@ export default {
     return {
       restaurant: "",
       loading: true,
+      shopping_cart: [],
+      total: 0,
+      qty: 1,
     };
   },
-
   methods: {
     getRestaurant() {
       axios
@@ -95,11 +213,8 @@ export default {
         .then((response) => {
           console.log(response.data);
           if (response.data.status_code === 404) {
-            console.log("page not found 404")
-            //this.loading = false;
-            this.$router.push({name:'not-found'} );
+            this.loading = false;
           } else {
-            console.log('page found')
             this.restaurant = response.data;
             this.loading = false;
           }
@@ -107,6 +222,53 @@ export default {
         .catch((e) => {
           console.error(e);
         });
+    },
+    renderProductsInCart(event) {
+      //console.log(event.target);
+      //define a variable for the shopping cart
+      const cart = this.shopping_cart;
+      //get attributes values from html
+      const name = event.target.getAttribute("data-product-name");
+      const price = parseFloat(event.target.getAttribute("data-product-price"));
+      const img = event.target.getAttribute("data-product-img");
+      const id = event.target.getAttribute("data-product-id");
+      let qty = this.qty;
+      //console.log(name, price, img);
+      //create an object for the purchased products
+      const purchased_product = { id, name, price, img, qty };
+      //console.log(purchased_product.id);
+      //check if the object is alredy in the array
+      if (!cart.some((product) => product.id === purchased_product.id)) {
+        //push the purchased products in the shopping cart array
+        cart.push(purchased_product);
+      }
+      //console.log(cart);
+      this.calculateTotal(qty);
+    },
+    calculateTotal() {
+      let sum = 0;
+      this.shopping_cart.forEach((product) => {
+        //console.log(product);
+        sum += product.price * product.qty;
+      });
+      //console.log(sum);
+      this.total = sum.toFixed(2);
+      //console.log(this.total);
+    },
+    changeQuantity(action, product) {
+      //console.log('changed');
+      if (action === "minus" && product.qty > 1) {
+        product.qty--;
+      } else if (action === "plus") {
+        product.qty++;
+      }
+      this.calculateTotal(product.qty);
+    },
+    removeProduct(index) {
+      //console.log('remove');
+      const cart = this.shopping_cart;
+      //console.log(cart);
+      cart.splice(index, 1);
     },
   },
   mounted() {
@@ -116,6 +278,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* Restaurant */
 .restaurant_image {
   img {
     width: 100%;
@@ -125,23 +288,44 @@ export default {
     border-radius: 10px;
   }
 }
-
-// prodotti ristorante
-
+/* Shopping cart */
+.shopping_cart {
+  border: 1px solid lightgray;
+}
+.circle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #00ccbc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  a {
+    text-decoration: none;
+    color: #00ccbc;
+    cursor: pointer;
+  }
+}
+.empty_shopping_cart {
+  height: 350px;
+  border: 1px solid lightgray;
+}
+/* Section products */
+section.products {
+  background-color: #f9fafa;
+}
 .hr_separator {
   width: 50%;
   border: 1px solid #00c1b2;
   border-radius: 5px;
   margin: auto;
 }
-
 .my_plate_card {
   padding: 1rem;
   text-align: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   border-radius: 10px;
-
   .card_image {
     position: relative;
     img {
@@ -151,7 +335,6 @@ export default {
       object-position: center;
       border-radius: 10px 10px 0 0;
     }
-
     // prezzo
     span {
       position: absolute;
@@ -163,27 +346,22 @@ export default {
       border-radius: 3px;
     }
   }
-
   .card_text {
     text-align: left;
     position: relative;
-
     span {
       font-weight: bolder;
       font-size: 15px;
     }
-
     .product_title {
       font-size: 30px;
     }
-
     hr {
       height: 2px;
       width: 20%;
       background-color: #00c1b2;
       margin: 16px 0 16px;
     }
-
     .product_btn {
       background-color: rgba(red, 0.95);
       color: white;
