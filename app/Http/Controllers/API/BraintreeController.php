@@ -49,7 +49,7 @@ class BraintreeController extends Controller
             ]
         ]);
 
-        //ddd($request, $nonce,$amount, $result);
+/*         //ddd($request, $nonce,$amount, $result);
         $val_data = $request->validate([
             'guest_name' => ['required'],
             'guest_lastname' => ['required'],
@@ -62,7 +62,7 @@ class BraintreeController extends Controller
 
         //ddd($val_data);
         Order::create($val_data);
-
+ */
         
         return redirect('/');
 

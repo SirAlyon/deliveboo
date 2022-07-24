@@ -115,6 +115,13 @@
             v-bind:value="csrf"
           />
           <input id="amount" name="amount" type="number" :value="total" />
+          <input
+            id="total_price"
+            name="total_price"
+            type="number"
+            :value="total"
+          />
+            <div class="btn btn-primary" @click="createOrder()">Create Order</div>
 
           <div id="dropin-container"></div>
           <button id="submit-button">Request payment method</button>
@@ -131,6 +138,7 @@ export default {
     return {
       clientToken: "",
       shopping_cart: [],
+      products_id: [],
       total: 0,
       fields: {},
       csrf: document
@@ -207,6 +215,37 @@ export default {
       localStorage.setItem("shopping_cart", parsed);
       localStorage.setItem("total", this.total);
     },
+    calculateTotal() {
+      let sum = 0;
+      this.shopping_cart.forEach((product) => {
+        //console.log(product);
+        sum += product.price * product.qty;
+      });
+      //console.log(sum);
+      this.total = sum.toFixed(2);
+      //console.log(this.total);
+    },
+    createOrder() {
+      axios
+        .post(
+          "http://127.0.0.1:8000/api/orders",{
+            guest_name: document.getElementById('guest_name').value,
+            guest_lastname: document.getElementById('guest_lastname').value,
+            guest_address: document.getElementById('guest_address').value,
+            guest_email: document.getElementById('guest_email').value,
+            guest_phone_number: document.getElementById('guest_phone_number').value,
+            total_price: this.total,
+            shopping_cart: this.shopping_cart,
+            products_id: this.products_id
+          }
+        )
+        .then((response) => {
+          console.log("Successfully uploaded: ", response);
+        })
+        .catch((err) => {
+          console.error("error occurred: ", err);
+        });
+    },
   },
   mounted() {
     this.getClientToken();
@@ -216,6 +255,10 @@ export default {
     ) {
       this.shopping_cart = JSON.parse(localStorage.getItem("shopping_cart"));
       this.total = JSON.parse(localStorage.getItem("total"));
+      this.shopping_cart.forEach(product =>{
+        let item = {"id" : Number(product.id), "qty": product.qty}
+         this.products_id.push(item)
+      })
     }
   },
 };
