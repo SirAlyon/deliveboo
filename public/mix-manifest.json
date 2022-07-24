@@ -1,7 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/front.js": "/js/front.js",
     "/js/admin.js": "/js/admin.js",
-    "/js/validateForm.js": "/js/validateForm.js",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/admin.css": "/css/admin.css",
+    "/js/front.js": "/js/front.js",
+    "/js/validateForm.js": "/js/validateForm.js"
 }
