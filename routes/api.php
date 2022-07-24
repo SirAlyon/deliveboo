@@ -25,3 +25,4 @@ Route::post('braintree/payment', 'API\BraintreeController@makePayment');
 Route::get('restaurants', 'API\RestaurantController@index');
 Route::get('restaurant/{restaurant:id}','API\RestaurantController@show');
 Route::get('types', 'API\TypeController@index');
+Route::get('orders', 'API\OrderController@index');
