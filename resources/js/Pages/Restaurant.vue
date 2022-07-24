@@ -276,13 +276,24 @@ export default {
 
     saveShoppingCart() {
       const parsed = JSON.stringify(this.shopping_cart);
-      localStorage.setItem('shopping_cart', parsed);
-      localStorage.setItem('total', this.total);
-    }
-
+      localStorage.setItem("shopping_cart", parsed);
+      localStorage.setItem("total", this.total);
+    },
   },
   mounted() {
     this.getRestaurant();
+    if (
+      localStorage.getItem("shopping_cart") &&
+      localStorage.getItem("total")
+    ) {
+      try {
+        this.shopping_cart = JSON.parse(localStorage.getItem("shopping_cart"));
+        this.total = JSON.parse(localStorage.getItem("total"));
+      } catch (e) {
+        localStorage.removeItem("shopping_cart");
+        localStorage.removeItem("total");
+      }
+    }
   },
 };
 </script>
