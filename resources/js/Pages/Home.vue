@@ -31,18 +31,29 @@
         <!-- /.col-3 -->
         <div class="col-10">
           <div class="types_wrapper">
-            <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
+            <h3 class="display-6">Che menù scegliere oggi?</h3>
             <div class="row row-cols-6 g-3 mt-1 flex-nowrap overflow-auto">
               <div class="col" v-for="type in types" :key="type.id">
-                <div class="my_cat_card">
+                <div class="my_cat_card position-relative">
                   <img
                     class="cat_image image_fluid"
                     :src="type.image"
                     alt="type.name"
                   />
                   <div class="card_text">
-                    <h4>{{ type.name }}</h4>
+                    <!-- <h4>{{ type.name }}</h4> -->
                   </div>
+                    <label class="btn btn-primary active border-0 position-absolute top-0 right-0 text-light d-flex">
+                        <input
+                        type="checkbox"
+                        class="me-2"
+                        :value="type.name"
+                        :id="type.name"
+                        v-model="checkedTypes"
+                        @change="filterReustarants()"
+                        />
+                        {{ type.name }}
+                    </label>
                 </div>
               </div>
             </div>
@@ -53,7 +64,7 @@
 
           <!-- ristoranti -->
           <div class="restaurants_wrapper mt-4">
-            <h3 class="display-6">Ristoranti</h3>
+            <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
             <div class="row row-cols-4 g-3 mt-1" v-if="restaurants.length > 0">
               <div
                 class="col"
@@ -98,7 +109,7 @@
                         params: { id: restaurant.id },
                       }"
                     >
-                      <h4>{{ restaurant.name }}</h4>
+                      <h4>{{ restaurant.restaurant_name }}</h4>
                     </router-link>
 
                     <div class="types_widget">
@@ -294,3 +305,4 @@ export default {
   }
 }
 </style>
+
