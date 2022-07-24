@@ -38,9 +38,9 @@
           <!-- ristoranti -->
           <div class="restaurants_wrapper mt-4">
             <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
-            <div class="row row-cols-4 g-3 mt-1" v-if="restaurants.length > 0">
+            <div class="row g-3 mt-1" v-if="restaurants.length > 0">
               <div
-                class="col"
+                class="col-4 col-md-3 col-lg-2"
                 v-for="restaurant in filteredReustarants"
                 :key="restaurant.id"
               >
