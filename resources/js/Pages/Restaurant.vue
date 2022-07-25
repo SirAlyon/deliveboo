@@ -286,14 +286,21 @@ export default {
         
       }  
 
-      //check if products id and products id in shopping cart corresponds
-      if(cart.some(product => product.user_id != restaurant.id )){
-        //change currentRestaurant value
-        this.currentRestaurant = false;
-      } else {
-        //change currentRestaurant value
-        this.currentRestaurant = true;
-      }
+      // //check if products id and products id in shopping cart corresponds
+      cart.forEach(product => {
+        //console.log(product);
+        //console.log(restaurant);
+        if(product.user_id != restaurant.id) {
+          //change currentRestaurant value
+          this.currentRestaurant = false;
+          console.log(product.user_id, restaurant.id);
+        } else {
+          //change currentRestaurant value
+          this.currentRestaurant = true;
+          console.log(product.user_id, restaurant.id);
+        }
+      })
+
       //console.log(cart);
       //console.log(this.currentRestaurant);
       
