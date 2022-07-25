@@ -7,11 +7,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
 
     <title>{{ config('app.name', 'Deliveboo') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/front.js') }}" defer></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.2/js/dropin.min.js"></script>
+</head>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
