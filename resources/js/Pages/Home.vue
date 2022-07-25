@@ -53,10 +53,21 @@
                       }"
                     >
                       <img
+                        class="image_fluid"
+                        :src="
+                          '/img' +
+                          '/' +
+                          restaurant.restaurant_name +
+                          '.jpeg'
+                        "
+                        alt="restaurant.name"
+                        v-if="restaurant.name === 'Fra'"
+                      />
+                      <img
                         class="image-fluid"
                         src="img/coming_soon.jpeg"
                         alt="coming soon image"
-                        v-if="restaurant.image === null"
+                        v-else-if="restaurant.image === null"
                       />
                       <img
                         class="image_fluid"
