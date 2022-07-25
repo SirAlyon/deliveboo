@@ -35,9 +35,9 @@
                 alt="#"
               />
               <div class="my_carousel_caption">
-                <h1>Carne</h1>
+                <h1>Il cibo che vuoi...</h1>
                 <p class="d-none d-md-block">
-                  Some representative placeholder content for the first slide.
+                  I migliori ristoranti della città...
                 </p>
               </div>
             </div>
@@ -48,8 +48,10 @@
                 alt="#"
               />
               <div class="my_carousel_caption">
-                <h1>Pasta</h1>
-                <p class="d-none d-md-block">Some representative.</p>
+                <h1>dove vuoi...</h1>
+                <p class="d-none d-md-block">
+                    a pochi passi da te...
+                </p>
               </div>
             </div>
             <div class="carousel-item">
@@ -59,9 +61,9 @@
                 alt="#"
               />
               <div class="my_carousel_caption">
-                <h1>Messicano</h1>
+                <h1>...e quando vuoi!</h1>
                 <p class="d-none d-md-block">
-                  Some representative placeholder content for the first slide.
+                  ...pronti in un battito d'occhio!
                 </p>
               </div>
             </div>
@@ -129,7 +131,7 @@ export default {
 
   img {
     width: 100%;
-    max-height: 500px;
+    max-height: 300px;
     object-fit: cover;
     filter: contrast(0.5);
   }
