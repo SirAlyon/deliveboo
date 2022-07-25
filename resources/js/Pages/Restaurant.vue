@@ -192,6 +192,13 @@
                 <!-- /.col-6 -->
               </div>
               <!-- /.row total -->
+              <div class="row buy_now">
+                <div class="col-12 text-center mt-3">
+                  <router-link name="buy_now" id="buy_now" class="btn btn-primary text-white"  :to="{name: 'checkout'}">Buy now</router-link>
+                </div>
+                <!-- /.col-12 -->
+              </div>
+              <!-- /.row buy_now -->
               <!-- /.purchesed_product -->
             </div>
             <!-- /.shopping_cart -->
@@ -288,7 +295,8 @@ export default {
         this.currentRestaurant = true;
       }
       //console.log(cart);
-      console.log(this.currentRestaurant);
+      //console.log(this.currentRestaurant);
+      
       //calculate total
       this.calculateTotal(qty);
       //save shopping cart in local storage
