@@ -82,6 +82,7 @@
                       :data-product-price="product.price"
                       :data-product-name="product.name"
                       :data-product-id="product.id"
+                      :data-product-user_id="product.user_id"
                     >
                       Add to cart
                     </button>
@@ -199,7 +200,7 @@ export default {
   name: "Restaurant",
   data() {
     return {
-      restaurant: "",
+      restaurant: [],
       loading: true,
       shopping_cart: [],
       total: 0,
@@ -211,7 +212,7 @@ export default {
       axios
         .get("/api/restaurant/" + this.$route.params.id)
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           if (response.data.status_code === 404) {
             this.loading = false;
           } else {
@@ -232,14 +233,18 @@ export default {
       const price = parseFloat(event.target.getAttribute("data-product-price"));
       const img = event.target.getAttribute("data-product-img");
       const id = event.target.getAttribute("data-product-id");
+      const user_id = event.target.getAttribute("data-product-user_id");
+      const restaurant = this.restaurant;
+      //console.log(restaurant.id);
       let qty = this.qty;
       //console.log(name, price, img);
       //create an object for the purchased products
-      const purchased_product = { id, name, price, img, qty };
-      //console.log(purchased_product.id);
+      const purchased_product = { id, name, price, img, qty, user_id };
+      //console.log(purchased_product);
       //check if the object is alredy in the array
       if (!cart.some((product) => product.id === purchased_product.id)) {
         //push the purchased products in the shopping cart array
+
         cart.push(purchased_product);
       }
       //console.log(cart);
@@ -275,9 +280,14 @@ export default {
     },
 
     saveShoppingCart() {
-      const parsed = JSON.stringify(this.shopping_cart);
-      localStorage.setItem("shopping_cart", parsed);
-      localStorage.setItem("total", this.total);
+      if (this.shopping_cart.length > 0) {
+        const parsed = JSON.stringify(this.shopping_cart);
+        localStorage.setItem("shopping_cart", parsed);
+        localStorage.setItem("total", this.total);
+      } else {
+        localStorage.removeItem("shopping_cart");
+        localStorage.removeItem("total");
+      }
     },
   },
   mounted() {
