@@ -41,7 +41,7 @@
             <div class="row g-3 mt-1" v-if="restaurants.length > 0">
               <div
                 class="col-4 col-md-3 col-lg-2"
-                v-for="restaurant in filteredReustarants"
+                v-for="restaurant in filteredRestaurants"
                 :key="restaurant.id"
               >
                 <div class="my_rest_card">
@@ -119,9 +119,47 @@
             <!-- /.row -->
           </div>
           <!-- /.restaurants_wrapper -->
+            <nav aria-label="Page navigation" class="py-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" v-if="restaurantNav.current_page > 1">
+                        <a
+                            class="page-link"
+                            href="#"
+                            aria-label="Previous"
+                            @click.prevent="getRestaurants(restaurantNav.current_page - 1)"
+                        >
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
 
+                    <li :class="{'page-item': true, active: page == restaurantNav.current_page,}"
+                    v-for="page in restaurantNav.last_page" :key="page"
+                    >
+                        <a class="page-link" href="#" @click.prevent="getRestaurants(page)">{{
+                            page
+                        }}</a>
+                    </li>
+
+                    <li
+                    class="page-item"
+                    v-if="restaurantNav.current_page < restaurantNav.last_page"
+                    >
+                        <a
+                            class="page-link"
+                            href="#"
+                            aria-label="Next"
+                            @click.prevent="getRestaurants(restaurantNav.current_page + 1)"
+                        >
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
           <!-- /.ristoranti-->
         </div>
+
         <!-- /.col-9 -->
       </div>
       <!-- /.row -->
@@ -142,21 +180,27 @@ export default {
       types: "",
 
       restaurants: [],
+      restaurantNav:[],
       checkedTypes: [],
-      filteredReustarants: [],
+      filteredRestaurants: [],
       loading: true,
     };
   },
 
   methods: {
-    getRestaurants() {
+    getRestaurants(restaurantPage) {
       axios
-        .get("/api/restaurants")
+        .get("/api/restaurants",{
+            params:{
+                page: restaurantPage
+            }
+        })
         .then((response) => {
-          //console.log(response);
+          console.log(response, 'new script');
           this.restaurants = response.data.data;
-
-          this.filteredReustarants = this.restaurants;
+          this.restaurantNav= response.data;
+            //console.log(this.restaurants);
+          this.filteredRestaurants = this.restaurants;
           this.loading = false;
           //console.log(this.restaurants);
         })
@@ -181,18 +225,18 @@ export default {
 
     filterReustarants() {
       if (this.checkedTypes.length > 0) {
-        this.filteredReustarants = [];
+        this.filteredRestaurants = [];
       } else {
-        this.filteredReustarants = this.restaurants;
+        this.filteredRestaurants = this.restaurants;
       }
 
       this.restaurants.forEach((restaurant) => {
         restaurant.types.forEach((type) => {
           if (
             this.checkedTypes.includes(type.name) &&
-            !this.filteredReustarants.includes(restaurant)
+            !this.filteredRestaurants.includes(restaurant)
           ) {
-            this.filteredReustarants.push(restaurant);
+            this.filteredRestaurants.push(restaurant);
           }
         });
       });
@@ -201,7 +245,8 @@ export default {
 
   mounted() {
     this.getTypes();
-    this.getRestaurants();
+    this.getRestaurants(1);
+    console.log('mounted');
   },
 
   computed: {
@@ -287,6 +332,16 @@ export default {
     font-weight: bolder;
     font-size: 15px;
   }
+}
+label{
+    background-color:#00c1b2!important;
+}
+.page-item.active .page-link {
+    background-color: #00c1b2!important;
+    border-color: #00c1b2!important;
+}
+.page-link{
+    color:#00c1b2;
 }
 </style>
 

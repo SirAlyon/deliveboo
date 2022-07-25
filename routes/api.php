@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\API\RestaurantController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +27,7 @@ Route::post('orders', 'API\OrderController@store');
 
 
 Route::get('restaurants', function(){
-    $restaurants = User::with('types')->get();
+    $restaurants = User::with('types')->paginate(12);
     //dd($restaurants);
     return $restaurants;
 });
