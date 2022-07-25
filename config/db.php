@@ -46,7 +46,7 @@ return [
         [
             'id'=> '1',
             'name' => 'Fra',
-            'password'=> '123456',
+            'password'=> 'password',
             'email' => 'ristorantepechino@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -60,7 +60,7 @@ return [
         [
             'id'=> '2',
             'name' => 'Fra',
-            'password'=> '1234567',
+            'password'=> 'password',
             'email' => 'gelaterigianni@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -73,7 +73,7 @@ return [
         [
             'id'=> '3',
             'name' => 'Fra',
-            'password'=> '1234568',
+            'password'=> 'password',
             'email' => 'sushilab@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -86,7 +86,7 @@ return [
         [
             'id'=> '4',
             'name' => 'Fra',
-            'password'=> '1234569',
+            'password'=> 'password',
             'email' => 'tajmahal@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -99,7 +99,7 @@ return [
         [
             'id'=> '5',
             'name' => 'Fra',
-            'password'=> '12345610',
+            'password'=> 'password',
             'email' => 'internazionalbistrot@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -112,7 +112,7 @@ return [
         [
             'id'=> '6',
             'name' => 'Fra',
-            'password'=> '12345611',
+            'password'=> 'password',
             'email' => 'mammamia@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -125,7 +125,7 @@ return [
         [
             'id'=> '7',
             'name' => 'Fra',
-            'password'=> '12345612',
+            'password'=> 'password',
             'email' => 'chilipeppers@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -138,7 +138,7 @@ return [
         [
             'id'=> '8',
             'name' => 'Fra',
-            'password'=> '12345613',
+            'password'=> 'password',
             'email' => 'pizzeriadonfranchino@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -151,7 +151,7 @@ return [
         [
             'id'=> '9',
             'name' => 'Fra',
-            'password'=> '12345614',
+            'password'=> 'password',
             'email' => 'pizzette@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -164,7 +164,7 @@ return [
         [
             'id'=> '10',
             'name' => 'Fra',
-            'password'=> '12345615',
+            'password'=> 'password',
             'email' => 'gea@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',

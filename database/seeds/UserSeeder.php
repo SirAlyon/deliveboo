@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserSeeder extends Seeder
@@ -18,7 +19,7 @@ class UserSeeder extends Seeder
         foreach ($restaurants as $restaurant) {
             $new_restaurant =  new User();
             $new_restaurant->name = $restaurant['name'];
-            $new_restaurant->password = $restaurant['password'];
+            $new_restaurant->password = Hash::make($restaurant['password']);
             $new_restaurant->email = $restaurant['email'];
             $new_restaurant->email_verified_at = $restaurant['email_verified_at'];
             $new_restaurant->lastname = $restaurant['lastname'];
