@@ -224,22 +224,36 @@ export default {
     },
 
     filterReustarants() {
-      if (this.checkedTypes.length > 0) {
-        this.filteredRestaurants = [];
-      } else {
+      if (this.checkedTypes.length == 0) {
         this.filteredRestaurants = this.restaurants;
+        return;
       }
+      this.filteredRestaurants = [];
 
       this.restaurants.forEach((restaurant) => {
-        restaurant.types.forEach((type) => {
-          if (
-            this.checkedTypes.includes(type.name) &&
-            !this.filteredRestaurants.includes(restaurant)
-          ) {
+        let included = true;
+        if(restaurant.types.length == 0){
+            included = false;
+        }else{
+            this.checkedTypes.forEach(type => {
+                console.log(type);
+                let present = false;
+                restaurant.types.forEach(Rtype => {
+                    console.log(Rtype.name);
+                    if(Rtype.name == type){
+                        present = true;
+                    }
+                });
+                console.log(present);
+                if(!present){
+                    included = false;
+                }
+            });
+        }
+        if(included){
             this.filteredRestaurants.push(restaurant);
-          }
-        });
-      });
+        }
+      })
     },
   },
 
