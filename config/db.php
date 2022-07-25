@@ -278,5 +278,4 @@ return [
             'total_price' => 19.99
         ],
     ]
-
 ];
