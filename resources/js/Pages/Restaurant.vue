@@ -4,23 +4,34 @@
       <div class="row row-cols-2">
         <div class="col restaurant_image">
           <img
-            class="image_fluid"
-            src="/img/coming_soon.jpeg"
-            alt="coming soon image"
-            v-if="restaurant.image === null"
-          />
-          <img
-            class="image-fluid"
-            :src="
-              '/storage/restaurant_img' +
-              '/' +
-              restaurant.id +
-              '/' +
-              restaurant.image
-            "
-            alt="restaurant.restaurant_name"
-            v-else
-          />
+                        class="image_fluid"
+                        :src="
+                          '/img' +
+                          '/' +
+                          restaurant.restaurant_name +
+                          '.jpeg'
+                        "
+                        alt="restaurant.name"
+                        v-if="restaurant.name === 'User'"
+                      />
+                      <img
+                        class="image-fluid"
+                        src="img/coming_soon.jpeg"
+                        alt="coming soon image"
+                        v-else-if="restaurant.image === null"
+                      />
+                      <img
+                        class="image_fluid"
+                        :src="
+                          '/storage/restaurant_img' +
+                          '/' +
+                          restaurant.id +
+                          '/' +
+                          restaurant.image
+                        "
+                        alt="restaurant.name"
+                        v-else
+                      />
         </div>
         <div class="col restaurant_info">
           <div class="title">
@@ -81,7 +92,7 @@
                       Add to cart
                     </button>
 
-                     <button 
+                     <button
                       class="product_btn btn add_to_cart"
                       @click="renderProductsInCart($event)"
                       :data-product-img="product.image"
@@ -93,7 +104,7 @@
                     >
                       Add to cart
                     </button>
-                    
+
                     <!-- Modal -->
                     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                       <div class="modal-dialog" role="document">
@@ -112,9 +123,9 @@
                         </div>
                       </div>
                     </div>
-                    
-                   
-                    
+
+
+
                   </div>
                 </div>
               </div>
@@ -283,8 +294,8 @@ export default {
       if (!cart.some((product) => product.id === purchased_product.id)) {
         //push the purchased products in the shopping cart array
         cart.push(purchased_product);
-        
-      }  
+
+      }
 
       //check if products id and products id in shopping cart corresponds
       if(cart.some(product => product.user_id != restaurant.id )){
@@ -296,7 +307,7 @@ export default {
       }
       //console.log(cart);
       //console.log(this.currentRestaurant);
-      
+
       //calculate total
       this.calculateTotal(qty);
       //save shopping cart in local storage
@@ -378,8 +389,8 @@ export default {
     this.getRestaurant();
     //get shopping cart items
     this.getShoppingCartItems();
-    
-    
+
+
   },
 };
 </script>
