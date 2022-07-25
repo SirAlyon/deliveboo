@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\User;
+use App\Models\Type;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserSeeder extends Seeder
@@ -16,19 +18,35 @@ class UserSeeder extends Seeder
         $restaurants = config('db.restaurants');
 
         foreach ($restaurants as $restaurant) {
-            $new_restaurant =  new User();
-            $new_restaurant->name = $restaurant['name'];
-            $new_restaurant->password = $restaurant['password'];
-            $new_restaurant->email = $restaurant['email'];
-            $new_restaurant->email_verified_at = $restaurant['email_verified_at'];
-            $new_restaurant->lastname = $restaurant['lastname'];
-            $new_restaurant->restaurant_name = $restaurant['restaurant_name'];
-            $new_restaurant->address = $restaurant['address'];
-            $new_restaurant->vat = $restaurant['vat'];
-            $new_restaurant->image = $restaurant['image'];
-            /* $new_restaurant->types = $restaurant['types']; */
+            //Fra: Update or create per evitare la duplicazione
+            //o i vincoli del DB
+            $new_restaurant = User::updateOrCreate(
+                [
+                    'email' => $restaurant['email'],
+                    'vat' => $restaurant['vat']
+                ],
+                [
+                    'name' => $restaurant['name'],
+                    'password' => Hash::make($restaurant['password']),
+                    'email_verified_at' => $restaurant['email_verified_at'],
+                    'lastname' => $restaurant['lastname'],
+                    'restaurant_name' => $restaurant['restaurant_name'],
+                    'address' => $restaurant['address'],
+                    'image' => $restaurant['image']
+                ]
+            );
 
-            $new_restaurant->save();
+            $types = [];
+
+            foreach($restaurant['types'] as $type){
+                $DBType = Type::where('name',$type)->first();
+                if($DBType != null){
+                    $types[]=$DBType->id;
+                }
+            }
+            //Fra: sync in modo tale che cambiando il db.php
+            //si possano ricreare nuove connessioni con i type
+            $new_restaurant->types()->sync($types);
         }
     }
 };

@@ -45,8 +45,8 @@ return [
     'restaurants' => [
         [
             'id'=> '1',
-            'name' => 'Fra',
-            'password'=> '123456',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'ristorantepechino@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -59,8 +59,8 @@ return [
         ],
         [
             'id'=> '2',
-            'name' => 'Fra',
-            'password'=> '1234567',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'gelaterigianni@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -72,8 +72,8 @@ return [
         ],
         [
             'id'=> '3',
-            'name' => 'Fra',
-            'password'=> '1234568',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'sushilab@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -85,8 +85,8 @@ return [
         ],
         [
             'id'=> '4',
-            'name' => 'Fra',
-            'password'=> '1234569',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'tajmahal@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -98,12 +98,12 @@ return [
         ],
         [
             'id'=> '5',
-            'name' => 'Fra',
-            'password'=> '12345610',
-            'email' => 'internazionalbistrot@mail.com',
+            'name' => 'User',
+            'password'=> 'password',
+            'email' => 'internationalbistrot@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
-            'restaurant_name' => 'Internazional Bistrot',
+            'restaurant_name' => 'International Bistrot',
             'address' => 'Via Rossini 5',
             'vat' => '15915915905',
             'image' => 'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg',
@@ -111,8 +111,8 @@ return [
         ],
         [
             'id'=> '6',
-            'name' => 'Fra',
-            'password'=> '12345611',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'mammamia@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -124,8 +124,8 @@ return [
         ],
         [
             'id'=> '7',
-            'name' => 'Fra',
-            'password'=> '12345612',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'chilipeppers@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -137,8 +137,8 @@ return [
         ],
         [
             'id'=> '8',
-            'name' => 'Fra',
-            'password'=> '12345613',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'pizzeriadonfranchino@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -150,8 +150,8 @@ return [
         ],
         [
             'id'=> '9',
-            'name' => 'Fra',
-            'password'=> '12345614',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'pizzette@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -163,8 +163,8 @@ return [
         ],
         [
             'id'=> '10',
-            'name' => 'Fra',
-            'password'=> '12345615',
+            'name' => 'User',
+            'password'=> 'password',
             'email' => 'gea@mail.com',
             'email_verified_at'=> NULL,
             'lastname' => 'Rossi',
@@ -278,5 +278,4 @@ return [
             'total_price' => 19.99
         ],
     ]
-
 ];
