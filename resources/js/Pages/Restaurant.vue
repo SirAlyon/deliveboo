@@ -75,16 +75,46 @@
                     </h2>
                     <hr />
                     <p>{{ product.description }}</p>
-                    <button
+
+                    <!-- Button trigger modal -->
+                    <button v-if="shopping_cart.length > 0 && currentRestaurant === false" type="button" class="product_btn btn add_to_cart" data-bs-toggle="modal" data-bs-target="#modelId">
+                      Add to cart
+                    </button>
+
+                     <button 
                       class="product_btn btn add_to_cart"
                       @click="renderProductsInCart($event)"
                       :data-product-img="product.image"
                       :data-product-price="product.price"
                       :data-product-name="product.name"
                       :data-product-id="product.id"
+                      :data-product-user_id="product.user_id"
+                      v-else
                     >
                       Add to cart
                     </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">You can't place orders from different restuarants</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Do you want to empty your shopping cart? Then you will be able to add new products.
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" @click="changeRestaurant()" data-bs-dismiss="modal">Save</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                   
+                    
                   </div>
                 </div>
               </div>
@@ -199,11 +229,12 @@ export default {
   name: "Restaurant",
   data() {
     return {
-      restaurant: "",
+      restaurant: [],
       loading: true,
       shopping_cart: [],
       total: 0,
       qty: 1,
+      currentRestaurant: false,
     };
   },
   methods: {
@@ -211,7 +242,7 @@ export default {
       axios
         .get("/api/restaurant/" + this.$route.params.id)
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           if (response.data.status_code === 404) {
             this.loading = false;
           } else {
@@ -232,17 +263,34 @@ export default {
       const price = parseFloat(event.target.getAttribute("data-product-price"));
       const img = event.target.getAttribute("data-product-img");
       const id = event.target.getAttribute("data-product-id");
+      const user_id = event.target.getAttribute("data-product-user_id");
+      const restaurant = this.restaurant;
+      //console.log(restaurant);
       let qty = this.qty;
       //console.log(name, price, img);
       //create an object for the purchased products
-      const purchased_product = { id, name, price, img, qty };
-      //console.log(purchased_product.id);
+      const purchased_product = { id, name, price, img, qty, user_id };
+      //console.log(purchased_product);
       //check if the object is alredy in the array
       if (!cart.some((product) => product.id === purchased_product.id)) {
         //push the purchased products in the shopping cart array
         cart.push(purchased_product);
+        
+      }  
+
+
+      
+      if(cart.some(product => product.user_id != restaurant.id )){
+        this.currentRestaurant = false;
+      } else {
+        this.currentRestaurant = true;
       }
       //console.log(cart);
+      console.log(this.currentRestaurant);
+     /*  if(cart.some(product => product.user_id != restaurant.id )){
+        alert('NO')
+      }
+ */
       this.calculateTotal(qty);
       this.saveShoppingCart();
     },
@@ -275,10 +323,20 @@ export default {
     },
 
     saveShoppingCart() {
-      const parsed = JSON.stringify(this.shopping_cart);
-      localStorage.setItem("shopping_cart", parsed);
-      localStorage.setItem("total", this.total);
+      if (this.shopping_cart.length > 0) {
+        const parsed = JSON.stringify(this.shopping_cart);
+        localStorage.setItem("shopping_cart", parsed);
+        localStorage.setItem("total", this.total);
+      } else {
+        localStorage.removeItem("shopping_cart");
+        localStorage.removeItem("total");
+      }
     },
+
+    changeRestaurant(){
+      this.shopping_cart = [];
+      this.saveShoppingCart();
+    }
   },
   mounted() {
     this.getRestaurant();
