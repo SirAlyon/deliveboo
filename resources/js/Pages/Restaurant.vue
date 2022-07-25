@@ -192,6 +192,13 @@
                 <!-- /.col-6 -->
               </div>
               <!-- /.row total -->
+              <div class="row buy_now">
+                <div class="col-12 text-center mt-3">
+                  <router-link name="buy_now" id="buy_now" class="btn btn-primary text-white"  :to="{name: 'checkout'}">Buy now</router-link>
+                </div>
+                <!-- /.col-12 -->
+              </div>
+              <!-- /.row buy_now -->
               <!-- /.purchesed_product -->
             </div>
             <!-- /.shopping_cart -->
@@ -264,6 +271,7 @@ export default {
       const img = event.target.getAttribute("data-product-img");
       const id = event.target.getAttribute("data-product-id");
       const user_id = event.target.getAttribute("data-product-user_id");
+      // define a variable for restaurant object
       const restaurant = this.restaurant;
       //console.log(restaurant);
       let qty = this.qty;
@@ -278,20 +286,20 @@ export default {
         
       }  
 
-
-      
+      //check if products id and products id in shopping cart corresponds
       if(cart.some(product => product.user_id != restaurant.id )){
+        //change currentRestaurant value
         this.currentRestaurant = false;
       } else {
+        //change currentRestaurant value
         this.currentRestaurant = true;
       }
       //console.log(cart);
-      console.log(this.currentRestaurant);
-     /*  if(cart.some(product => product.user_id != restaurant.id )){
-        alert('NO')
-      }
- */
+      //console.log(this.currentRestaurant);
+      
+      //calculate total
       this.calculateTotal(qty);
+      //save shopping cart in local storage
       this.saveShoppingCart();
     },
     calculateTotal() {
@@ -306,41 +314,52 @@ export default {
     },
     changeQuantity(action, product) {
       //console.log('changed');
+      //verify button action
       if (action === "minus" && product.qty > 1) {
+        //remove quantity
         product.qty--;
-      } else if (action === "plus") {
+      } else if (action === "plus") {   //verify button action
+        //add quantity
         product.qty++;
       }
+      //calculate total
       this.calculateTotal(product.qty);
+      //save chopping cart in local storage
       this.saveShoppingCart();
     },
     removeProduct(index) {
       //console.log('remove');
       const cart = this.shopping_cart;
       //console.log(cart);
+      //remove product from shopping cart
       cart.splice(index, 1);
+      //update local storage shopping cart
       this.saveShoppingCart();
     },
 
     saveShoppingCart() {
+      //save datas in local storage
       if (this.shopping_cart.length > 0) {
         const parsed = JSON.stringify(this.shopping_cart);
         localStorage.setItem("shopping_cart", parsed);
         localStorage.setItem("total", this.total);
       } else {
+        //clean local storage
         localStorage.removeItem("shopping_cart");
         localStorage.removeItem("total");
       }
     },
 
     changeRestaurant(){
+      //empty shopping cart
       this.shopping_cart = [];
+      //update local storage shopping cart
       this.saveShoppingCart();
-    }
-  },
-  mounted() {
-    this.getRestaurant();
-    if (
+    },
+
+    getShoppingCartItems(){
+      //get items from shopping cart
+      if (
       localStorage.getItem("shopping_cart") &&
       localStorage.getItem("total")
     ) {
@@ -352,6 +371,15 @@ export default {
         localStorage.removeItem("total");
       }
     }
+    }
+  },
+  mounted() {
+    //render restaurant
+    this.getRestaurant();
+    //get shopping cart items
+    this.getShoppingCartItems();
+    
+    
   },
 };
 </script>
