@@ -241,7 +241,7 @@ export default {
       shopping_cart: [],
       total: 0,
       qty: 1,
-      currentRestaurant: false,
+      currentRestaurant: true,
     };
   },
   methods: {
@@ -293,16 +293,16 @@ export default {
         if(product.user_id != restaurant.id) {
           //change currentRestaurant value
           this.currentRestaurant = false;
-          console.log(product.user_id, restaurant.id);
+          //console.log(product.user_id, restaurant.id);
         } else {
           //change currentRestaurant value
           this.currentRestaurant = true;
-          console.log(product.user_id, restaurant.id);
+          //console.log(product.user_id, restaurant.id);
         }
       })
 
       //console.log(cart);
-      //console.log(this.currentRestaurant);
+      console.log(this.currentRestaurant);
       
       //calculate total
       this.calculateTotal(qty);
@@ -340,6 +340,7 @@ export default {
       //console.log(cart);
       //remove product from shopping cart
       cart.splice(index, 1);
+      this.calculateTotal();
       //update local storage shopping cart
       this.saveShoppingCart();
     },
