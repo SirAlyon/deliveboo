@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\RestaurantController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +27,11 @@ Route::post('orders', 'API\OrderController@store');
 
 
 
-Route::get('restaurants', 'API\RestaurantController@index');
+Route::get('restaurants', function(){
+    $restaurants = User::with('types')->get();
+    //dd($restaurants);
+    return $restaurants;
+});
 Route::get('restaurant/{restaurant:id}','API\RestaurantController@show');
 Route::get('types', 'API\TypeController@index');
 Route::get('orders', 'API\OrderController@index');
