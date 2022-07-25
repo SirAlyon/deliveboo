@@ -126,12 +126,14 @@ export default {
 }
 
 /* Jumbotron section */
+
+
 .carousel-inner {
   font-family: Arial, Helvetica, sans-serif !important;
 
   img {
     width: 100%;
-    max-height: 300px;
+    max-height: 40vh;
     object-fit: cover;
     filter: contrast(0.5);
   }
