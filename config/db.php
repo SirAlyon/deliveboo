@@ -45,7 +45,7 @@ return [
     'restaurants' => [
         [
             'id'=> '1',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'ristorantepechino@mail.com',
             'email_verified_at'=> NULL,
@@ -59,7 +59,7 @@ return [
         ],
         [
             'id'=> '2',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'gelaterigianni@mail.com',
             'email_verified_at'=> NULL,
@@ -72,7 +72,7 @@ return [
         ],
         [
             'id'=> '3',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'sushilab@mail.com',
             'email_verified_at'=> NULL,
@@ -85,7 +85,7 @@ return [
         ],
         [
             'id'=> '4',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'tajmahal@mail.com',
             'email_verified_at'=> NULL,
@@ -98,7 +98,7 @@ return [
         ],
         [
             'id'=> '5',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'internationalbistrot@mail.com',
             'email_verified_at'=> NULL,
@@ -111,7 +111,7 @@ return [
         ],
         [
             'id'=> '6',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'mammamia@mail.com',
             'email_verified_at'=> NULL,
@@ -124,7 +124,7 @@ return [
         ],
         [
             'id'=> '7',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'chilipeppers@mail.com',
             'email_verified_at'=> NULL,
@@ -137,7 +137,7 @@ return [
         ],
         [
             'id'=> '8',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'pizzeriadonfranchino@mail.com',
             'email_verified_at'=> NULL,
@@ -150,7 +150,7 @@ return [
         ],
         [
             'id'=> '9',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'pizzette@mail.com',
             'email_verified_at'=> NULL,
@@ -163,7 +163,7 @@ return [
         ],
         [
             'id'=> '10',
-            'name' => 'Fra',
+            'name' => 'User',
             'password'=> 'password',
             'email' => 'gea@mail.com',
             'email_verified_at'=> NULL,

@@ -61,7 +61,7 @@
                           '.jpeg'
                         "
                         alt="restaurant.name"
-                        v-if="restaurant.name === 'Fra'"
+                        v-if="restaurant.name === 'User'"
                       />
                       <img
                         class="image-fluid"
