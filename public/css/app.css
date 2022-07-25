@@ -20527,4 +20527,5 @@ h5, .h5 {
 
 body {
   font-family: "Roboto", sans-serif;
+  min-width: 320px;
 }

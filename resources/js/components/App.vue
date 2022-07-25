@@ -1,9 +1,9 @@
 <template>
   <!-- header -->
-  <div>
+  <div class="">
     <header id="site_header">
       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
+        <div class="container flex-nowrap">
           <router-link class="navbar-brand" :to="{ name: 'home' }">
             <img
               class="brand_logo"
@@ -13,8 +13,11 @@
           </router-link>
           <nav>
             <!-- Right Side Of Navbar -->
-            <button class="login_btn" role="button">
-              <a href="/login"> Login </a>
+            <button class="login_btn d-flex" role="button">
+              <a href="/login"> 
+              <span class="px-2 d-none d-md-inline">Login</span>
+              <i class="fa-solid fa-user"> </i>
+              </a>
             </button>
           </nav>
         </div>
@@ -34,7 +37,7 @@
                 class="d-block w-100"
                 alt="#"
               />
-              <div class="my_carousel_caption">
+              <div class="my_carousel_caption container">
                 <h1>Il cibo che vuoi...</h1>
                 <p class="d-none d-md-block">
                   I migliori ristoranti della città...
@@ -47,7 +50,7 @@
                 class="d-block w-100"
                 alt="#"
               />
-              <div class="my_carousel_caption">
+              <div class="my_carousel_caption ">
                 <h1>dove vuoi...</h1>
                 <p class="d-none d-md-block">
                     a pochi passi da te...
@@ -92,6 +95,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+
 .brand_logo {
   height: 50px;
   width: auto;
@@ -99,28 +105,30 @@ export default {
 
 .login_btn {
   align-items: center;
-  background-color: #00c1b2; //brand-color
+  background-color: white;
   border: 0 solid #e2e8f0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
   color: #1a202c;
-  display: inline-flex;
-  font-family: Inter, sans-serif;
+  display: flex;
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   height: 50px;
   justify-content: center;
   line-height: 24px;
   overflow-wrap: break-word;
-  padding: 18px 60px;
+  padding: 16px 40px;
   text-decoration: none;
   width: auto;
   border-radius: 8px;
   cursor: pointer;
 
+
+
   a {
-    color: white;
+    color: #00c1b2;
     text-decoration: none;
   }
 }
@@ -128,31 +136,35 @@ export default {
 /* Jumbotron section */
 
 
-.carousel-inner {
-  font-family: Arial, Helvetica, sans-serif !important;
+.jumbotron {
+  min-width: 320px;
+
+  .carousel-inner {
+  font-family: 'Roboto', sans-serif !important;
 
   img {
     width: 100%;
-    max-height: 40vh;
+    min-width: 100px;
+    max-height: 400px;
     object-fit: cover;
-    filter: contrast(0.5);
+    filter: contrast(0.7);
   }
   h1 {
-    font-size: 70px !important;
+    font-size: calc(0.75em + 3vmin)!important;
     font-weight: 800;
     text-transform: uppercase;
   }
 
   .my_carousel_caption {
     position: absolute;
-    right: 15%;
-    bottom: 1.25rem;
-    left: 8%;
+    bottom: 1.25em;
+    left: 2.5em;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     color: #fff;
     text-align: left;
-    font-size: 50px;
+    font-size: calc(0.75em + 2vmin)!important;
   }
+}
 }
 </style>
