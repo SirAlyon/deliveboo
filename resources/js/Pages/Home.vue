@@ -6,11 +6,7 @@
           <div class="types_wrapper">
             <h3 class="display-6">Che menù scegliere oggi?</h3>
             <div class="row g-3 mt-1 flex-nowrap overflow-auto">
-              <div
-                class="col-4 col-md-3 col-lg-2"
-                v-for="type in types"
-                :key="type.id"
-              >
+              <div class="col-4 col-md-3 col-lg-2" v-for="type in types" :key="type.id">
                 <div class="my_cat_card position-relative">
                   <img
                     class="cat_image image_fluid"
@@ -20,28 +16,17 @@
                   <div class="card_text">
                     <!-- <h4>{{ type.name }}</h4> -->
                   </div>
-                  <label
-                    class="
-                      btn btn-primary
-                      active
-                      border-0
-                      position-absolute
-                      top-0
-                      right-0
-                      text-light
-                      d-flex
-                    "
-                  >
-                    <input
-                      type="checkbox"
-                      class="me-2"
-                      :value="type.name"
-                      :id="type.name"
-                      v-model="checkedTypes"
-                      @change="filterReustarants()"
-                    />
-                    {{ type.name }}
-                  </label>
+                    <label class="btn btn-primary active border-0 position-absolute top-0 right-0 text-light d-flex">
+                        <input
+                        type="checkbox"
+                        class="me-2"
+                        :value="type.name"
+                        :id="type.name"
+                        v-model="checkedTypes"
+                        @change="filterReustarants()"
+                        />
+                        {{ type.name }}
+                    </label>
                 </div>
               </div>
             </div>
@@ -70,7 +55,10 @@
                       <img
                         class="image_fluid"
                         :src="
-                          '/img' + '/' + restaurant.restaurant_name + '.jpeg'
+                          '/img' +
+                          '/' +
+                          restaurant.restaurant_name +
+                          '.jpeg'
                         "
                         alt="restaurant.name"
                         v-if="restaurant.name === 'User'"
@@ -99,7 +87,7 @@
                   </div>
                   <div class="card_text">
                     <router-link
-                      class="text-decoration-none text-reset"
+                    class="text-decoration-none text-reset"
                       :to="{
                         name: 'restaurant',
                         params: { id: restaurant.id },
@@ -109,14 +97,7 @@
                     </router-link>
 
                     <div class="types_widget">
-                      <ul
-                        class="
-                          list-unstyled
-                          d-flex
-                          flex-column
-                          justify-content-center
-                        "
-                      >
+                      <ul class="list-unstyled d-flex flex-column justify-content-center">
                         <li
                           class="ms-2"
                           v-for="type in restaurant.types"
@@ -138,56 +119,44 @@
             <!-- /.row -->
           </div>
           <!-- /.restaurants_wrapper -->
-          <nav aria-label="Page navigation" class="py-5">
-            <ul class="pagination justify-content-center">
-              <li class="page-item" v-if="restaurantNav.current_page > 1">
-                <a
-                  class="page-link"
-                  href="#"
-                  aria-label="Previous"
-                  @click.prevent="
-                    getRestaurants(restaurantNav.current_page - 1)
-                  "
-                >
-                  <span aria-hidden="true">&laquo;</span>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
+            <nav aria-label="Page navigation" class="py-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" v-if="restaurantNav.current_page > 1">
+                        <a
+                            class="page-link"
+                            href="#"
+                            aria-label="Previous"
+                            @click.prevent="getRestaurants(restaurantNav.current_page - 1)"
+                        >
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
 
-              <li
-                :class="{
-                  'page-item': true,
-                  active: page == restaurantNav.current_page,
-                }"
-                v-for="page in restaurantNav.last_page"
-                :key="page"
-              >
-                <a
-                  class="page-link"
-                  href="#"
-                  @click.prevent="getRestaurants(page)"
-                  >{{ page }}</a
-                >
-              </li>
+                    <li :class="{'page-item': true, active: page == restaurantNav.current_page,}"
+                    v-for="page in restaurantNav.last_page" :key="page"
+                    >
+                        <a class="page-link" href="#" @click.prevent="getRestaurants(page)">{{
+                            page
+                        }}</a>
+                    </li>
 
-              <li
-                class="page-item"
-                v-if="restaurantNav.current_page < restaurantNav.last_page"
-              >
-                <a
-                  class="page-link"
-                  href="#"
-                  aria-label="Next"
-                  @click.prevent="
-                    getRestaurants(restaurantNav.current_page + 1)
-                  "
-                >
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+                    <li
+                    class="page-item"
+                    v-if="restaurantNav.current_page < restaurantNav.last_page"
+                    >
+                        <a
+                            class="page-link"
+                            href="#"
+                            aria-label="Next"
+                            @click.prevent="getRestaurants(restaurantNav.current_page + 1)"
+                        >
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
           <!-- /.ristoranti-->
         </div>
 
@@ -202,7 +171,7 @@
 </template>
 
 <script>
-import LoaderComponent from "../components/LoaderComponent.vue";
+import LoaderComponent from '../components/LoaderComponent.vue';
 export default {
   components: { LoaderComponent },
   name: "Home",
@@ -211,7 +180,7 @@ export default {
       types: "",
 
       restaurants: [],
-      restaurantNav: [],
+      restaurantNav:[],
       checkedTypes: [],
       filteredRestaurants: [],
       loading: true,
@@ -221,16 +190,16 @@ export default {
   methods: {
     getRestaurants(restaurantPage) {
       axios
-        .get("/api/restaurants", {
-          params: {
-            page: restaurantPage,
-          },
+        .get("/api/restaurants",{
+            params:{
+                page: restaurantPage
+            }
         })
         .then((response) => {
-          console.log(response, "new script");
+          console.log(response, 'new script');
           this.restaurants = response.data.data;
-          this.restaurantNav = response.data;
-          //console.log(this.restaurants);
+          this.restaurantNav= response.data;
+            //console.log(this.restaurants);
           this.filteredRestaurants = this.restaurants;
           this.loading = false;
           //console.log(this.restaurants);
@@ -263,35 +232,35 @@ export default {
 
       this.restaurants.forEach((restaurant) => {
         let included = true;
-        if (restaurant.types.length == 0) {
-          included = false;
-        } else {
-          this.checkedTypes.forEach((type) => {
-            console.log(type);
-            let present = false;
-            restaurant.types.forEach((Rtype) => {
-              console.log(Rtype.name);
-              if (Rtype.name == type) {
-                present = true;
-              }
+        if(restaurant.types.length == 0){
+            included = false;
+        }else{
+            this.checkedTypes.forEach(type => {
+                console.log(type);
+                let present = false;
+                restaurant.types.forEach(Rtype => {
+                    console.log(Rtype.name);
+                    if(Rtype.name == type){
+                        present = true;
+                    }
+                });
+                console.log(present);
+                if(!present){
+                    included = false;
+                }
             });
-            console.log(present);
-            if (!present) {
-              included = false;
-            }
-          });
         }
-        if (included) {
-          this.filteredRestaurants.push(restaurant);
+        if(included){
+            this.filteredRestaurants.push(restaurant);
         }
-      });
+      })
     },
   },
 
   mounted() {
     this.getTypes();
     this.getRestaurants(1);
-    console.log("mounted");
+    console.log('mounted');
   },
 
   computed: {
@@ -316,6 +285,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 // Tipologie
 
 .restaurants.title {
@@ -377,15 +347,16 @@ export default {
     font-size: 15px;
   }
 }
-label {
-  background-color: #00c1b2 !important;
+label{
+    background-color:#00c1b2!important;
 }
 .page-item.active .page-link {
-  background-color: #00c1b2 !important;
-  border-color: #00c1b2 !important;
+    background-color: #00c1b2!important;
+    border-color: #00c1b2!important;
 }
-.page-link {
-  color: #00c1b2;
+.page-link{
+    color:#00c1b2;
 }
 </style>
+
 
