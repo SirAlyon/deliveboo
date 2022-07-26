@@ -257,6 +257,7 @@ return [
             'guest_email' => 'alessiosada04@gmail.com',
             'guest_address' => 'Viale Monza 12',
             'guest_phone_number' => '+(39) 3923950030',
+            'created_at'=> '2022-06-20 08:07:12',
             'total_price' => 49.99
 
         ],
@@ -266,7 +267,8 @@ return [
             'guest_email' => 'francesca@gmail.com',
             'guest_address' => 'Viale Marche 12',
             'guest_phone_number' => '+(39) 3923950030',
-            'total_price' => 29.99
+            'total_price' => 29.99,
+            'created_at'=> '2022-06-20 08:07:13',
 
         ],
         [
@@ -275,7 +277,74 @@ return [
             'guest_email' => 'kiba@gmail.com',
             'guest_address' => 'Viale Monza 12',
             'guest_phone_number' => '+(39) 3923950030',
-            'total_price' => 19.99
+            'total_price' => 19.99,
+            'created_at'=> '2022-06-20 08:07:12',
+        ],
+        [
+            'guest_name' => 'Francesca',
+            'guest_lastname' => 'Huda',
+            'guest_email' => 'francesca@gmail.com',
+            'guest_address' => 'Viale Marche 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 29.99,
+            'created_at'=> '2022-05-20 08:07:13',
+
+        ],
+        [
+            'guest_name' => 'Kiba',
+            'guest_lastname' => 'Inu',
+            'guest_email' => 'kiba@gmail.com',
+            'guest_address' => 'Viale Monza 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 19.99,
+            'created_at'=> '2022-05-20 08:07:12',
+        ],
+        [
+            'guest_name' => 'Francesca',
+            'guest_lastname' => 'Huda',
+            'guest_email' => 'francesca@gmail.com',
+            'guest_address' => 'Viale Marche 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 29.99,
+            'created_at'=> '2022-05-20 08:07:13',
+
+        ],
+        [
+            'guest_name' => 'Kiba',
+            'guest_lastname' => 'Inu',
+            'guest_email' => 'kiba@gmail.com',
+            'guest_address' => 'Viale Monza 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 19.99,
+            'created_at'=> '2022-04-20 08:07:12',
+        ],
+        [
+            'guest_name' => 'Francesca',
+            'guest_lastname' => 'Huda',
+            'guest_email' => 'francesca@gmail.com',
+            'guest_address' => 'Viale Marche 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 29.99,
+            'created_at'=> '2022-03-20 08:07:13',
+
+        ],
+        [
+            'guest_name' => 'Kiba',
+            'guest_lastname' => 'Inu',
+            'guest_email' => 'kiba@gmail.com',
+            'guest_address' => 'Viale Monza 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 19.99,
+            'created_at'=> '2022-06-20 08:07:12',
+        ],
+        [
+            'guest_name' => 'Kiba',
+            'guest_lastname' => 'Inu',
+            'guest_email' => 'kiba@gmail.com',
+            'guest_address' => 'Viale Monza 12',
+            'guest_phone_number' => '+(39) 3923950030',
+            'total_price' => 19.99,
+            'created_at'=> '2022-07-20 08:07:12',
         ],
     ]
 ];
