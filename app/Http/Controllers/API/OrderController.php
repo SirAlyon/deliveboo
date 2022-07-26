@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use DateTime;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -20,8 +21,17 @@ class OrderController extends Controller
             $month = $order['created_at']->format('m');
             $orderToReturn[$month -1]['value'] += floatval($order['total_price']);
         }
+        $orderShifted = [];
+        $today = new DateTime();
+        $todayMonth = intval($today->format('m'));
+        //dd($todayMonth);
+        for ($i=0; $i < 12; $i++) {
 
-        return $orderToReturn;
+            $orderShifted[] = $orderToReturn[($i + $todayMonth) % 12];
+        }
+        return $orderShifted;
+
+        //return $orderToReturn;
     }
 
     public function store(Request $request)
@@ -38,10 +48,10 @@ class OrderController extends Controller
             'guest_phone_number' => ['required'],
             'total_price' => ['required'],
         ]);
-        
+
         //ddd($val_data);
 
-        
+
         $new_order = Order::create($val_data);
 
 
@@ -52,14 +62,14 @@ class OrderController extends Controller
         //$test = $shopping_cart[0]->id;
         //$new_order->products()->->attach($shopping_cart);
         //$new_post->tags()->attach($request->tags);
-        
+
         //ddd($products_id);
-        
+
         foreach($products_id as $info){
-            $new_order->products()->attach($info['id'], ['quantity'=> $info['qty'] ]); 
+            $new_order->products()->attach($info['id'], ['quantity'=> $info['qty'] ]);
             echo('id: ' .$info['id']. 'qty: '.$info['qty']);
         };
-        //$new_order->products()->attach($products_id->id, ['quantity'=> $products_id->qty ]); 
+        //$new_order->products()->attach($products_id->id, ['quantity'=> $products_id->qty ]);
 
         //Response della chaiamta axios post, se creazione ordine è andata a buon fine...
         if($val_data){
@@ -68,6 +78,8 @@ class OrderController extends Controller
             return 'no';
         }
 
-       
-    }
+
+        return 'no';
+        }
 }
+
