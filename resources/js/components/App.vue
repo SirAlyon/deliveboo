@@ -104,27 +104,17 @@
                             </li>
                             <li>
                                 <p>
-                                    <a
-                                        href="https://foodscene.deliveroo.it"
-                                        class=""
-                                        >Il nostro blog</a
-                                    >
+                                    <a href="#" class="">Il nostro blog</a>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    <a
-                                        href="https://careers.deliveroo.it"
-                                        class=""
-                                        >Lavora con noi</a
-                                    >
+                                    <a href="#" class="">Lavora con noi</a>
                                 </p>
                             </li>
                             <li>
                                 <p class="">
-                                    <a
-                                        href="https://restaurants.deliveroo.com/it-it/"
-                                        class=""
+                                    <a href="#" class=""
                                         >Diventa nostro partner</a
                                     >
                                 </p>
@@ -184,7 +174,7 @@
                         <div class="media d-flex">
                             <li>
                                 <a
-                                    href="https://www.facebook.com/DeliverooIT"
+                                    href="#"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title="Facebook"
@@ -206,7 +196,7 @@
                             </li>
                             <li class="">
                                 <a
-                                    href="https://twitter.com/deliveroo_italy"
+                                    href="#"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title="Twitter"
@@ -228,7 +218,7 @@
                             </li>
                             <li class="">
                                 <a
-                                    href="https://instagram.com/deliveroo_italy"
+                                    href="#"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title="Instagram"
