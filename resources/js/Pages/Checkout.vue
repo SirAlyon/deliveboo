@@ -77,12 +77,7 @@
         <div class="row m-0 justify-content-between">
           <div class="col-xs-12 col-lg-6 px-0 box_shadow mb-4 mb-lg-0">
             <p class="display-6 pt-1 p-3">Spedizione</p>
-            <form
-              class="px-3"
-              method="post"
-              id="payment-form"
-              action="api/braintree/payment"
-            >
+
               <input type="text" id="token" name="token" v-bind:value="csrf" />
               <input
                 type="text"
@@ -130,17 +125,18 @@
               <div class="btn btn-primary" @click="createOrder()">
                 Create Order
               </div>
-            </form>
           </div>
           <div class="col-xs-12 col-lg-5 px-0">
             <div class="container payment_wrapper box_shadow">
               <div class="row row-cols-1">
                 <p class="display-6 pt-1 mb-0">Pagamento</p>
                 <div class="col p-0">
-                  <di id="dropin-container"></di>
-                  <div class="btn bg-primary mb-4" id="submit-button">
+                <form id="payment-form" action="api/braintree/payment" method="post">
+                  <div id="dropin-container"></div>
+                  <button type="submit" class="btn bg-primary mb-4" id="submit-button">
                     Request payment method
-                  </div>
+                  </button >
+                </form>
                 </div>
               </div>
             </div>
