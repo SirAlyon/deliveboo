@@ -98,6 +98,7 @@
                     </router-link>
 
                     <div class="types_widget">
+
                       <ul class="list-unstyled d-flex flex-column justify-content-center">
                         <li
                           class="ms-2"
