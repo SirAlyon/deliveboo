@@ -73,7 +73,7 @@
 
 
                 </div>
-                <div id="chartdiv"></div>
+                <div id="chartdiv" class="my-4"></div>
             </div>
         </div>
 
@@ -132,7 +132,7 @@
                         sequencedInterpolation: true,
                         categoryXField: "month",
                         tooltip: am5.Tooltip.new(root, {
-                            labelText:"{valueY}"
+                            labelText:"Month n.{month} total income -> €{valueY}"
                         })
                     }));
 
