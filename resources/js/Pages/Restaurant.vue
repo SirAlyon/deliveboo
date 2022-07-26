@@ -77,11 +77,19 @@
                     <p>{{ product.description }}</p>
 
                     <!-- Button trigger modal -->
-                    <button v-if="shopping_cart.length > 0 && currentRestaurant === false" type="button" class="product_btn btn add_to_cart" data-bs-toggle="modal" data-bs-target="#modelId">
+                    <button
+                      v-if="
+                        shopping_cart.length > 0 && currentRestaurant != product.user_id 
+                      "
+                      type="button"
+                      class="product_btn btn add_to_cart"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modelId"
+                    >
                       Add to cart
                     </button>
 
-                     <button 
+                    <button
                       class="product_btn btn add_to_cart"
                       @click="renderProductsInCart($event)"
                       :data-product-img="product.image"
@@ -93,28 +101,53 @@
                     >
                       Add to cart
                     </button>
-                    
+
                     <!-- Modal -->
-                    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div
+                      class="modal fade"
+                      id="modelId"
+                      tabindex="-1"
+                      role="dialog"
+                      aria-labelledby="modelTitleId"
+                      aria-hidden="true"
+                    >
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title">You can't place orders from different restuarants</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title">
+                              You can't place orders from different restuarants
+                            </h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
                           </div>
                           <div class="modal-body">
-                            Do you want to empty your shopping cart? Then you will be able to add new products.
+                            Do you want to empty your shopping cart? Then you
+                            will be able to add new products.
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" @click="changeRestaurant()" data-bs-dismiss="modal">Save</button>
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-primary"
+                              @click="changeRestaurant()"
+                              data-bs-dismiss="modal"
+                            >
+                              Save
+                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    
-                   
-                    
                   </div>
                 </div>
               </div>
@@ -194,7 +227,13 @@
               <!-- /.row total -->
               <div class="row buy_now">
                 <div class="col-12 text-center mt-3">
-                  <router-link name="buy_now" id="buy_now" class="btn btn-primary text-white"  :to="{name: 'checkout'}">Buy now</router-link>
+                  <router-link
+                    name="buy_now"
+                    id="buy_now"
+                    class="btn btn-primary text-white"
+                    :to="{ name: 'checkout' }"
+                    >Buy now</router-link
+                  >
                 </div>
                 <!-- /.col-12 -->
               </div>
@@ -241,7 +280,7 @@ export default {
       shopping_cart: [],
       total: 0,
       qty: 1,
-      currentRestaurant: true,
+      currentRestaurant: null,
     };
   },
   methods: {
@@ -249,7 +288,7 @@ export default {
       axios
         .get("/api/restaurant/" + this.$route.params.id)
         .then((response) => {
-          //console.log(response.data);
+          console.log(response.data);
           if (response.data.status_code === 404) {
             this.loading = false;
           } else {
@@ -282,28 +321,21 @@ export default {
       //check if the object is alredy in the array
       if (!cart.some((product) => product.id === purchased_product.id)) {
         //push the purchased products in the shopping cart array
+        //console.log(purchased_product.user_id);
         cart.push(purchased_product);
-        
-      }  
+        //console.log(this.currentRestaurant);
+        localStorage.setItem("restaurant_id", this.restaurant.id);
+        this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
+        window.dispatchEvent(
+          new CustomEvent("restaurant_id-changed", {
+            detail: { storage: localStorage.getItem("restaurant_id") },
+          })
+        );
+      }
 
-      // //check if products id and products id in shopping cart corresponds
-      cart.forEach(product => {
-        //console.log(product);
-        //console.log(restaurant);
-        if(product.user_id != restaurant.id) {
-          //change currentRestaurant value
-          this.currentRestaurant = false;
-          //console.log(product.user_id, restaurant.id);
-        } else {
-          //change currentRestaurant value
-          this.currentRestaurant = true;
-          //console.log(product.user_id, restaurant.id);
-        }
-      })
-
-      //console.log(cart);
+     //console.log(cart);
       console.log(this.currentRestaurant);
-      
+
       //calculate total
       this.calculateTotal(qty);
       //save shopping cart in local storage
@@ -325,7 +357,8 @@ export default {
       if (action === "minus" && product.qty > 1) {
         //remove quantity
         product.qty--;
-      } else if (action === "plus") {   //verify button action
+      } else if (action === "plus") {
+        //verify button action
         //add quantity
         product.qty++;
       }
@@ -340,6 +373,7 @@ export default {
       //console.log(cart);
       //remove product from shopping cart
       cart.splice(index, 1);
+      //calculate total
       this.calculateTotal();
       //update local storage shopping cart
       this.saveShoppingCart();
@@ -358,36 +392,43 @@ export default {
       }
     },
 
-    changeRestaurant(){
+    changeRestaurant() {
       //empty shopping cart
       this.shopping_cart = [];
       //update local storage shopping cart
       this.saveShoppingCart();
     },
 
-    getShoppingCartItems(){
+    getShoppingCartItems() {
       //get items from shopping cart
       if (
-      localStorage.getItem("shopping_cart") &&
-      localStorage.getItem("total")
-    ) {
-      try {
-        this.shopping_cart = JSON.parse(localStorage.getItem("shopping_cart"));
-        this.total = JSON.parse(localStorage.getItem("total"));
-      } catch (e) {
-        localStorage.removeItem("shopping_cart");
-        localStorage.removeItem("total");
+        localStorage.getItem("shopping_cart") &&
+        localStorage.getItem("total")
+      ) {
+        try {
+          this.shopping_cart = JSON.parse(
+            localStorage.getItem("shopping_cart")
+          );
+          this.total = JSON.parse(localStorage.getItem("total"));
+        } catch (e) {
+          localStorage.removeItem("shopping_cart");
+          localStorage.removeItem("total");
+        }
       }
-    }
-    }
+    },
   },
   mounted() {
     //render restaurant
     this.getRestaurant();
     //get shopping cart items
     this.getShoppingCartItems();
-    
-    
+    if (localStorage.getItem("restaurant_id")) {
+      this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
+    }
+    window.addEventListener("restaurant_id-changed", () => {
+      this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
+      //console.log("storage updated");
+    });
   },
 };
 </script>
