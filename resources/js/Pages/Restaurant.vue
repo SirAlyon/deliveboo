@@ -4,23 +4,34 @@
       <div class="row row-cols-2">
         <div class="col restaurant_image">
           <img
-            class="image_fluid"
-            src="/img/coming_soon.jpeg"
-            alt="coming soon image"
-            v-if="restaurant.image === null"
-          />
-          <img
-            class="image-fluid"
-            :src="
-              '/storage/restaurant_img' +
-              '/' +
-              restaurant.id +
-              '/' +
-              restaurant.image
-            "
-            alt="restaurant.restaurant_name"
-            v-else
-          />
+                        class="image_fluid"
+                        :src="
+                          '/img' +
+                          '/' +
+                          restaurant.restaurant_name +
+                          '.jpeg'
+                        "
+                        alt="restaurant.name"
+                        v-if="restaurant.name === 'User'"
+                      />
+                      <img
+                        class="image-fluid"
+                        src="img/coming_soon.jpeg"
+                        alt="coming soon image"
+                        v-else-if="restaurant.image === null"
+                      />
+                      <img
+                        class="image_fluid"
+                        :src="
+                          '/storage/restaurant_img' +
+                          '/' +
+                          restaurant.id +
+                          '/' +
+                          restaurant.image
+                        "
+                        alt="restaurant.name"
+                        v-else
+                      />
         </div>
         <div class="col restaurant_info">
           <div class="title">
@@ -88,8 +99,8 @@
                     >
                       Add to cart
                     </button>
-
                     <button
+
                       class="product_btn btn add_to_cart"
                       @click="renderProductsInCart($event)"
                       :data-product-img="product.image"
@@ -323,6 +334,7 @@ export default {
         //push the purchased products in the shopping cart array
         //console.log(purchased_product.user_id);
         cart.push(purchased_product);
+
         //console.log(this.currentRestaurant);
         localStorage.setItem("restaurant_id", this.restaurant.id);
         this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
@@ -335,6 +347,7 @@ export default {
 
      //console.log(cart);
       console.log(this.currentRestaurant);
+
 
       //calculate total
       this.calculateTotal(qty);
@@ -429,6 +442,7 @@ export default {
       this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
       //console.log("storage updated");
     });
+
   },
 };
 </script>
