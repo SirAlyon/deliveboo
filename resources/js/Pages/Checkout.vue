@@ -137,7 +137,7 @@
               <div class="row row-cols-1">
                 <p class="display-6 pt-1 mb-0">Pagamento</p>
                 <div class="col p-0">
-                  <di id="dropin-container"></di>
+                  <div id="dropin-container"></div>
                   <div class="btn bg-primary mb-4" id="submit-button">
                     Request payment method
                   </div>
