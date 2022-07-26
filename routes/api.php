@@ -27,7 +27,7 @@ Route::post('orders', 'API\OrderController@store');
 
 
 Route::get('restaurants', function(){
-    $restaurants = User::with('types')->paginate(12);
+    $restaurants = User::with('types')->paginate(30);
     //dd($restaurants);
     return $restaurants;
 });
