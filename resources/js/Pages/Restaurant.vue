@@ -4,23 +4,34 @@
       <div class="row row-cols-2">
         <div class="col restaurant_image">
           <img
-            class="image_fluid"
-            src="/img/coming_soon.jpeg"
-            alt="coming soon image"
-            v-if="restaurant.image === null"
-          />
-          <img
-            class="image-fluid"
-            :src="
-              '/storage/restaurant_img' +
-              '/' +
-              restaurant.id +
-              '/' +
-              restaurant.image
-            "
-            alt="restaurant.restaurant_name"
-            v-else
-          />
+                        class="image_fluid"
+                        :src="
+                          '/img' +
+                          '/' +
+                          restaurant.restaurant_name +
+                          '.jpeg'
+                        "
+                        alt="restaurant.name"
+                        v-if="restaurant.name === 'User'"
+                      />
+                      <img
+                        class="image-fluid"
+                        src="img/coming_soon.jpeg"
+                        alt="coming soon image"
+                        v-else-if="restaurant.image === null"
+                      />
+                      <img
+                        class="image_fluid"
+                        :src="
+                          '/storage/restaurant_img' +
+                          '/' +
+                          restaurant.id +
+                          '/' +
+                          restaurant.image
+                        "
+                        alt="restaurant.name"
+                        v-else
+                      />
         </div>
         <div class="col restaurant_info">
           <div class="title">
@@ -75,16 +86,79 @@
                     </h2>
                     <hr />
                     <p>{{ product.description }}</p>
+
+                    <!-- Button trigger modal -->
                     <button
+                      v-if="
+                        shopping_cart.length > 0 && currentRestaurant != product.user_id 
+                      "
+                      type="button"
+                      class="product_btn btn add_to_cart"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modelId"
+                    >
+                      Add to cart
+                    </button>
+                    <button
+
                       class="product_btn btn add_to_cart"
                       @click="renderProductsInCart($event)"
                       :data-product-img="product.image"
                       :data-product-price="product.price"
                       :data-product-name="product.name"
                       :data-product-id="product.id"
+                      :data-product-user_id="product.user_id"
+                      v-else
                     >
                       Add to cart
                     </button>
+
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="modelId"
+                      tabindex="-1"
+                      role="dialog"
+                      aria-labelledby="modelTitleId"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">
+                              You can't place orders from different restuarants
+                            </h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            Do you want to empty your shopping cart? Then you
+                            will be able to add new products.
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-primary"
+                              @click="changeRestaurant()"
+                              data-bs-dismiss="modal"
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -162,6 +236,19 @@
                 <!-- /.col-6 -->
               </div>
               <!-- /.row total -->
+              <div class="row buy_now">
+                <div class="col-12 text-center mt-3">
+                  <router-link
+                    name="buy_now"
+                    id="buy_now"
+                    class="btn btn-primary text-white"
+                    :to="{ name: 'checkout' }"
+                    >Buy now</router-link
+                  >
+                </div>
+                <!-- /.col-12 -->
+              </div>
+              <!-- /.row buy_now -->
               <!-- /.purchesed_product -->
             </div>
             <!-- /.shopping_cart -->
@@ -199,11 +286,12 @@ export default {
   name: "Restaurant",
   data() {
     return {
-      restaurant: "",
+      restaurant: [],
       loading: true,
       shopping_cart: [],
       total: 0,
       qty: 1,
+      currentRestaurant: null,
     };
   },
   methods: {
@@ -232,18 +320,38 @@ export default {
       const price = parseFloat(event.target.getAttribute("data-product-price"));
       const img = event.target.getAttribute("data-product-img");
       const id = event.target.getAttribute("data-product-id");
+      const user_id = event.target.getAttribute("data-product-user_id");
+      // define a variable for restaurant object
+      const restaurant = this.restaurant;
+      //console.log(restaurant);
       let qty = this.qty;
       //console.log(name, price, img);
       //create an object for the purchased products
-      const purchased_product = { id, name, price, img, qty };
-      //console.log(purchased_product.id);
+      const purchased_product = { id, name, price, img, qty, user_id };
+      //console.log(purchased_product);
       //check if the object is alredy in the array
       if (!cart.some((product) => product.id === purchased_product.id)) {
         //push the purchased products in the shopping cart array
+        //console.log(purchased_product.user_id);
         cart.push(purchased_product);
+
+        //console.log(this.currentRestaurant);
+        localStorage.setItem("restaurant_id", this.restaurant.id);
+        this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
+        window.dispatchEvent(
+          new CustomEvent("restaurant_id-changed", {
+            detail: { storage: localStorage.getItem("restaurant_id") },
+          })
+        );
       }
-      //console.log(cart);
+
+     //console.log(cart);
+      console.log(this.currentRestaurant);
+
+
+      //calculate total
       this.calculateTotal(qty);
+      //save shopping cart in local storage
       this.saveShoppingCart();
     },
     calculateTotal() {
@@ -258,42 +366,83 @@ export default {
     },
     changeQuantity(action, product) {
       //console.log('changed');
+      //verify button action
       if (action === "minus" && product.qty > 1) {
+        //remove quantity
         product.qty--;
       } else if (action === "plus") {
+        //verify button action
+        //add quantity
         product.qty++;
       }
+      //calculate total
       this.calculateTotal(product.qty);
+      //save chopping cart in local storage
       this.saveShoppingCart();
     },
     removeProduct(index) {
       //console.log('remove');
       const cart = this.shopping_cart;
       //console.log(cart);
+      //remove product from shopping cart
       cart.splice(index, 1);
+      //calculate total
+      this.calculateTotal();
+      //update local storage shopping cart
       this.saveShoppingCart();
     },
 
     saveShoppingCart() {
-      const parsed = JSON.stringify(this.shopping_cart);
-      localStorage.setItem("shopping_cart", parsed);
-      localStorage.setItem("total", this.total);
-    },
-  },
-  mounted() {
-    this.getRestaurant();
-    if (
-      localStorage.getItem("shopping_cart") &&
-      localStorage.getItem("total")
-    ) {
-      try {
-        this.shopping_cart = JSON.parse(localStorage.getItem("shopping_cart"));
-        this.total = JSON.parse(localStorage.getItem("total"));
-      } catch (e) {
+      //save datas in local storage
+      if (this.shopping_cart.length > 0) {
+        const parsed = JSON.stringify(this.shopping_cart);
+        localStorage.setItem("shopping_cart", parsed);
+        localStorage.setItem("total", this.total);
+      } else {
+        //clean local storage
         localStorage.removeItem("shopping_cart");
         localStorage.removeItem("total");
       }
+    },
+
+    changeRestaurant() {
+      //empty shopping cart
+      this.shopping_cart = [];
+      //update local storage shopping cart
+      this.saveShoppingCart();
+    },
+
+    getShoppingCartItems() {
+      //get items from shopping cart
+      if (
+        localStorage.getItem("shopping_cart") &&
+        localStorage.getItem("total")
+      ) {
+        try {
+          this.shopping_cart = JSON.parse(
+            localStorage.getItem("shopping_cart")
+          );
+          this.total = JSON.parse(localStorage.getItem("total"));
+        } catch (e) {
+          localStorage.removeItem("shopping_cart");
+          localStorage.removeItem("total");
+        }
+      }
+    },
+  },
+  mounted() {
+    //render restaurant
+    this.getRestaurant();
+    //get shopping cart items
+    this.getShoppingCartItems();
+    if (localStorage.getItem("restaurant_id")) {
+      this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
     }
+    window.addEventListener("restaurant_id-changed", () => {
+      this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
+      //console.log("storage updated");
+    });
+
   },
 };
 </script>

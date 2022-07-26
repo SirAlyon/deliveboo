@@ -10,10 +10,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
 
 // Font-Awesome
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
+//@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+//@import "~@fortawesome/fontawesome-free/scss/regular";
+//@import "~@fortawesome/fontawesome-free/scss/solid";
+//@import "~@fortawesome/fontawesome-free/scss/brands";
 
 // Variables
 @import 'variables';
@@ -68,4 +68,6 @@ body{
     font-family: 'Roboto', sans-serif;
     min-width: 320px;
 }
+
+
 

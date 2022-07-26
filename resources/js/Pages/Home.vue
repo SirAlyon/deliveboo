@@ -42,6 +42,7 @@
               <div
                 class="col-xs-1 col-sm-6 col-lg-3"
                 v-for="restaurant in filteredReustarants"
+
                 :key="restaurant.id"
               >
                 <div class="my_rest_card">
@@ -53,10 +54,21 @@
                       }"
                     >
                       <img
+                        class="image_fluid"
+                        :src="
+                          '/img' +
+                          '/' +
+                          restaurant.restaurant_name +
+                          '.jpeg'
+                        "
+                        alt="restaurant.name"
+                        v-if="restaurant.name === 'User'"
+                      />
+                      <img
                         class="image-fluid"
                         src="img/coming_soon.jpeg"
                         alt="coming soon image"
-                        v-if="restaurant.image === null"
+                        v-else-if="restaurant.image === null"
                       />
                       <img
                         class="image_fluid"
@@ -110,9 +122,47 @@
             <!-- /.row -->
           </div>
           <!-- /.restaurants_wrapper -->
+            <nav aria-label="Page navigation" class="py-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" v-if="restaurantNav.current_page > 1">
+                        <a
+                            class="page-link"
+                            href="#"
+                            aria-label="Previous"
+                            @click.prevent="getRestaurants(restaurantNav.current_page - 1)"
+                        >
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
 
+                    <li :class="{'page-item': true, active: page == restaurantNav.current_page,}"
+                    v-for="page in restaurantNav.last_page" :key="page"
+                    >
+                        <a class="page-link" href="#" @click.prevent="getRestaurants(page)">{{
+                            page
+                        }}</a>
+                    </li>
+
+                    <li
+                    class="page-item"
+                    v-if="restaurantNav.current_page < restaurantNav.last_page"
+                    >
+                        <a
+                            class="page-link"
+                            href="#"
+                            aria-label="Next"
+                            @click.prevent="getRestaurants(restaurantNav.current_page + 1)"
+                        >
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
           <!-- /.ristoranti-->
         </div>
+
         <!-- /.col-9 -->
       </div>
       <!-- /.row -->
@@ -133,21 +183,27 @@ export default {
       types: "",
 
       restaurants: [],
+      restaurantNav:[],
       checkedTypes: [],
-      filteredReustarants: [],
+      filteredRestaurants: [],
       loading: true,
     };
   },
 
   methods: {
-    getRestaurants() {
+    getRestaurants(restaurantPage) {
       axios
-        .get("/api/restaurants")
+        .get("/api/restaurants",{
+            params:{
+                page: restaurantPage
+            }
+        })
         .then((response) => {
-          //console.log(response);
+          console.log(response, 'new script');
           this.restaurants = response.data.data;
-
-          this.filteredReustarants = this.restaurants;
+          this.restaurantNav= response.data;
+            //console.log(this.restaurants);
+          this.filteredRestaurants = this.restaurants;
           this.loading = false;
           //console.log(this.restaurants);
         })
@@ -171,28 +227,43 @@ export default {
     },
 
     filterReustarants() {
-      if (this.checkedTypes.length > 0) {
-        this.filteredReustarants = [];
-      } else {
-        this.filteredReustarants = this.restaurants;
+      if (this.checkedTypes.length == 0) {
+        this.filteredRestaurants = this.restaurants;
+        return;
       }
+      this.filteredRestaurants = [];
 
       this.restaurants.forEach((restaurant) => {
-        restaurant.types.forEach((type) => {
-          if (
-            this.checkedTypes.includes(type.name) &&
-            !this.filteredReustarants.includes(restaurant)
-          ) {
-            this.filteredReustarants.push(restaurant);
-          }
-        });
-      });
+        let included = true;
+        if(restaurant.types.length == 0){
+            included = false;
+        }else{
+            this.checkedTypes.forEach(type => {
+                console.log(type);
+                let present = false;
+                restaurant.types.forEach(Rtype => {
+                    console.log(Rtype.name);
+                    if(Rtype.name == type){
+                        present = true;
+                    }
+                });
+                console.log(present);
+                if(!present){
+                    included = false;
+                }
+            });
+        }
+        if(included){
+            this.filteredRestaurants.push(restaurant);
+        }
+      })
     },
   },
 
   mounted() {
     this.getTypes();
-    this.getRestaurants();
+    this.getRestaurants(1);
+    console.log('mounted');
   },
 
   computed: {
@@ -295,6 +366,16 @@ export default {
     font-weight: bolder;
     font-size: 15px;
   }
+}
+label{
+    background-color:#00c1b2!important;
+}
+.page-item.active .page-link {
+    background-color: #00c1b2!important;
+    border-color: #00c1b2!important;
+}
+.page-link{
+    color:#00c1b2;
 }
 </style>
 

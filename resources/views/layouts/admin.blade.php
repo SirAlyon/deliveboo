@@ -90,7 +90,7 @@
                     </nav>
                     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                         @yield('content')
-                        <div id="chartdiv"></div>
+                        {{-- <div id="chartdiv"></div> --}}
                     </main>
                 </div>
             </div>
@@ -100,7 +100,7 @@
 
 </html>
 <!-- Chart code -->
-<script>
+{{-- <script>
     document.addEventListener("DOMContentLoaded", function(){
         axios
         .get('/api/orders')
@@ -184,3 +184,4 @@
         });
     });
     </script>
+ --}}
