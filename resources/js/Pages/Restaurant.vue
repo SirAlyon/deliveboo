@@ -4,34 +4,23 @@
       <div class="row row-cols-2">
         <div class="col restaurant_image">
           <img
-                        class="image_fluid"
-                        :src="
-                          '/img' +
-                          '/' +
-                          restaurant.restaurant_name +
-                          '.jpeg'
-                        "
-                        alt="restaurant.name"
-                        v-if="restaurant.name === 'User'"
-                      />
-                      <img
-                        class="image-fluid"
-                        src="img/coming_soon.jpeg"
-                        alt="coming soon image"
-                        v-else-if="restaurant.image === null"
-                      />
-                      <img
-                        class="image_fluid"
-                        :src="
-                          '/storage/restaurant_img' +
-                          '/' +
-                          restaurant.id +
-                          '/' +
-                          restaurant.image
-                        "
-                        alt="restaurant.name"
-                        v-else
-                      />
+            class="image-fluid"
+            src="/img/coming_soon.jpeg"
+            alt="coming soon image"
+            v-if="restaurant.image === null"
+          />
+          <img
+            class="image_fluid"
+            :src="
+              '/storage/restaurant_img' +
+              '/' +
+              restaurant.id +
+              '/' +
+              restaurant.image
+            "
+            alt="restaurant.name"
+            v-else
+          />
         </div>
         <div class="col restaurant_info">
           <div class="title">
@@ -90,7 +79,8 @@
                     <!-- Button trigger modal -->
                     <button
                       v-if="
-                        shopping_cart.length > 0 && currentRestaurant != product.user_id 
+                        shopping_cart.length > 0 &&
+                        currentRestaurant != product.user_id
                       "
                       type="button"
                       class="product_btn btn add_to_cart"
@@ -100,7 +90,6 @@
                       Add to cart
                     </button>
                     <button
-
                       class="product_btn btn add_to_cart"
                       @click="renderProductsInCart($event)"
                       :data-product-img="product.image"
@@ -322,8 +311,6 @@ export default {
       const id = event.target.getAttribute("data-product-id");
       const user_id = event.target.getAttribute("data-product-user_id");
       // define a variable for restaurant object
-      const restaurant = this.restaurant;
-      //console.log(restaurant);
       let qty = this.qty;
       //console.log(name, price, img);
       //create an object for the purchased products
@@ -345,9 +332,8 @@ export default {
         );
       }
 
-     //console.log(cart);
+      //console.log(cart);
       console.log(this.currentRestaurant);
-
 
       //calculate total
       this.calculateTotal(qty);
@@ -442,7 +428,6 @@ export default {
       this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
       //console.log("storage updated");
     });
-
   },
 };
 </script>
