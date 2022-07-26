@@ -10212,6 +10212,12 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .bg-head {
   background-color: #009688;
 }
@@ -10251,4 +10257,5 @@ h5, .h5 {
 
 body {
   font-family: "Roboto", sans-serif;
+  min-width: 320px;
 }

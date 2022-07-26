@@ -2,11 +2,11 @@
   <div v-if="!loading">
     <div class="container-fluid main_content mt-3">
       <div class="row">
-        <div class="col-12">
-          <div class="types_wrapper">
+        <div class="">
+          <div class="types_wrapper container">
             <h3 class="display-6">Che menù scegliere oggi?</h3>
-            <div class="row g-3 mt-1 flex-nowrap overflow-auto">
-              <div class="col-4 col-md-3 col-lg-2" v-for="type in types" :key="type.id">
+            <div class="row  g-2 mt-1 flex-nowrap overflow-auto">
+              <div class="col-6 col-md-3 col-lg-2" v-for="type in types" :key="type.id">
                 <div class="my_cat_card position-relative">
                   <img
                     class="cat_image image_fluid"
@@ -36,12 +36,13 @@
           <!-- tipologie -->
 
           <!-- ristoranti -->
-          <div class="restaurants_wrapper mt-4">
+          <div class="restaurants_wrapper container mt-4">
             <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
             <div class="row g-3 mt-1" v-if="restaurants.length > 0">
               <div
-                class="col-4 col-md-3 col-lg-2"
-                v-for="restaurant in filteredRestaurants"
+                class="col-xs-1 col-sm-6 col-lg-3"
+                v-for="restaurant in filteredReustarants"
+
                 :key="restaurant.id"
               >
                 <div class="my_rest_card">
@@ -85,7 +86,8 @@
 
                     <span class="h6">CONSEGNA GRATUITA</span>
                   </div>
-                  <div class="card_text">
+                  <div class="scrollable">
+                    <div class="card_text">
                     <router-link
                     class="text-decoration-none text-reset"
                       :to="{
@@ -107,6 +109,7 @@
                         </li>
                       </ul>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -286,13 +289,18 @@ export default {
 
 <style lang="scss" scoped>
 
+
 // Tipologie
 
+.types_wrapper{
+  min-width: 320px;
+}
 .restaurants.title {
   font-weight: bold;
 }
 .my_cat_card {
   text-align: center;
+  max-width: 100%;
 
   .card_text {
     padding: 1rem;
@@ -313,8 +321,12 @@ export default {
 
 // ristoranti
 
+.restaurants_wrapper{
+  min-width: 320px;
+}
+
 .my_rest_card {
-  padding: 1rem;
+  min-height: 200px;
   text-align: center;
 
   .card_image {
@@ -338,9 +350,17 @@ export default {
     }
   }
 
-  .card_text {
-    text-align: left;
+  .scrollable{
+  overflow-y: auto;
+  max-height: 300px;
+    .card_text {
+      text-align: left;
+      overflow: auto
+    }
+
+
   }
+
 
   span {
     font-weight: bolder;
