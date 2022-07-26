@@ -94,9 +94,7 @@
                             </li>
                             <li>
                                 <p>
-                                    <a href="/it/takeaway/" class=""
-                                        >Ristoranti</a
-                                    >
+                                    <a href="/it/takeaway/">Ristoranti</a>
                                 </p>
                             </li>
                             <li>
