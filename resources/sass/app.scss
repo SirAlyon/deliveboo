@@ -9,16 +9,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
 
-// Font-Awesome
-//@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-//@import "~@fortawesome/fontawesome-free/scss/regular";
-//@import "~@fortawesome/fontawesome-free/scss/solid";
-//@import "~@fortawesome/fontawesome-free/scss/brands";
+//Font-Awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 
 // Variables
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 .bg-head {
     background-color: #009688;
 }
@@ -58,6 +66,7 @@ h5{
 
 body{
     font-family: 'Roboto', sans-serif;
+    min-width: 320px;
 }
 
 

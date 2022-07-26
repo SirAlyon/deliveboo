@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container page_wrapper my-3">
     <!-- Checkout test page -->
-    <h1>Checkout</h1>
+
     <div class="row">
       <div class="col-12">
-        <div class="shopping_cart p-3">
+        <div class="shopping_cart box_shadow px-3 py-1">
           <div class="row">
-            <div class="col-12">
-              <h5>Il tuo ordine</h5>
+            <div class="col-12 mb-2">
+              <p class="display-5 pt-1">Riepilogo Ordine</p>
             </div>
             <!-- /.col-12 -->
           </div>
@@ -25,23 +25,23 @@
             </div>
             <!-- /.col-6 -->
             <div class="col-6 d-flex align-items-center justify-content-end">
-              <div class="circle">
+              <div class="circle ms-2 me-2">
                 <a
                   class="remove decoration-none"
                   @click="changeQuantity('minus', purchased_product)"
-                  >-</a
-                >
+                  ><i class="fas fa-minus"></i>
+                </a>
                 <!-- /.remove -->
               </div>
               <!-- /.circle -->
 
               <span class="qty fs-5 mx-1">{{ purchased_product.qty }}</span>
-              <div class="circle">
+              <div class="circle ms-2 me-4">
                 <a
                   class="add"
                   @click="changeQuantity('plus', purchased_product)"
-                  >+</a
-                >
+                  ><i class="fas fa-plus"></i>
+                </a>
                 <!-- /.add -->
               </div>
               <!-- /.circle -->
@@ -49,11 +49,9 @@
               <span class="price ms-2 fs-5"
                 >{{ purchased_product.price }}€</span
               >
-              <a
-                class="btn btn-danger ms-2 text-white"
-                @click="removeProduct(index)"
-                >Remove</a
-              >
+              <a class="text-danger fs-4 ms-4" @click="removeProduct(index)">
+                <i class="fas fa-times-circle p-0"></i>
+              </a>
               <!-- /.btn btn-danger -->
             </div>
             <!-- /.col-6 -->
@@ -63,7 +61,7 @@
 
           <div class="row total">
             <div class="col-6">
-              <h5>Total:</h5>
+              <h5>Totale:</h5>
             </div>
             <!-- /.col-6 -->
             <div class="col-6 text-end">
@@ -75,57 +73,79 @@
           <!-- /.purchesed_product -->
         </div>
       </div>
-      <div class="col-6">
-        <form method="post" id="payment-form" action="api/braintree/payment">
-          <input type="text" id="token" name="token" v-bind:value="csrf" />
-          <input
-            type="text"
-            id="guest_name"
-            name="guest_name"
-            placeholder="name"
-          />
-          <input
-            type="text"
-            id="guest_lastname"
-            name="guest_lastname"
-            placeholder="lastname"
-          />
-          <input
-            type="email"
-            id="guest_email"
-            name="guest_email"
-            placeholder="email"
-          />
-          <input
-            type="text"
-            id="guest_address"
-            name="guest_address"
-            placeholder="address"
-          />
-          <input
-            type="number"
-            id="guest_phone_number"
-            name="guest_phone_number"
-            placeholder="phone"
-          />
-          <input
-            id="nonce"
-            name="payment_method_nonce"
-            type="hidden"
-            v-bind:value="csrf"
-          />
-          <input id="amount" name="amount" type="number" :value="total" />
-          <input
-            id="total_price"
-            name="total_price"
-            type="number"
-            :value="total"
-          />
-            <div class="btn btn-primary" @click="createOrder()">Create Order</div>
-
-          <div id="dropin-container"></div>
-          <button id="submit-button">Request payment method</button>
-        </form>
+      <div class="container checkout_wrapper d-flex mt-4">
+        <div class="row m-0 justify-content-between">
+          <div class="col-xs-12 col-lg-6 px-0 box_shadow mb-4 mb-lg-0">
+            <p class="display-6 pt-1 p-3">Spedizione</p>
+            <form
+              class="px-3"
+              method="post"
+              id="payment-form"
+              action="api/braintree/payment"
+            >
+              <input type="text" id="token" name="token" v-bind:value="csrf" />
+              <input
+                type="text"
+                id="guest_name"
+                name="guest_name"
+                placeholder="name"
+              />
+              <input
+                type="text"
+                id="guest_lastname"
+                name="guest_lastname"
+                placeholder="lastname"
+              />
+              <input
+                type="email"
+                id="guest_email"
+                name="guest_email"
+                placeholder="email"
+              />
+              <input
+                type="text"
+                id="guest_address"
+                name="guest_address"
+                placeholder="address"
+              />
+              <input
+                type="number"
+                id="guest_phone_number"
+                name="guest_phone_number"
+                placeholder="phone"
+              />
+              <input
+                id="nonce"
+                name="payment_method_nonce"
+                type="hidden"
+                v-bind:value="csrf"
+              />
+              <input id="amount" name="amount" type="number" :value="total" />
+              <input
+                id="total_price"
+                name="total_price"
+                type="number"
+                :value="total"
+              />
+              <div class="btn btn-primary" @click="createOrder()">
+                Create Order
+              </div>
+            </form>
+          </div>
+          <div class="col-xs-12 col-lg-5 px-0">
+            <div class="container payment_wrapper box_shadow">
+              <div class="row row-cols-1">
+                <p class="display-6 pt-1 mb-0">Pagamento</p>
+                <div class="col p-0">
+                  <di id="dropin-container"></di>
+                  <div class="btn bg-primary mb-4" id="submit-button">
+                    Request payment method
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -227,18 +247,17 @@ export default {
     },
     createOrder() {
       axios
-        .post(
-          "http://127.0.0.1:8000/api/orders",{
-            guest_name: document.getElementById('guest_name').value,
-            guest_lastname: document.getElementById('guest_lastname').value,
-            guest_address: document.getElementById('guest_address').value,
-            guest_email: document.getElementById('guest_email').value,
-            guest_phone_number: document.getElementById('guest_phone_number').value,
-            total_price: this.total,
-            shopping_cart: this.shopping_cart,
-            products_id: this.products_id
-          }
-        )
+        .post("http://127.0.0.1:8000/api/orders", {
+          guest_name: document.getElementById("guest_name").value,
+          guest_lastname: document.getElementById("guest_lastname").value,
+          guest_address: document.getElementById("guest_address").value,
+          guest_email: document.getElementById("guest_email").value,
+          guest_phone_number:
+            document.getElementById("guest_phone_number").value,
+          total_price: this.total,
+          shopping_cart: this.shopping_cart,
+          products_id: this.products_id,
+        })
         .then((response) => {
           console.log("Successfully uploaded: ", response);
         })
@@ -255,11 +274,28 @@ export default {
     ) {
       this.shopping_cart = JSON.parse(localStorage.getItem("shopping_cart"));
       this.total = JSON.parse(localStorage.getItem("total"));
-      this.shopping_cart.forEach(product =>{
-        let item = {"id" : Number(product.id), "qty": product.qty}
-         this.products_id.push(item)
-      })
+      this.shopping_cart.forEach((product) => {
+        let item = { id: Number(product.id), qty: product.qty };
+        this.products_id.push(item);
+      });
     }
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.page_wrapper {
+  font-family: "Roboto", sans-serif;
+}
+.box_shadow {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.checkout_wrapper {
+  width: 100%;
+}
+
+.payment_wrapper {
+  min-width: 300px;
+}
+</style>
