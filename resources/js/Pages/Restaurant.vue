@@ -4,23 +4,34 @@
       <div class="row row-cols-2">
         <div class="col restaurant_image">
           <img
-            class="image-fluid"
-            src="/img/coming_soon.jpeg"
-            alt="coming soon image"
-            v-if="restaurant.image === null"
-          />
-          <img
-            class="image_fluid"
-            :src="
-              '/storage/restaurant_img' +
-              '/' +
-              restaurant.id +
-              '/' +
-              restaurant.image
-            "
-            alt="restaurant.name"
-            v-else
-          />
+                        class="image_fluid"
+                        :src="
+                          '/img' +
+                          '/' +
+                          restaurant.restaurant_name +
+                          '.jpeg'
+                        "
+                        alt="restaurant.name"
+                        v-if="restaurant.name === 'User'"
+                      />
+                      <img
+                        class="image-fluid"
+                        src="img/coming_soon.jpeg"
+                        alt="coming soon image"
+                        v-else-if="restaurant.image === null"
+                      />
+                      <img
+                        class="image_fluid"
+                        :src="
+                          '/storage/restaurant_img' +
+                          '/' +
+                          restaurant.id +
+                          '/' +
+                          restaurant.image
+                        "
+                        alt="restaurant.name"
+                        v-else
+                      />
         </div>
         <div class="col restaurant_info">
           <div class="title">
@@ -63,7 +74,7 @@
                 v-for="product in restaurant.products"
                 :key="product.id"
               >
-                <div class="my_plate_card" v-if="product.visibility == 0">
+                <div class="my_plate_card">
                   <div class="card_image">
                     <img :src="'/storage/' + '/' + product.image" alt="" />
                     <!-- prezzo -->
@@ -79,8 +90,7 @@
                     <!-- Button trigger modal -->
                     <button
                       v-if="
-                        shopping_cart.length > 0 &&
-                        currentRestaurant != product.user_id
+                        shopping_cart.length > 0 && currentRestaurant != product.user_id 
                       "
                       type="button"
                       class="product_btn btn add_to_cart"
@@ -90,6 +100,7 @@
                       Add to cart
                     </button>
                     <button
+
                       class="product_btn btn add_to_cart"
                       @click="renderProductsInCart($event)"
                       :data-product-img="product.image"
@@ -148,24 +159,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div
-                  class="my_plate_card alternative"
-                  v-else
-                >
-                  <div class="card_image">
-                    <img :src="'/storage/' + '/' + product.image" alt="" />
-                    <!-- prezzo -->
-                    <span class="h5">{{ product.price }}€</span>
-                  </div>
-                  <div class="card_text">
-                    <h2 class="product_title pt-3">
-                      {{ product.name }}
-                    </h2>
-                    <p>PRODOTTO ATTUALMENTE NON DISPONIBILE!</p>
-              
                   </div>
                 </div>
               </div>
@@ -329,6 +322,8 @@ export default {
       const id = event.target.getAttribute("data-product-id");
       const user_id = event.target.getAttribute("data-product-user_id");
       // define a variable for restaurant object
+      const restaurant = this.restaurant;
+      //console.log(restaurant);
       let qty = this.qty;
       //console.log(name, price, img);
       //create an object for the purchased products
@@ -350,8 +345,9 @@ export default {
         );
       }
 
-      //console.log(cart);
+     //console.log(cart);
       console.log(this.currentRestaurant);
+
 
       //calculate total
       this.calculateTotal(qty);
@@ -446,6 +442,7 @@ export default {
       this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
       //console.log("storage updated");
     });
+
   },
 };
 </script>
@@ -499,8 +496,6 @@ section.products {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   border-radius: 10px;
-
-  
   .card_image {
     position: relative;
     img {
@@ -542,10 +537,5 @@ section.products {
       color: white;
     }
   }
-}
-
-.my_plate_card.alternative {
-  
-    filter: brightness(0.5);
 }
 </style>
