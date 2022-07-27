@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderSuccess;
+use App\Mail\OrderSuccessRestaurant;
 use App\Models\Order;
 use DateTime;
 use Illuminate\Http\Request;
@@ -82,8 +84,9 @@ class OrderController extends Controller
             return 'no';
         }
 
+        return new OrderSuccess($new_order);
+        return new OrderSuccessRestaurant($new_order);
 
-        
     }
 }
 

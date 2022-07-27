@@ -199,12 +199,10 @@ export default {
       var submitButton = document.querySelector("#submit-button");
       var form = document.querySelector("#payment-form");
       let token = this.clientToken;
-
       console.log(token);
       braintree.dropin.create(
         {
           authorization: token,
-
           selector: "#dropin-container",
         },
         function (err, dropinInstance) {
@@ -225,8 +223,7 @@ export default {
               document.querySelector("#nonce").value = payload.nonce;
               document.querySelector("#guest_user_email").value =
                 document.getElementById("guest_email").value;
-
-              form.submit();
+                form.submit();
             });
           });
         }
@@ -420,11 +417,9 @@ section.products {
 .box_shadow {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-
 .checkout_wrapper {
   width: 100%;
 }
-
 .payment_wrapper {
   min-width: 300px;
 }
