@@ -135,11 +135,7 @@
                     method="post"
                   >
                     <div id="dropin-container"></div>
-                    <input
-                      id="nonce"
-                      name="payment_method_nonce"
-                      hidden
-                    />
+                    <input id="nonce" name="payment_method_nonce" hidden />
 
                     <input
                       class="mt-3 form-control"
@@ -148,11 +144,13 @@
                       hidden
                     />
                     <input
-                      id="amount"
-                      name="amount"
-                      :value="total"
+                      class="mt-3 form-control"
+                      id="user_id"
+                      name="user_id"
+                      :value="user_id"
                       hidden
                     />
+                    <input id="amount" name="amount" :value="total" hidden />
                     <div class="position-relative">
                       <button
                         type="submit"
@@ -190,6 +188,7 @@ export default {
       products_id: [],
       total: 0,
       fields: {},
+      user_id: null,
       csrf: document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content"),
@@ -224,8 +223,9 @@ export default {
               }
               // Send payload.nonce to your server
               document.querySelector("#nonce").value = payload.nonce;
-              document.querySelector("#guest_user_email").value = document.getElementById('guest_email').value
-              console.log(document.querySelector("#guest_user_email").value);
+              document.querySelector("#guest_user_email").value =
+                document.getElementById("guest_email").value;
+
               form.submit();
             });
           });
@@ -288,6 +288,7 @@ export default {
           total_price: this.total,
           shopping_cart: this.shopping_cart,
           products_id: this.products_id,
+          user_id: this.user_id,
         })
         .then((response) => {
           console.log("Successfully uploaded: ", response);
@@ -308,6 +309,8 @@ export default {
       this.shopping_cart.forEach((product) => {
         let item = { id: Number(product.id), qty: product.qty };
         this.products_id.push(item);
+        this.user_id = Number(product.user_id);
+        console.log(this.user_id);
       });
     }
   },
