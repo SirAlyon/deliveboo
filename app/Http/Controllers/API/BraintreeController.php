@@ -5,13 +5,15 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Http\Controllers\Admin\OrderController;
+use App\Mail\OrderSuccess;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BraintreeController extends Controller
 {
     public function index(Request $request)
     {
-        
+
         $gateway = new \Braintree\Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'bfnn26wc5d95kszv',
@@ -21,14 +23,14 @@ class BraintreeController extends Controller
 
         // pass $clientToken to your front-end
         $clientToken = $gateway->clientToken()->generate();
-        //ddd($clientToken);    
-        
+        //ddd($clientToken);
+
         return $clientToken;
     }
 
     public function makePayment(Request $request)
     {
-        
+
        //ddd($request);
         $gateway = new \Braintree\Gateway([
             'environment' => 'sandbox',
@@ -50,9 +52,11 @@ class BraintreeController extends Controller
             ]
         ]);
 
-        
-
-/*         
+        //dd($request);
+        $new_order = Order::find('orders')->where('total_price', $result->amount);
+        dd($new_order);
+        Mail::to($request->guest_user_email)->send(new OrderSuccess($new_order));
+/*
         $val_data = $request->validate([
             'guest_name' => ['required'],
             'guest_lastname' => ['required'],
@@ -66,9 +70,9 @@ class BraintreeController extends Controller
         //ddd($val_data);
         Order::create($val_data);
  */
-        
+
         return redirect('/');
 
-    
+
     }
 }

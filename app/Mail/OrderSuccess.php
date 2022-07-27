@@ -20,6 +20,7 @@ class OrderSuccess extends Mailable
     public function __construct(Order $order)
     {
         $this->order= $order;
+        //dd($order);
     }
 
     /**

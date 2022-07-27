@@ -193,6 +193,7 @@ export default {
       csrf: document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content"),
+        order_id: ''
     };
   },
   methods: {
@@ -277,24 +278,29 @@ export default {
       //console.log(this.total);
     },
     createOrder() {
-      axios
-        .post("http://127.0.0.1:8000/api/orders", {
-          guest_name: document.getElementById("guest_name").value,
-          guest_lastname: document.getElementById("guest_lastname").value,
-          guest_address: document.getElementById("guest_address").value,
-          guest_email: document.getElementById("guest_email").value,
-          guest_phone_number:
-            document.getElementById("guest_phone_number").value,
-          total_price: this.total,
-          shopping_cart: this.shopping_cart,
-          products_id: this.products_id,
-        })
-        .then((response) => {
-          console.log("Successfully uploaded: ", response);
-        })
+        axios.all([
+            axios
+                .post("http://127.0.0.1:8000/api/orders", {
+                guest_name: document.getElementById("guest_name").value,
+                guest_lastname: document.getElementById("guest_lastname").value,
+                guest_address: document.getElementById("guest_address").value,
+                guest_email: document.getElementById("guest_email").value,
+                guest_phone_number:
+                    document.getElementById("guest_phone_number").value,
+                total_price: this.total,
+                shopping_cart: this.shopping_cart,
+                products_id: this.products_id,
+                }),
+            axios
+                .get('api/order')
+        ])
+        .then(axios.spread((Post, Get) => {
+            console.log('Post response', Post);
+            console.log('Get response', Get);
+            }))
         .catch((err) => {
           console.error("error occurred: ", err);
-        });
+        })}
     },
   },
   mounted() {
