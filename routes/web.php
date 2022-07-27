@@ -37,6 +37,8 @@ Route::get('testmail/{id}',function($id) {
     $order = Order::find($id);
     Mail::to($order->guest_email)->send(new OrderSuccess($order));
     //Fra: pensare ad una relazione migliore per ordine/ristorante
+
+
     $restaurant = User::find($order->products()->first()->user_id);
     Mail::to($restaurant->email)->send(new OrderSuccessRestaurant($order));
     return $order;
