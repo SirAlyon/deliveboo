@@ -28,7 +28,7 @@ class BraintreeController extends Controller
 
     public function makePayment(Request $request)
     {
-        //ddd($request);
+        
         $gateway = new \Braintree\Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'bfnn26wc5d95kszv',
@@ -49,7 +49,9 @@ class BraintreeController extends Controller
             ]
         ]);
 
-/*         //ddd($request, $nonce,$amount, $result);
+        //ddd($request);
+
+/*         
         $val_data = $request->validate([
             'guest_name' => ['required'],
             'guest_lastname' => ['required'],

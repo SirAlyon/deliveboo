@@ -78,65 +78,74 @@
           <div class="col-xs-12 col-lg-6 px-0 box_shadow mb-4 mb-lg-0">
             <p class="display-6 pt-1 p-3">Spedizione</p>
 
-              <input type="text" id="token" name="token" v-bind:value="csrf" />
-              <input
-                type="text"
-                id="guest_name"
-                name="guest_name"
-                placeholder="name"
-              />
-              <input
-                type="text"
-                id="guest_lastname"
-                name="guest_lastname"
-                placeholder="lastname"
-              />
-              <input
-                type="email"
-                id="guest_email"
-                name="guest_email"
-                placeholder="email"
-              />
-              <input
-                type="text"
-                id="guest_address"
-                name="guest_address"
-                placeholder="address"
-              />
-              <input
-                type="number"
-                id="guest_phone_number"
-                name="guest_phone_number"
-                placeholder="phone"
-              />
-              <input
-                id="nonce"
-                name="payment_method_nonce"
-                type="hidden"
-                v-bind:value="csrf"
-              />
-              <input id="amount" name="amount" type="number" :value="total" />
-              <input
-                id="total_price"
-                name="total_price"
-                type="number"
-                :value="total"
-              />
-              <div class="btn btn-primary" @click="createOrder()">
-                Create Order
-              </div>
+            <input type="text" id="token" name="token" v-bind:value="csrf" />
+            <input
+              type="text"
+              id="guest_name"
+              name="guest_name"
+              placeholder="name"
+            />
+            <input
+              type="text"
+              id="guest_lastname"
+              name="guest_lastname"
+              placeholder="lastname"
+            />
+            <input
+              type="email"
+              id="guest_email"
+              name="guest_email"
+              placeholder="email"
+            />
+            <input
+              type="text"
+              id="guest_address"
+              name="guest_address"
+              placeholder="address"
+            />
+            <input
+              type="number"
+              id="guest_phone_number"
+              name="guest_phone_number"
+              placeholder="phone"
+            />
+
+            
+            <input
+              id="total_price"
+              name="total_price"
+              type="number"
+              :value="total"
+            />
+            <div class="btn btn-primary" @click="createOrder()">
+              Create Order
+            </div>
           </div>
           <div class="col-xs-12 col-lg-5 px-0">
             <div class="container payment_wrapper box_shadow">
               <div class="row row-cols-1">
                 <p class="display-6 pt-1 mb-0">Pagamento</p>
                 <div class="col p-0">
-                <form id="payment-form" action="api/braintree/payment" method="post">
-                  <div id="dropin-container"></div>
-                  <button type="submit" class="btn bg-primary mb-4" id="submit-button">
-                    Request payment method
-                  </button >
-                </form>
+                  <form
+                    id="payment-form"
+                    action="/api/braintree/payment"
+                    method="post"
+                  >
+                    <div id="dropin-container"></div>
+                    <input
+                      id="nonce"
+                      name="payment_method_nonce"
+                      type="hidden"
+                    />
+                    <input id="amount" name="amount" type="number" :value="total" hidden />
+                    <button
+                      type="submit"
+                      class="btn bg-primary mb-4"
+                      id="submit-button"
+                    >
+                      Request payment method
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -191,6 +200,7 @@ export default {
               }
               // Send payload.nonce to your server
               document.querySelector("#nonce").value = payload.nonce;
+              console.log(document.querySelector("#nonce").value);
               form.submit();
             });
           });
