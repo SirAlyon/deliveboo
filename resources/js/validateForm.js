@@ -57,8 +57,37 @@ inputs.forEach(input =>{
         input.classList.remove('is-invalid')
       }
     }
+
   })
 })
+
+let passwordInput = document.querySelector('#password');
+let passwordConfirm = document.querySelector('#password-confirm')
+console.log(passwordInput, passwordConfirm);
+
+if(passwordConfirm){
+  passwordConfirm.addEventListener('keyup', () =>{
+    console.log(passwordInput.value, passwordConfirm.value);
+    if(passwordInput.value != passwordConfirm.value || passwordInput.value.length < 8){
+        passwordInput.classList.remove('is-valid')
+        passwordConfirm.classList.remove('is-valid')
+    
+        passwordInput.classList.add('is-invalid')
+        passwordConfirm.classList.add('is-invalid')
+    
+    }else{
+        passwordInput.classList.add('is-valid')
+        passwordConfirm.classList.add('is-valid')
+    
+    
+        passwordInput.classList.remove('is-invalid')
+        passwordConfirm.classList.remove('is-invalid')
+    
+    }
+})
+
+}
+
 
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 const forms = document.querySelectorAll('.needs-validation');

@@ -38,7 +38,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        //ddd($request);
+        //return ddd($request->all());
 
 
 
@@ -49,6 +49,10 @@ class OrderController extends Controller
             'guest_email' => ['required'],
             'guest_phone_number' => ['required'],
             'total_price' => ['required'],
+            'user_id' => ['required'],
+
+            
+
         ]);
 
         //ddd($val_data);

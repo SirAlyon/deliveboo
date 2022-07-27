@@ -223,7 +223,7 @@ export default {
               document.querySelector("#nonce").value = payload.nonce;
               document.querySelector("#guest_user_email").value =
                 document.getElementById("guest_email").value;
-              form.submit();
+                form.submit();
             });
           });
         }

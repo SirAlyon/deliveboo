@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 
-    protected $fillable = ['guest_name','guest_lastname','guest_email','guest_address', 'guest_phone_number', 'total_price'];
+    protected $fillable = ['guest_name','guest_lastname','guest_email','guest_address', 'guest_phone_number', 'total_price', 'user_id'];
 
     public function products(): BelongsToMany
     {
