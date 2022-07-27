@@ -73,7 +73,7 @@ class OrderController extends Controller
 
         //Response della chaiamta axios post, se creazione ordine è andata a buon fine...
         if($val_data){
-            return  'ok' ;
+            return  ddd($request->all()) ;
         }else{
             return 'no';
         }

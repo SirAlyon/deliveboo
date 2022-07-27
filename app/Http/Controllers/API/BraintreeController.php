@@ -11,7 +11,7 @@ class BraintreeController extends Controller
 {
     public function index(Request $request)
     {
-
+        
         $gateway = new \Braintree\Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'bfnn26wc5d95kszv',
@@ -29,6 +29,7 @@ class BraintreeController extends Controller
     public function makePayment(Request $request)
     {
         
+       //ddd($request);
         $gateway = new \Braintree\Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'bfnn26wc5d95kszv',
@@ -49,7 +50,7 @@ class BraintreeController extends Controller
             ]
         ]);
 
-        //ddd($request);
+        
 
 /*         
         $val_data = $request->validate([
