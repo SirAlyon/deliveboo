@@ -3,7 +3,7 @@
     <!-- Checkout test page -->
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 p-3">
         <div class="shopping_cart box_shadow px-3 py-1">
           <div class="row">
             <div class="col-12 mb-2">
@@ -73,58 +73,61 @@
           <!-- /.purchesed_product -->
         </div>
       </div>
-      <div class="container checkout_wrapper d-flex mt-4">
+      <div class="container checkout_wrapper mt-4">
         <div class="row m-0 justify-content-between">
-          <div class="col-xs-12 col-lg-6 px-0 box_shadow mb-4 mb-lg-0">
-            <p class="display-6 pt-1 p-3">Spedizione</p>
+          <div class="col-xs-12 col-lg-6 p-3 box_shadow mb-4 mb-lg-0">
+            <p class="display-6 pt-1">I tuoi dati per la spedizione</p>
 
-            <input type="text" id="token" name="token" v-bind:value="csrf" />
+            <input type="text" id="token" name="token" hidden />
             <input
+              class="mt-3 form-control"
               type="text"
               id="guest_name"
               name="guest_name"
               placeholder="name"
             />
             <input
+              class="mt-3 form-control"
               type="text"
               id="guest_lastname"
               name="guest_lastname"
               placeholder="lastname"
             />
             <input
+              class="mt-3 form-control"
               type="email"
               id="guest_email"
               name="guest_email"
               placeholder="email"
             />
             <input
+              class="mt-3 form-control"
               type="text"
               id="guest_address"
               name="guest_address"
               placeholder="address"
             />
             <input
+              class="mt-3 form-control"
               type="number"
               id="guest_phone_number"
               name="guest_phone_number"
               placeholder="phone"
             />
 
-            
             <input
+              class="mt-3 form-control"
               id="total_price"
               name="total_price"
               type="number"
               :value="total"
+              hidden
             />
-            <div class="btn btn-primary" @click="createOrder()">
-              Create Order
-            </div>
           </div>
           <div class="col-xs-12 col-lg-5 px-0">
             <div class="container payment_wrapper box_shadow">
-              <div class="row row-cols-1">
-                <p class="display-6 pt-1 mb-0">Pagamento</p>
+              <div class="row row-cols-1 p-3">
+                <p class="display-6">Pagamento</p>
                 <div class="col p-0">
                   <form
                     id="payment-form"
@@ -135,16 +138,37 @@
                     <input
                       id="nonce"
                       name="payment_method_nonce"
-                      type="hidden"
+                      hidden
                     />
-                    <input id="amount" name="amount" type="number" :value="total" hidden />
-                    <button
-                      type="submit"
-                      class="btn bg-primary mb-4"
-                      id="submit-button"
-                    >
-                      Request payment method
-                    </button>
+
+                    <input
+                      class="mt-3 form-control"
+                      id="guest_user_email"
+                      name="guest_user_email"
+                      hidden
+                    />
+                    <input
+                      id="amount"
+                      name="amount"
+                      :value="total"
+                      hidden
+                    />
+                    <div class="position-relative">
+                      <button
+                        type="submit"
+                        class="btn bg-primary mb-4"
+                        id="submit-button"
+                      >
+                        PAY NOW!
+                      </button>
+                      <button
+                        class="btn bg-primary mb-4"
+                        id="order-button"
+                        @click="createOrder()"
+                      >
+                        PAY NOW!
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -200,7 +224,8 @@ export default {
               }
               // Send payload.nonce to your server
               document.querySelector("#nonce").value = payload.nonce;
-              console.log(document.querySelector("#nonce").value);
+              document.querySelector("#guest_user_email").value = document.getElementById('guest_email').value
+              console.log(document.querySelector("#guest_user_email").value);
               form.submit();
             });
           });
@@ -290,6 +315,102 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* Restaurant */
+.restaurant_image {
+  img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+}
+/* Shopping cart */
+.shopping_cart {
+  border: 1px solid lightgray;
+}
+.circle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #00ccbc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  a {
+    text-decoration: none;
+    color: #00ccbc;
+    cursor: pointer;
+  }
+}
+.empty_shopping_cart {
+  height: 350px;
+  border: 1px solid lightgray;
+}
+/* Section products */
+section.products {
+  background-color: #f9fafa;
+}
+.hr_separator {
+  width: 50%;
+  border: 1px solid #00c1b2;
+  border-radius: 5px;
+  margin: auto;
+}
+.my_plate_card {
+  padding: 1rem;
+  text-align: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 10px;
+  .card_image {
+    position: relative;
+    img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 10px 10px 0 0;
+    }
+    // prezzo
+    span {
+      position: absolute;
+      bottom: -11px;
+      right: -7px;
+      padding: 8px 27px;
+      background-color: #00c1b2;
+      color: white;
+      border-radius: 3px;
+    }
+  }
+  .card_text {
+    text-align: left;
+    position: relative;
+    span {
+      font-weight: bolder;
+      font-size: 15px;
+    }
+    .product_title {
+      font-size: 30px;
+    }
+    hr {
+      height: 2px;
+      width: 20%;
+      background-color: #00c1b2;
+      margin: 16px 0 16px;
+    }
+    .product_btn {
+      background-color: rgba(red, 0.95);
+      color: white;
+    }
+  }
+}
+#order-button {
+  opacity: 0.1;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .page_wrapper {
   font-family: "Roboto", sans-serif;
 }
