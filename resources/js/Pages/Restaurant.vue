@@ -74,7 +74,21 @@
                 v-for="product in restaurant.products"
                 :key="product.id"
               >
-                <div class="my_plate_card">
+                 <div class="my_plate_card alternative" v-if="product.visibility == 1">
+                  <div class="card_image">
+                    <img :src="'/storage/' + '/' + product.image" alt="" />
+                    <!-- prezzo -->
+                    <span class="h5">{{ product.price }}€</span>
+                  </div>
+                  <div class="card_text">
+                    <h2 class="product_title pt-3">
+                      {{ product.name }}
+                    </h2>
+                    <hr />
+                    <p>PRODOTTO ATTUALMENTE NON DISPONIBILE</p>
+                  </div>
+                </div>
+                <div class="my_plate_card" v-else>
                   <div class="card_image">
                     <img :src="'/storage/' + '/' + product.image" alt="" />
                     <!-- prezzo -->
@@ -537,5 +551,9 @@ section.products {
       color: white;
     }
   }
+}
+
+.my_plate_card.alternative {
+  filter: brightness(0.5);
 }
 </style>
