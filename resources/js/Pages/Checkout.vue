@@ -135,11 +135,7 @@
                     method="post"
                   >
                     <div id="dropin-container"></div>
-                    <input
-                      id="nonce"
-                      name="payment_method_nonce"
-                      hidden
-                    />
+                    <input id="nonce" name="payment_method_nonce" hidden />
 
                     <input
                       class="mt-3 form-control"
@@ -148,11 +144,13 @@
                       hidden
                     />
                     <input
-                      id="amount"
-                      name="amount"
-                      :value="total"
+                      class="mt-3 form-control"
+                      id="user_id"
+                      name="user_id"
+                      :value="user_id"
                       hidden
                     />
+                    <input id="amount" name="amount" :value="total" hidden />
                     <div class="position-relative">
                       <button
                         type="submit"
@@ -190,10 +188,10 @@ export default {
       products_id: [],
       total: 0,
       fields: {},
+      user_id: null,
       csrf: document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content"),
-        order_id: ''
     };
   },
   methods: {
@@ -201,12 +199,10 @@ export default {
       var submitButton = document.querySelector("#submit-button");
       var form = document.querySelector("#payment-form");
       let token = this.clientToken;
-
       console.log(token);
       braintree.dropin.create(
         {
           authorization: token,
-
           selector: "#dropin-container",
         },
         function (err, dropinInstance) {
@@ -225,8 +221,8 @@ export default {
               }
               // Send payload.nonce to your server
               document.querySelector("#nonce").value = payload.nonce;
-              document.querySelector("#guest_user_email").value = document.getElementById('guest_email').value
-              console.log(document.querySelector("#guest_user_email").value);
+              document.querySelector("#guest_user_email").value =
+                document.getElementById("guest_email").value;
               form.submit();
             });
           });
@@ -278,29 +274,25 @@ export default {
       //console.log(this.total);
     },
     createOrder() {
-        axios.all([
-            axios
-                .post("http://127.0.0.1:8000/api/orders", {
-                guest_name: document.getElementById("guest_name").value,
-                guest_lastname: document.getElementById("guest_lastname").value,
-                guest_address: document.getElementById("guest_address").value,
-                guest_email: document.getElementById("guest_email").value,
-                guest_phone_number:
-                    document.getElementById("guest_phone_number").value,
-                total_price: this.total,
-                shopping_cart: this.shopping_cart,
-                products_id: this.products_id,
-                }),
-            axios
-                .get('api/order')
-        ])
-        .then(axios.spread((Post, Get) => {
-            console.log('Post response', Post);
-            console.log('Get response', Get);
-            }))
+      axios
+        .post("http://127.0.0.1:8000/api/orders", {
+          guest_name: document.getElementById("guest_name").value,
+          guest_lastname: document.getElementById("guest_lastname").value,
+          guest_address: document.getElementById("guest_address").value,
+          guest_email: document.getElementById("guest_email").value,
+          guest_phone_number:
+            document.getElementById("guest_phone_number").value,
+          total_price: this.total,
+          shopping_cart: this.shopping_cart,
+          products_id: this.products_id,
+          user_id: this.user_id,
+        })
+        .then((response) => {
+          console.log("Successfully uploaded: ", response);
+        })
         .catch((err) => {
           console.error("error occurred: ", err);
-        })}
+        });
     },
   },
   mounted() {
@@ -314,6 +306,8 @@ export default {
       this.shopping_cart.forEach((product) => {
         let item = { id: Number(product.id), qty: product.qty };
         this.products_id.push(item);
+        this.user_id = Number(product.user_id);
+        console.log(this.user_id);
       });
     }
   },
@@ -423,11 +417,9 @@ section.products {
 .box_shadow {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-
 .checkout_wrapper {
   width: 100%;
 }
-
 .payment_wrapper {
   min-width: 300px;
 }

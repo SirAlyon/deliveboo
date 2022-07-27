@@ -11,17 +11,7 @@ use Illuminate\Queue\SerializesModels;
 class OrderSuccess extends Mailable
 {
     use Queueable, SerializesModels;
-    public $order;
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(Order $order)
-    {
-        $this->order= $order;
-        //dd($order);
-    }
+
 
     /**
      * Build the message.
