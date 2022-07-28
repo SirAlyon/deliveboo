@@ -137,7 +137,7 @@
                       />
                     </router-link>
 
-                    <span class="h6">CONSEGNA GRATUITA</span>
+                    <span v-if="restaurant.free_shipping === 1" class="h6">CONSEGNA GRATUITA</span>
                   </div>
                   <div class="scrollable">
                     <div class="card_text">
