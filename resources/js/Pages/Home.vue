@@ -8,8 +8,8 @@
     <div class="container-fluid main_content mt-3">
     
         <div class="row d-flex">
-          <div class="col-3 types_wrapper container">
-            <h3 class="display-6">Che menù scegliere oggi?</h3>
+          <div class="col-2 types_wrapper container">
+            <h3 class="types_title">Categorie</h3>
             <div class="row flex-column">
               <div class="col-12" v-for="type in types" :key="type.id">
                 <div class="my_cat_card">
@@ -33,8 +33,8 @@
           <!-- tipologie -->
 
           <!-- ristoranti -->
-          <div class="col-9 restaurants_wrapper container">
-            <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
+          <div class="col-10 restaurants_wrapper container">
+            <h3 class="restaurants_title">Ristoranti che consegnano a Milano</h3>
             <div class="row g-3 mt-1" v-if="restaurants.length > 0">
               <div
                 class="col-xs-1 col-sm-6 col-lg-3"
@@ -237,12 +237,13 @@ export default {
 
 // Tipologie
 
-.types_wrapper{
-  min-width: 320px;
-}
-.restaurants.title {
+.types_title {
+  font-size: 1rem;
+  padding: 0 0.75rem;
   font-weight: bold;
 }
+
+
 .my_cat_card {
   text-align: center;
   max-width: 100%;
@@ -266,8 +267,8 @@ export default {
 
 // ristoranti
 
-.restaurants_wrapper{
-  min-width: 320px;
+.restaurants_title {
+  font-size: 1.375rem;
 }
 
 .my_rest_card {
