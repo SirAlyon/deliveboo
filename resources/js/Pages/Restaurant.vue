@@ -11,7 +11,7 @@
           />
           <img
             class="image-fluid"
-            src="img/coming_soon.jpeg"
+            src="/img/coming_soon.jpeg"
             alt="coming soon image"
             v-else-if="restaurant.image === null"
           />
@@ -89,7 +89,8 @@
                 <div class="my_plate_card d-flex flex-column justify-content-between " v-else>
                   <div class="card_content">
                     <div class="card_image">
-                      <img :src="'/storage/' + '/' + product.image" alt="" />
+                      <img v-if="product.image === null" src="/img/coming_soon.jpeg" alt="default img">
+                      <img v-else :src="'/storage/' + '/' + product.image" alt="product.name" />
                       <!-- prezzo -->
                       <span class="h5">{{ product.price }}€</span>
                     </div>
