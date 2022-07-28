@@ -1,5 +1,5 @@
 <template>
-  
+
   <div v-if="!loading">
 
     <!-- Jumbotron carousel -->
@@ -56,21 +56,13 @@
 
     <div class="container-fluid main_content mt-3">
       <div class="row">
-        <div class="">
-          <div class="types_wrapper container">
+        <div class="row d-flex">
+          <div class="col types_wrapper container">
             <h3 class="display-6">Che menù scegliere oggi?</h3>
-            <div class="row  g-2 mt-1 flex-nowrap overflow-auto">
+            <div class=" row  g-2 mt-1 flex-nowrap overflow-auto">
               <div class="col-6 col-md-3 col-lg-2" v-for="type in types" :key="type.id">
-                <div class="my_cat_card position-relative">
-                  <img
-                    class="cat_image image_fluid"
-                    :src="type.image"
-                    alt="type.name"
-                  />
-                  <div class="card_text">
-                    <!-- <h4>{{ type.name }}</h4> -->
-                  </div>
-                    <label class="btn btn-primary active border-0 position-absolute top-0 right-0 text-light d-flex">
+                <div class="my_cat_card">
+                    <label class="btn btn-primary active border-0 text-light d-flex">
                         <input
                         type="checkbox"
                         class="me-2"
@@ -90,7 +82,7 @@
           <!-- tipologie -->
 
           <!-- ristoranti -->
-          <div class="restaurants_wrapper container mt-4">
+          <div class="col restaurants_wrapper container mt-4">
             <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
             <div class="row g-3 mt-1" v-if="restaurants.length > 0">
               <div
