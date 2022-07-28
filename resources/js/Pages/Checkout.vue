@@ -78,51 +78,84 @@
           <div class="col-xs-12 col-lg-6 p-3 box_shadow mb-4 mb-lg-0">
             <p class="display-6 pt-1">I tuoi dati per la spedizione</p>
 
-            <input type="text" id="token" name="token" hidden />
-            <input
-              class="mt-3 form-control"
-              type="text"
-              id="guest_name"
-              name="guest_name"
-              placeholder="name"
-            />
-            <input
-              class="mt-3 form-control"
-              type="text"
-              id="guest_lastname"
-              name="guest_lastname"
-              placeholder="lastname"
-            />
-            <input
-              class="mt-3 form-control"
-              type="email"
-              id="guest_email"
-              name="guest_email"
-              placeholder="email"
-            />
-            <input
-              class="mt-3 form-control"
-              type="text"
-              id="guest_address"
-              name="guest_address"
-              placeholder="address"
-            />
-            <input
-              class="mt-3 form-control"
-              type="number"
-              id="guest_phone_number"
-              name="guest_phone_number"
-              placeholder="phone"
-            />
+            <form action="" novalidate class="needs-validation">
+              <input type="text" id="token" name="token" hidden />
+              <div class="mt-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="guest_name"
+                  name="guest_name"
+                  placeholder="Nome"
+                  minlength="2"
+                  maxlength="50"
+                  required
+                />
+                <div class="invalid-feedback">Il tuo nome è invalido!</div>
+              </div>
+              <div class="mt-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="guest_lastname"
+                  name="guest_lastname"
+                  placeholder="Cognome"
+                  minlength="2"
+                  maxlength="50"
+                  required
+                />
+                <div class="invalid-feedback">Il tuo cognome è invalido!</div>
+              </div>
 
-            <input
-              class="mt-3 form-control"
-              id="total_price"
-              name="total_price"
-              type="number"
-              :value="total"
-              hidden
-            />
+              <div class="mt-3">
+                <input
+                  class="form-control"
+                  type="email"
+                  id="guest_email"
+                  name="guest_email"
+                  placeholder="La tua email"
+                  minlength="5"
+                  required
+                />
+                <div class="invalid-feedback">La tua mail è invalida</div>
+              </div>
+
+              <div class="mt-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="guest_address"
+                  name="guest_address"
+                  placeholder="Il tuo indirizzo"
+                  required
+                />
+                <div class="invalid-feedback">Il tuo indirizzo è invalido</div>
+              </div>
+
+              <div class="mt-3">
+                <input
+                  class="form-control"
+                  type="number"
+                  id="guest_phone_number"
+                  name="guest_phone_number"
+                  placeholder="Il tuo numero di telefono"
+                  pattern="[0-9]+"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Il tuo numero di telefono è invalido!
+                </div>
+              </div>
+
+              <input
+                class="form-control"
+                id="total_price"
+                name="total_price"
+                type="number"
+                :value="total"
+                hidden
+              />
+            </form>
           </div>
           <div class="col-xs-12 col-lg-5 px-0">
             <div class="container payment_wrapper box_shadow">
@@ -297,6 +330,98 @@ export default {
           console.error("error occurred: ", err);
         });
     },
+    validateInputs() {
+      let inputs = document.querySelectorAll(".form-control");
+
+      inputs.forEach((input) => {
+        console.log(input.type, input.id);
+
+        input.addEventListener("keyup", function () {
+          if (input.type === "text" || input.type === "textarea") {
+            if (input.value.trim().length == 0) {
+              input.value = "";
+            }
+            //console.log(input.value);
+            input.value = input.value.split("  ").join(" ");
+            if (input.value.length < 3) {
+              input.classList.remove("is-valid");
+
+              input.classList.add("is-invalid");
+            } else {
+              input.classList.add("is-valid");
+
+              input.classList.remove("is-invalid");
+            }
+          } else if (input.type === "email") {
+            if (input.value.trim().length == 0) {
+              input.value = "";
+            }
+            let filter =  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!filter.test(input.value)){
+              input.classList.remove("is-valid");
+
+              input.classList.add("is-invalid");
+            }else {
+              input.classList.add("is-valid");
+
+              input.classList.remove("is-invalid");
+            }
+          }else if(input.type === 'number'){
+            if(input.value.length < 8 || isNaN(Number(input.value))){
+              input.classList.remove("is-valid");
+
+              input.classList.add("is-invalid");
+            }else {
+              input.classList.add("is-valid");
+
+              input.classList.remove("is-invalid");
+            }
+          }
+        });
+      });
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll(".needs-validation");
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms).forEach((form) => {
+        console.log(form);
+
+        form.addEventListener(
+          "submit",
+          (event) => {
+            let inputs = document.querySelectorAll(".form-control");
+
+            inputs.forEach((input) => {
+              console.log(input.type);
+
+              if (input.type === "text" || input.type === "textarea") {
+                if (input.value.trim().length == 0) {
+                  input.value = input.value.trim();
+                }
+                console.log(input.value);
+                input.value = input.value.split("  ").join(" ");
+              } else if (input.type === "file") {
+                let fileExtension = input.value.split(".").pop();
+
+                let allowedExtensione = ["jpg", "png", "jpeg", "gif"];
+                console.log(fileExtension);
+                if (!allowedExtensione.includes(fileExtension)) {
+                  console.log("deleted", fileExtension === "jpg");
+                  input.value = "";
+                }
+              }
+            });
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    },
   },
   mounted() {
     this.getClientToken();
@@ -313,6 +438,7 @@ export default {
         console.log(this.user_id);
       });
     }
+    this.validateInputs();
   },
 };
 </script>
