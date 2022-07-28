@@ -12,7 +12,16 @@ class OrderSuccess extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $order;
+    public $cart;
 
+
+    public function __construct($order, $cart)
+    {
+        $this->order = $order;
+        $this->cart = $cart;
+
+    }
     /**
      * Build the message.
      *
