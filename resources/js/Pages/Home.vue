@@ -6,14 +6,14 @@
 
 
     <div class="container-fluid main_content mt-3">
-      <div class="row">
+    
         <div class="row d-flex">
-          <div class="col types_wrapper container">
+          <div class="col-3 types_wrapper container">
             <h3 class="display-6">Che menù scegliere oggi?</h3>
-            <div class=" row  g-2 mt-1 flex-nowrap overflow-auto">
-              <div class="col-6 col-md-3 col-lg-2" v-for="type in types" :key="type.id">
+            <div class="row flex-column">
+              <div class="col-12" v-for="type in types" :key="type.id">
                 <div class="my_cat_card">
-                    <label class="btn btn-primary active border-0 text-light d-flex">
+                    <label class="btn active border-0 text-dark d-flex">
                         <input
                         type="checkbox"
                         class="me-2"
@@ -33,7 +33,7 @@
           <!-- tipologie -->
 
           <!-- ristoranti -->
-          <div class="col restaurants_wrapper container mt-4">
+          <div class="col-9 restaurants_wrapper container">
             <h3 class="display-6">Ristoranti che consegnano a Milano</h3>
             <div class="row g-3 mt-1" v-if="restaurants.length > 0">
               <div
@@ -123,8 +123,6 @@
           <!-- /.ristoranti-->
         </div>
         <!-- /.col-9 -->
-      </div>
-      <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
   </div>
