@@ -256,12 +256,8 @@ export default {
               document.querySelector("#nonce").value = payload.nonce;
               document.querySelector("#guest_user_email").value =
                 document.getElementById("guest_email").value;
-<<<<<<< HEAD
 
               form.submit();
-=======
-                form.submit();
->>>>>>> 07a7973c9d2ed15fe6737576d94427db5dd8e05d
             });
           });
         }
