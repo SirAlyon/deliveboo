@@ -1,5 +1,5 @@
 <template>
-  <div class="container page_wrapper my-3">
+  <div class="container page_wrapper mb-4 my-3">
     <!-- Checkout test page -->
 
     <div class="row">
@@ -7,7 +7,8 @@
         <div class="shopping_cart box_shadow px-3 py-1">
           <div class="row">
             <div class="col-12 mb-2">
-              <p class="display-5 pt-1">Riepilogo Ordine</p>
+              <h2 class=" py-3 ">Controlla il tuo ordine</h2>
+              
             </div>
             <!-- /.col-12 -->
           </div>
@@ -58,7 +59,7 @@
           </div>
 
           <!-- /.row purchased_products -->
-
+          <hr>
           <div class="row total">
             <div class="col-6">
               <h5>Totale:</h5>
@@ -76,7 +77,7 @@
       <div class="container checkout_wrapper mt-4">
         <div class="row m-0 justify-content-between">
           <div class="col-xs-12 col-lg-6 p-3 box_shadow mb-4 mb-lg-0">
-            <p class="display-6 pt-1">I tuoi dati per la spedizione</p>
+            <h4 class=" py-2 pb-3">Indirizzo di consegna</h4>
 
             <form action="" novalidate class="needs-validation">
               <input type="text" id="token" name="token" hidden />
@@ -159,8 +160,8 @@
           </div>
           <div class="col-xs-12 col-lg-5 px-0">
             <div class="container payment_wrapper box_shadow">
-              <div class="row row-cols-1 p-3">
-                <p class="display-6">Pagamento</p>
+              <div class="row row-cols-1 ">
+                <h4 class="p-0 mt-4 mb-0">Metodo di pagamento</h4>
                 <div class="col p-0">
                   <form
                     id="payment-form"
@@ -539,10 +540,16 @@ section.products {
   top: 0;
 }
 .page_wrapper {
-  font-family: "Roboto", sans-serif;
+  background-color: #F9FAFA;
+
+  h2,h4{
+    font-family: "Rubik", sans-serif;
+
+  }
 }
 .box_shadow {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  background-color: white;
 }
 .checkout_wrapper {
   width: 100%;
