@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderSuccess;
+use App\Mail\OrderSuccessRestaurant;
 use App\Models\Order;
 use DateTime;
 use Illuminate\Http\Request;
@@ -36,7 +38,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        //ddd($request);
+        //return ddd($request->all());
 
 
 
@@ -47,6 +49,10 @@ class OrderController extends Controller
             'guest_email' => ['required'],
             'guest_phone_number' => ['required'],
             'total_price' => ['required'],
+            'user_id' => ['required'],
+
+            
+
         ]);
 
         //ddd($val_data);
@@ -78,8 +84,9 @@ class OrderController extends Controller
             return 'no';
         }
 
+        return new OrderSuccess($new_order);
+        return new OrderSuccessRestaurant($new_order);
 
-        
     }
 }
 
