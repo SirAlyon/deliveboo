@@ -21,6 +21,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Visibility</th>
                 <th>Image</th>
                 <th>Action</th>
             </tr>
@@ -32,6 +33,14 @@
                     <td scope="row">{{$product->id}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->price}}</td>
+                    <td>    
+                        @if ($product->visibility == 0)
+                            <i class="fa-solid fa-eye"></i>
+                        @else
+                            <i class="fa-solid fa-eye-slash"></i>
+                        @endif
+                        
+                    </td>
                     <td><img  width="140" height="100" class="text-center" src="{{asset('storage/' . $product->image)}}" alt="image {{$product->name}}"></td>
                     <td class="d-flex flex-column">
                         <a class="btn btn-success btn-sm text-white mb-1" href="{{route('admin.products.show', $product->id)}}"> 
