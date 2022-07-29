@@ -2,31 +2,36 @@
   <div v-if="!loading">
     <JumbotronComponent></JumbotronComponent>
 
+    <div class="banner p-4">
+      <div class="row row-cols-2 row-cols-md-4 gy-2">
+        <div class="col" v-for="(banner, index) in banner_datas" :key="index">
+          <img class="img-fluid" :src="banner.path" :alt="banner.name" />
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row row-cols-5 -->
+    </div>
+    <!-- /.banner -->
+
     <div class="container-fluid main_content my-3">
       <div class="row d-flex">
         <div class="col-12 col-md-2 types_wrapper container">
           <div class="row rider pb-3">
             <div class="col-6 d-flex align-items-end">
               <div class="avatar mb-2">
-                <img width="40" src="/img/rider.png" alt="">
+                <img width="40" src="/img/rider.png" alt="" />
               </div>
               <!-- /.avatar -->
               <div class="rider_position">
                 <div class="row">
                   <div class="col-12">
-                    <div class="time">
-                      Adesso
-                    </div>
+                    <div class="time">Adesso</div>
                     <!-- /.time -->
-                    <div class="place">
-                      Milano
-                    </div>
+                    <div class="place">Milano</div>
                     <!-- /.place -->
                   </div>
                   <!-- /.col-12 -->
-                  <div class="col-12">
-
-                  </div>
+                  <div class="col-12"></div>
                   <!-- /.col-12 -->
                 </div>
                 <!-- /.row -->
@@ -52,7 +57,6 @@
                     :id="type.name"
                     v-model="checkedTypes"
                     @change="filterRestaurants()"
-                    
                   />
                   {{ type.name }}
                 </label>
@@ -123,17 +127,13 @@
                         params: { id: restaurant.id },
                       }"
                     >
-                      <h4 class="card_title">{{ restaurant.restaurant_name }}</h4>
+                      <h4 class="card_title">
+                        {{ restaurant.restaurant_name }}
+                      </h4>
                     </router-link>
 
                     <div class="types_widget text-center">
-                      <ul
-                        class="
-                          list-unstyled
-                          d-flex
-                          justify-content-center
-                        "
-                      >
+                      <ul class="list-unstyled d-flex justify-content-center">
                         <li
                           class="type ms-2 text-muted"
                           v-for="type in restaurant.types"
@@ -180,6 +180,24 @@ export default {
       checkedTypes: [],
       filteredRestaurants: [],
       loading: true,
+      banner_datas: [
+        {
+          path: "img/deliveroo-bis.jpeg",
+          name: "deliveroo bis",
+        },
+        {
+          path: "img/deliveroo-mcd.jpeg",
+          name: "deliveroo mcd",
+        },
+        {
+          path: "img/deliveroo-plus.webp",
+          name: "deliveroo plus",
+        },
+        {
+          path: "img/deliveroo-zalora.jpeg",
+          name: "deliveroo zalora",
+        },
+      ],
     };
   },
   methods: {
@@ -187,7 +205,7 @@ export default {
       axios
         .get("/api/restaurants")
         .then((response) => {
-         //console.log(response, "new script");
+          //console.log(response, "new script");
           this.restaurants = response.data.data;
           //console.log(this.restaurants);
           this.filteredRestaurants = this.restaurants;
@@ -226,7 +244,7 @@ export default {
             console.log(type);
             let present = false;
             restaurant.types.forEach((Rtype) => {
-             //console.log(Rtype.name);
+              //console.log(Rtype.name);
               if (Rtype.name == type) {
                 present = true;
               }
@@ -268,6 +286,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* banner */
+
+.banner img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 5px;
+}
 // Tipologie
 
 .row.types {
@@ -343,7 +368,6 @@ export default {
       object-fit: cover;
       object-position: center;
       border-radius: 5px;
-  
     }
 
     span {
