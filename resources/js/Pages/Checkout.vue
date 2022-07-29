@@ -42,6 +42,43 @@
                             </div>
                             <!-- /.circle -->
 
+  <div class="container page_wrapper mb-4 my-3">
+    <!-- Checkout test page -->
+
+    <div class="row">
+      <div class="col-12 p-3">
+        <div class="shopping_cart box_shadow px-3 py-1">
+          <div class="row">
+            <div class="col-12 mb-2">
+              <h2 class=" py-3 ">Controlla il tuo ordine</h2>
+              
+            </div>
+            <!-- /.col-12 -->
+          </div>
+          <!-- /.row -->
+          <div
+            class="row purchased_products mb-3"
+            v-for="(purchased_product, index) in shopping_cart"
+            :key="purchased_product.id"
+          >
+            <div class="col-6">
+              <span class="name text-capitalize fs-5">
+                {{ purchased_product.name }}
+              </span>
+              <!-- /.name -->
+            </div>
+            <!-- /.col-6 -->
+            <div class="col-6 d-flex align-items-center justify-content-end">
+              <div class="circle ms-2 me-2">
+                <a
+                  class="remove decoration-none"
+                  @click="changeQuantity('minus', purchased_product)"
+                  ><i class="fas fa-minus"></i>
+                </a>
+                <!-- /.remove -->
+              </div>
+              <!-- /.circle -->
+
                             <span class="qty fs-5 mx-1">{{
                                 purchased_product.qty
                             }}</span>
@@ -98,6 +135,27 @@
                         <p class="display-6 pt-1">
                             I tuoi dati per la spedizione
                         </p>
+
+          <!-- /.row purchased_products -->
+          <hr>
+          <div class="row total">
+            <div class="col-6">
+              <h5>Totale:</h5>
+            </div>
+            <!-- /.col-6 -->
+            <div class="col-6 text-end">
+              <h5 class="total fs-5" v-if="total >= 0">{{ total }}€</h5>
+            </div>
+            <!-- /.col-6 -->
+          </div>
+          <!-- /.row total -->
+          <!-- /.purchesed_product -->
+        </div>
+      </div>
+      <div class="container checkout_wrapper mt-4">
+        <div class="row m-0 justify-content-between">
+          <div class="col-xs-12 col-lg-6 p-3 box_shadow mb-4 mb-lg-0">
+            <h4 class=" py-2 pb-3">Indirizzo di consegna</h4>
 
                         <form action="" novalidate class="needs-validation">
                             <input type="text" id="token" name="token" hidden />
@@ -202,6 +260,29 @@
                                             name="payment_method_nonce"
                                             hidden
                                         />
+
+              <input
+                class="form-control"
+                id="total_price"
+                name="total_price"
+                type="number"
+                :value="total"
+                hidden
+              />
+            </form>
+          </div>
+          <div class="col-xs-12 col-lg-5 px-0">
+            <div class="container payment_wrapper box_shadow">
+              <div class="row row-cols-1 ">
+                <h4 class="p-0 mt-4 mb-0">Metodo di pagamento</h4>
+                <div class="col p-0">
+                  <form
+                    id="payment-form"
+                    action="/api/braintree/payment"
+                    method="post"
+                  >
+                    <div id="dropin-container"></div>
+                    <input id="nonce" name="payment_method_nonce" hidden />
 
                                         <input
                                             class="mt-3 form-control"
@@ -608,6 +689,16 @@ section.products {
 }
 .box_shadow {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  background-color: #F9FAFA;
+
+  h2,h4{
+    font-family: "Rubik", sans-serif;
+
+  }
+}
+.box_shadow {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  background-color: white;
 }
 .checkout_wrapper {
     width: 100%;

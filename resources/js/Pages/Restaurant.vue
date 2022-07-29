@@ -54,6 +54,50 @@
                         </div>
                     </div>
 
+  <div v-if="!loading">
+    <div class="container mt-4 restaurant_main">
+      <div class="row ">
+        <div class="col-xs-12 col-lg-6 p-3 mb-4 mb-lg-0 restaurant_image">
+          <img
+            class="image_fluid"
+            :src="'/img' + '/' + restaurant.restaurant_name + '.jpeg'"
+            alt="restaurant.name"
+            v-if="restaurant.name === 'User'"
+          />
+          <img
+            class="image-fluid"
+            src="/img/coming_soon.jpeg"
+            alt="coming soon image"
+            v-else-if="restaurant.image === null"
+          />
+          <img
+            class="image_fluid"
+            :src="
+              '/storage/restaurant_img' +
+              '/' +
+              restaurant.id +
+              '/' +
+              restaurant.image
+            "
+            alt="restaurant.name"
+            v-else
+          />
+        </div>
+        <div class="col col-xs-12 col-lg-6 p-3 mb-4 mb-lg-0 restaurant_info">
+          <div class="title">
+            <span class="display-2 bg-light ms-1">{{ restaurant.restaurant_name }}</span>
+          </div>
+          <div class="info">
+            <div class="tipologie my-4 ">
+              <!-- <strong>Tipologie:</strong> -->
+              <span
+                class=" bg_brand rounded-pill p-1 ms-2 wrap_next_line"
+                v-for="type in restaurant.types"
+                :key="type.id"
+                >{{ type.name }}</span
+              >
+            </div>
+
                     <div class="caption mt-4">
                         <p>
                             Ordina il tuo piatto preferito a casa da
@@ -209,6 +253,22 @@
                                             Aggiungi
                                         </button>
                                     </div>
+
+                <div class="my_plate_card d-flex flex-column justify-content-between " v-else>
+                  <div class="card_content">
+                    <div class="card_image">
+                      <img v-if="product.image === null" src="/img/coming_soon.jpeg" alt="default img">
+                      <img v-else :src="'/storage/' + '/' + product.image" alt="product.name" />
+                      <!-- prezzo -->
+                      <span class="h5">{{ product.price }}€</span>
+                    </div>
+                    <div class="card_text">
+                      <h2 class="product_title pt-3">
+                        {{ product.name }}
+                      </h2>
+                      <hr />
+                      <p class="scrollable">{{ product.description }}</p>
+
 
                                     <!-- Modal -->
                                     <div
