@@ -59,8 +59,8 @@ class BraintreeController extends Controller
         /* $new_order = Order::find('orders')->where('total_price', $result->amount);
         dd($new_order); */
         //Mail::to($request->guest_user_email)->send(new OrderSuccess());
-        $restaurant = User::find($request->user_id);
-        Mail::to($restaurant->email)->send(new OrderSuccessRestaurant());
+        /* $restaurant = User::find($request->user_id);
+        Mail::to($restaurant->email)->send(new OrderSuccessRestaurant()); */
         //Mail::to(User::find())
 /*
         $val_data = $request->validate([

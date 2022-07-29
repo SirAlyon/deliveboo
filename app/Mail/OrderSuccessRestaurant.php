@@ -11,7 +11,24 @@ use Illuminate\Queue\SerializesModels;
 class OrderSuccessRestaurant extends Mailable
 {
 
+    public $order;
+    public $cart;
+    public $restaurant;
 
+
+
+
+    public function __construct($order,$cart, $restaurant)
+    {
+        $this->order = $order;
+        $this->cart = $cart;
+        $this->restaurant = $restaurant;
+
+        
+
+
+
+    }
     /**
      * Build the message.
      *
@@ -21,7 +38,7 @@ class OrderSuccessRestaurant extends Mailable
     {
         return $this
             ->from('noreply@deliveboo.com')
-            ->subject('A new order was created')
+            ->subject('You received a new order!')
             ->view('mail.order.createdRestaurant');
     }
 }

@@ -31,7 +31,7 @@ class OrderSuccess extends Mailable
     {
         return $this
             ->from('noreply@deliveboo.com')
-            ->subject('A new order was created')
+            ->subject('Your order confirmation')
             ->view('mail.order.created');
     }
 }

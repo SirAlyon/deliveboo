@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\OrderSuccess;
 use App\Mail\OrderSuccessRestaurant;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 use DateTime;
@@ -73,6 +74,8 @@ class OrderController extends Controller
 
         //ddd($products_id);
         Mail::to($request->guest_email)->send(new OrderSuccess($new_order, $shopping_cart));
+        $restaurant = User::find($request->user_id);
+        Mail::to($restaurant->email)->send(new OrderSuccessRestaurant($new_order, $shopping_cart, $restaurant));
 
         foreach($products_id as $info){
             $new_order->products()->attach($info['id'], ['quantity'=> $info['qty'] ]);
