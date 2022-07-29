@@ -3,7 +3,7 @@
   <div>
     <header id="site_header">
       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container flex-nowrap">
+        <div class="container-fluid flex-nowrap">
           <router-link class="navbar-brand" :to="{ name: 'home' }">
             <img
               class="brand_logo"
@@ -29,7 +29,7 @@
     </main>
     <!-- /#site_main -->
     <footer id="site_footer">
-      <div class="container">
+      <div class="container-fluid">
         <nav class="row footer_row">
           <div class="col">
             <h3 class="">Scopri Deliveboo</h3>
