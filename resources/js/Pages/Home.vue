@@ -2,14 +2,17 @@
   <div v-if="!loading">
     <JumbotronComponent></JumbotronComponent>
 
-    <div class="banner p-4">
-      <div class="row row-cols-2 row-cols-md-4 gy-2">
-        <div class="col" v-for="(banner, index) in banner_datas" :key="index">
-          <img class="img-fluid" :src="banner.path" :alt="banner.name" />
+    <div class="banner py-4">
+      <div class="container-fluid">
+        <div class="row row-cols-2 row-cols-md-4 gy-2">
+          <div class="col" v-for="(banner, index) in banner_datas" :key="index">
+            <img class="img-fluid" :src="banner.path" :alt="banner.name" />
+          </div>
+          <!-- /.col -->
         </div>
-        <!-- /.col -->
+        <!-- /.row row-cols-5 -->
       </div>
-      <!-- /.row row-cols-5 -->
+      <!-- /.container-fluid -->
     </div>
     <!-- /.banner -->
 
@@ -31,22 +34,20 @@
                     <!-- /.place -->
                   </div>
                   <!-- /.col-12 -->
-                  <div class="col-12"></div>
-                  <!-- /.col-12 -->
                 </div>
                 <!-- /.row -->
               </div>
               <!-- /.rider_position -->
             </div>
             <!-- /.col-6 -->
-            <div class="col-6 d-flex align-items-end">
+            <div class="col-12 col-xl-6 d-flex align-items-end">
               <span class="change">Change</span>
             </div>
             <!-- /.col-6 -->
           </div>
           <!-- /.row rider -->
           <h3 class="types_title mt-3">Categorie</h3>
-          <div class="row types flex-column pb-3">
+          <div class="row types pb-3">
             <div class="col-12" v-for="type in types" :key="type.id">
               <div class="my_cat_card">
                 <label class="btn active border-0 text-dark d-flex">
@@ -320,6 +321,7 @@ export default {
 
 .change {
   color: #00b8a9;
+  padding: 0 0.75rem;
 }
 
 .place {
