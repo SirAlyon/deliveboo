@@ -5,8 +5,43 @@
     <div class="container-fluid main_content my-3">
       <div class="row d-flex">
         <div class="col-12 col-md-2 types_wrapper container">
-          <h3 class="types_title">Categorie</h3>
-          <div class="row flex-column">
+          <div class="row rider pb-3">
+            <div class="col-6 d-flex align-items-end">
+              <div class="avatar mb-2">
+                <img width="40" src="/img/rider.png" alt="">
+              </div>
+              <!-- /.avatar -->
+              <div class="rider_position">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="time">
+                      Adesso
+                    </div>
+                    <!-- /.time -->
+                    <div class="place">
+                      Milano
+                    </div>
+                    <!-- /.place -->
+                  </div>
+                  <!-- /.col-12 -->
+                  <div class="col-12">
+
+                  </div>
+                  <!-- /.col-12 -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.rider_position -->
+            </div>
+            <!-- /.col-6 -->
+            <div class="col-6 d-flex align-items-end">
+              <span class="change">Change</span>
+            </div>
+            <!-- /.col-6 -->
+          </div>
+          <!-- /.row rider -->
+          <h3 class="types_title mt-3">Categorie</h3>
+          <div class="row types flex-column pb-3">
             <div class="col-12" v-for="type in types" :key="type.id">
               <div class="my_cat_card">
                 <label class="btn active border-0 text-dark d-flex">
@@ -17,6 +52,7 @@
                     :id="type.name"
                     v-model="checkedTypes"
                     @change="filterRestaurants()"
+                    
                   />
                   {{ type.name }}
                 </label>
@@ -32,7 +68,7 @@
         <div class="col-12 col-md-10 restaurants_wrapper container">
           <h3 class="restaurants_title">Ristoranti che consegnano a Milano</h3>
           <div
-            class="row row-cols-1 row-cols-sm-2 row-cols-xl-5 gy-3 mt-1"
+            class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 gy-3 mt-1"
             v-if="restaurants.length > 0"
           >
             <div
@@ -79,7 +115,7 @@
                   >
                 </div>
                 <div class="scrollable">
-                  <div class="card_text p-2 text-center">
+                  <div class="card_text p-3">
                     <router-link
                       class="text-decoration-none text-reset"
                       :to="{
@@ -90,7 +126,7 @@
                       <h4 class="card_title">{{ restaurant.restaurant_name }}</h4>
                     </router-link>
 
-                    <div class="types_widget">
+                    <div class="types_widget text-center">
                       <ul
                         class="
                           list-unstyled
@@ -151,7 +187,7 @@ export default {
       axios
         .get("/api/restaurants")
         .then((response) => {
-          console.log(response, "new script");
+         //console.log(response, "new script");
           this.restaurants = response.data.data;
           //console.log(this.restaurants);
           this.filteredRestaurants = this.restaurants;
@@ -166,7 +202,7 @@ export default {
       axios
         .get("/api/types")
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           this.types = response.data.data;
           //console.log(this.types);
           this.loading = false;
@@ -190,12 +226,12 @@ export default {
             console.log(type);
             let present = false;
             restaurant.types.forEach((Rtype) => {
-              console.log(Rtype.name);
+             //console.log(Rtype.name);
               if (Rtype.name == type) {
                 present = true;
               }
             });
-            console.log(present);
+            //console.log(present);
             if (!present) {
               included = false;
             }
@@ -210,7 +246,7 @@ export default {
   mounted() {
     this.getTypes();
     this.getRestaurants();
-    console.log("mounted");
+    //console.log("mounted");
   },
   computed: {
     filterTypes() {
@@ -234,10 +270,35 @@ export default {
 <style lang="scss" scoped>
 // Tipologie
 
+.row.types {
+  border-bottom: 0.5px solid lightgray;
+}
+
 .types_title {
   font-size: 1rem;
   padding: 0 0.75rem;
   font-weight: bold;
+}
+
+.row.rider {
+  border-bottom: 0.5px solid lightgray;
+}
+
+.avatar {
+  padding: 0 0.75rem;
+}
+
+.time {
+  color: #585c5c;
+  font-size: 0.875rem;
+}
+
+.change {
+  color: #00b8a9;
+}
+
+.place {
+  font-weight: 600;
 }
 
 .my_cat_card {
@@ -268,7 +329,7 @@ export default {
 }
 
 .my_rest_card {
-  min-height: 200px;
+  min-height: 300px;
   text-align: center;
   border: 0.5px solid lightgrey;
   box-shadow: 1px 1px 8px 0px lightgrey;
@@ -278,15 +339,16 @@ export default {
     position: relative;
     img {
       width: 100%;
-      height: 170px;
+      height: 250px;
       object-fit: cover;
       object-position: center;
+      border-radius: 5px;
   
     }
 
     span {
       position: absolute;
-      bottom: 143px;
+      bottom: 225px;
       right: -7px;
       padding: 5px 18px;
       background-color: #00c1b2;
@@ -317,6 +379,10 @@ export default {
     font-weight: bolder;
     font-size: 15px;
   }
+}
+
+input:checked {
+  background-color: #00c1b2;
 }
 </style>
 
