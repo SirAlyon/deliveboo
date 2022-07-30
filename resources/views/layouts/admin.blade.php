@@ -8,7 +8,8 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Deliveboo') }}</title>
+        <title>Deliveboo</title>
+        <link rel="shortcut icon" href="https://cwa.roocdn.com/_next/static/favicon-32x32.9ac59871.png" type="image/png" sizes="32x32">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>

@@ -9,7 +9,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            src="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             class="d-block w-100"
             alt="#"
           />
@@ -22,7 +22,7 @@
         </div>
         <div class="carousel-item">
           <img
-            src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="https://images.pexels.com/photos/1907228/pexels-photo-1907228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             class="d-block w-100"
             alt="#"
           />
@@ -33,7 +33,7 @@
         </div>
         <div class="carousel-item">
           <img
-            src="https://images.pexels.com/photos/406152/pexels-photo-406152.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             class="d-block w-100"
             alt="#"
           />
