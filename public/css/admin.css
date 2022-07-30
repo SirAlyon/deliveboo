@@ -20492,6 +20492,11 @@ body {
   font-size: 0.875rem;
 }
 
+.product_image {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .font-fa {
   font-family: "Montserrat", sans-serif;
 }

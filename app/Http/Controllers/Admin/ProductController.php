@@ -61,7 +61,7 @@ class ProductController extends Controller
 
             //Valido il file
             $request->validate([
-                'image' => 'nullable|image|max:250'
+                'image' => 'nullable|image|max:1000'
             ]);
 
             //Salvo il file nel filesystem
