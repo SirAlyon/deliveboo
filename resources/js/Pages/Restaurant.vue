@@ -382,6 +382,7 @@ export default {
       //console.log(cart);
       //remove product from shopping cart
       cart.splice(index, 1);
+      this.calculateTotal();
       //update local storage shopping cart
       this.saveShoppingCart();
     },
