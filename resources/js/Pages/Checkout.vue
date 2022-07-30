@@ -87,7 +87,7 @@
                   type="text"
                   id="guest_name"
                   name="guest_name"
-                  placeholder="Nome"
+                  placeholder="Name"
                   minlength="2"
                   maxlength="50"
                   required
@@ -100,7 +100,7 @@
                   type="text"
                   id="guest_lastname"
                   name="guest_lastname"
-                  placeholder="Cognome"
+                  placeholder="Lastname"
                   minlength="2"
                   maxlength="50"
                   required
@@ -114,7 +114,7 @@
                   type="email"
                   id="guest_email"
                   name="guest_email"
-                  placeholder="La tua email"
+                  placeholder="Email"
                   minlength="5"
                   required
                 />
@@ -127,7 +127,7 @@
                   type="text"
                   id="guest_address"
                   name="guest_address"
-                  placeholder="Il tuo indirizzo"
+                  placeholder="Your Address"
                   required
                 />
                 <div class="invalid-feedback">Your address is not valid</div>
@@ -139,7 +139,7 @@
                   type="number"
                   id="guest_phone_number"
                   name="guest_phone_number"
-                  placeholder="Il tuo numero di telefono"
+                  placeholder="Phone number"
                   pattern="[0-9]+"
                   required
                 />
