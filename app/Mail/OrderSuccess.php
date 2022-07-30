@@ -12,7 +12,16 @@ class OrderSuccess extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $order;
+    public $cart;
 
+
+    public function __construct($order, $cart)
+    {
+        $this->order = $order;
+        $this->cart = $cart;
+
+    }
     /**
      * Build the message.
      *
@@ -22,7 +31,7 @@ class OrderSuccess extends Mailable
     {
         return $this
             ->from('noreply@deliveboo.com')
-            ->subject('A new order was created')
+            ->subject('Your order confirmation')
             ->view('mail.order.created');
     }
 }
