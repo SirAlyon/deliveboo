@@ -71,7 +71,13 @@
               >
                 <div class="my_plate_card">
                   <div class="card_image">
-                    <img :src="'/storage/' + '/' + product.image" alt="" />
+                    <img
+                      class="image-fluid"
+                      src="/img/coming_soon.jpeg"
+                      alt="coming soon image"
+                      v-if="product.image === null"
+                    />
+                    <img :src="'/storage/' + '/' + product.image" alt="" v-else/>
                     <!-- prezzo -->
                     <span class="h5">{{ product.price }}€</span>
                   </div>
@@ -251,7 +257,12 @@
           <!-- /.col-4 -->
           <div class="col-4" v-else>
             <div
-              class="empty_shopping_cart d-flex justify-content-center align-items-center"
+              class="
+                empty_shopping_cart
+                d-flex
+                justify-content-center
+                align-items-center
+              "
             >
               <h4 class="text-muted">The cart is empty!</h4>
             </div>
