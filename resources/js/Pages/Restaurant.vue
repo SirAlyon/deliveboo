@@ -34,7 +34,7 @@
           </div>
           <div class="info">
             <div class="tipologie mb-4">
-              <strong>Tipologie:</strong>
+              <strong>Types:</strong>
               <span
                 class="ms-2"
                 v-for="type in restaurant.types"
@@ -44,7 +44,7 @@
             </div>
 
             <div class="address">
-              <strong>Indirizzo:</strong>
+              <strong>Address:</strong>
               <span>{{ restaurant.address }}</span>
             </div>
           </div>
@@ -57,7 +57,7 @@
     <section class="products">
       <div class="container-fluid text-center display-5 mt-4 p-4">
         <div class="hr_separator mb-4"></div>
-        <h2>I Nostri Piatti</h2>
+        <h2>Our Menu</h2>
       </div>
 
       <div class="container-fluid">
@@ -140,7 +140,7 @@
                               class="btn btn-secondary"
                               data-bs-dismiss="modal"
                             >
-                              Close
+                              No
                             </button>
                             <button
                               type="button"
@@ -148,7 +148,7 @@
                               @click="changeRestaurant()"
                               data-bs-dismiss="modal"
                             >
-                              Save
+                              Empty
                             </button>
                           </div>
                         </div>
@@ -164,7 +164,7 @@
             <div class="shopping_cart p-3">
               <div class="row">
                 <div class="col-12">
-                  <h5>Il tuo ordine</h5>
+                  <h5>Your order</h5>
                 </div>
                 <!-- /.col-12 -->
               </div>
