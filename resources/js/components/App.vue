@@ -32,51 +32,51 @@
       <div class="container-fluid">
         <nav class="row footer_row">
           <div class="col">
-            <h3 class="">Scopri Deliveboo</h3>
+            <h3 class="">Discover Deliveboo</h3>
             <div class="list">
               <li>
                 <p>
-                  <a href="/it/about-us" class="">Chi siamo</a>
+                  <a href="/it/about-us" class="">About us</a>
                 </p>
               </li>
               <li>
                 <p>
-                  <a href="/it/takeaway/" class="">Ristoranti</a>
+                  <a href="/it/takeaway/" class="">Restaurants</a>
                 </p>
               </li>
               <li>
                 <p class="">
-                  <a href="/it/more/" class="">Altro</a>
+                  <a href="/it/more/" class="">More</a>
                 </p>
               </li>
               <li>
                 <p>
-                  <a href="#" class="">Il nostro blog</a>
+                  <a href="#" class="">Our blog</a>
                 </p>
               </li>
               <li>
                 <p>
-                  <a href="#" class="">Lavora con noi</a>
+                  <a href="#" class="">Work with us</a>
                 </p>
               </li>
               <li>
                 <p class="">
-                  <a href="#" class="">Diventa nostro partner</a>
+                  <a href="#" class="">Become our partner</a>
                 </p>
               </li>
             </div>
           </div>
           <div class="col">
-            <h3 class="">Note legali</h3>
+            <h3 class="">Legal notices</h3>
             <div class="list">
               <li>
                 <p class="">
-                  <a href="/it/legal" class="">Termini &amp; Condizioni</a>
+                  <a href="/it/legal" class="">Terms &amp; Conditions</a>
                 </p>
               </li>
               <li>
                 <p class="">
-                  <a href="/it/privacy" class="">Informativa sulla privacy</a>
+                  <a href="/it/privacy" class="">Privacy policy</a>
                 </p>
               </li>
               <li>
@@ -87,11 +87,11 @@
             </div>
           </div>
           <div class="col">
-            <h3 class="">Aiuto</h3>
+            <h3 class="">Help</h3>
             <div class="list">
               <li>
                 <p>
-                  <a href="/it/contact" class="">Contatti</a>
+                  <a href="/it/contact" class="">Contacts</a>
                 </p>
               </li>
               <li>
@@ -101,7 +101,7 @@
               </li>
               <li>
                 <p>
-                  <a href="/it/cuisines" class="">Tipi di cucina</a>
+                  <a href="/it/cuisines" class="">Type of cousine</a>
                 </p>
               </li>
             </div>
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="copyright text-white">
-            <p>© 2022 DeliveBoo</p>
+            <p>©Team 2 | 2022 DeliveBoo</p>
           </div>
         </nav>
       </div>

@@ -7,7 +7,7 @@
         <div class="shopping_cart box_shadow px-3 py-1">
           <div class="row">
             <div class="col-12 mb-2">
-              <h2 class=" py-3 ">Controlla il tuo ordine</h2>
+              <h2 class=" py-3 ">Check your order</h2>
               
             </div>
             <!-- /.col-12 -->
@@ -62,7 +62,7 @@
           <hr>
           <div class="row total">
             <div class="col-6">
-              <h5>Totale:</h5>
+              <h5>Total:</h5>
             </div>
             <!-- /.col-6 -->
             <div class="col-6 text-end">
@@ -77,7 +77,7 @@
       <div class="container checkout_wrapper mt-4">
         <div class="row m-0 justify-content-between">
           <div class="col-xs-12 col-lg-6 p-3 box_shadow mb-4 mb-lg-0">
-            <h4 class=" py-2 pb-3">Indirizzo di consegna</h4>
+            <h4 class=" py-2 pb-3">Shipping address</h4>
 
             <form action="" novalidate class="needs-validation">
               <input type="text" id="token" name="token" hidden />
@@ -87,12 +87,12 @@
                   type="text"
                   id="guest_name"
                   name="guest_name"
-                  placeholder="Nome"
+                  placeholder="Name"
                   minlength="2"
                   maxlength="50"
                   required
                 />
-                <div class="invalid-feedback">Il tuo nome è invalido!</div>
+                <div class="invalid-feedback">Your name is not valid!</div>
               </div>
               <div class="mt-3">
                 <input
@@ -100,12 +100,12 @@
                   type="text"
                   id="guest_lastname"
                   name="guest_lastname"
-                  placeholder="Cognome"
+                  placeholder="Lastname"
                   minlength="2"
                   maxlength="50"
                   required
                 />
-                <div class="invalid-feedback">Il tuo cognome è invalido!</div>
+                <div class="invalid-feedback">Your last name is not valid!</div>
               </div>
 
               <div class="mt-3">
@@ -114,11 +114,11 @@
                   type="email"
                   id="guest_email"
                   name="guest_email"
-                  placeholder="La tua email"
+                  placeholder="Email"
                   minlength="5"
                   required
                 />
-                <div class="invalid-feedback">La tua mail è invalida</div>
+                <div class="invalid-feedback">Your email is not valid</div>
               </div>
 
               <div class="mt-3">
@@ -127,10 +127,10 @@
                   type="text"
                   id="guest_address"
                   name="guest_address"
-                  placeholder="Il tuo indirizzo"
+                  placeholder="Your Address"
                   required
                 />
-                <div class="invalid-feedback">Il tuo indirizzo è invalido</div>
+                <div class="invalid-feedback">Your address is not valid</div>
               </div>
 
               <div class="mt-3">
@@ -139,12 +139,12 @@
                   type="number"
                   id="guest_phone_number"
                   name="guest_phone_number"
-                  placeholder="Il tuo numero di telefono"
+                  placeholder="Phone number"
                   pattern="[0-9]+"
                   required
                 />
                 <div class="invalid-feedback">
-                  Il tuo numero di telefono è invalido!
+                  Your phone number is not valid!
                 </div>
               </div>
 
@@ -161,7 +161,7 @@
           <div class="col-xs-12 col-lg-5 px-0">
             <div class="container payment_wrapper box_shadow">
               <div class="row row-cols-1 ">
-                <h4 class="p-0 mt-4 mb-0">Metodo di pagamento</h4>
+                <h4 class="p-0 mt-4 mb-0">Payment method</h4>
                 <div class="col p-0">
                   <form
                     id="payment-form"
@@ -291,7 +291,9 @@ export default {
       const cart = this.shopping_cart;
       //console.log(cart);
       cart.splice(index, 1);
+      this.calculateTotal();
       this.saveShoppingCart();
+      
     },
     saveShoppingCart() {
       const parsed = JSON.stringify(this.shopping_cart);

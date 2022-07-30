@@ -9,7 +9,7 @@
         </span>
         <br>
         <div class="btn btn-primary text-decoration-none mt-4">
-            <router-link :to="{ name: 'home' }">Go Home</router-link>
+            <router-link :to="{ name: 'home' }">Go back to Homepage</router-link>
 
         </div>
       </div>

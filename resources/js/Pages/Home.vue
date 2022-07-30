@@ -28,9 +28,9 @@
               <div class="rider_position">
                 <div class="row">
                   <div class="col-12">
-                    <div class="time">Adesso</div>
+                    <div class="time">Now</div>
                     <!-- /.time -->
-                    <div class="place">Milano</div>
+                    <div class="place">Milan</div>
                     <!-- /.place -->
                   </div>
                   <!-- /.col-12 -->
@@ -46,7 +46,7 @@
             <!-- /.col-6 -->
           </div>
           <!-- /.row rider -->
-          <h3 class="types_title mt-3">Categorie</h3>
+          <h3 class="types_title mt-3">Categories</h3>
           <div class="row types pb-3">
             <div class="col-12" v-for="type in types" :key="type.id">
               <div class="my_cat_card">
@@ -71,7 +71,7 @@
 
         <!-- ristoranti -->
         <div class="col-12 col-md-10 restaurants_wrapper container">
-          <h3 class="restaurants_title">Ristoranti che consegnano a Milano</h3>
+          <h3 class="restaurants_title">Restaurants in Milan</h3>
           <div
             class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 gy-3 mt-1"
             v-if="restaurants.length > 0"
@@ -116,7 +116,7 @@
                   </router-link>
 
                   <span v-if="restaurant.free_shipping === 1" class="h6"
-                    >CONSEGNA GRATUITA</span
+                    >FREE SHIPPING</span
                   >
                 </div>
                 <div class="scrollable">

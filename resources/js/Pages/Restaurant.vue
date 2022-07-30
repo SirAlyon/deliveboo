@@ -34,7 +34,7 @@
           </div>
           <div class="info">
             <div class="tipologie mb-4">
-              <strong>Tipologie:</strong>
+              <strong>Types:</strong>
               <span
                 class="ms-2"
                 v-for="type in restaurant.types"
@@ -44,7 +44,7 @@
             </div>
 
             <div class="address">
-              <strong>Indirizzo:</strong>
+              <strong>Address:</strong>
               <span>{{ restaurant.address }}</span>
             </div>
           </div>
@@ -57,7 +57,7 @@
     <section class="products">
       <div class="container-fluid text-center display-5 mt-4 p-4">
         <div class="hr_separator mb-4"></div>
-        <h2>I Nostri Piatti</h2>
+        <h2>Our Menu</h2>
       </div>
 
       <div class="container-fluid">
@@ -71,7 +71,13 @@
               >
                 <div class="my_plate_card">
                   <div class="card_image">
-                    <img :src="'/storage/' + '/' + product.image" alt="" />
+                    <img
+                      class="image-fluid"
+                      src="/img/coming_soon.jpeg"
+                      alt="coming soon image"
+                      v-if="product.image === null"
+                    />
+                    <img :src="'/storage/' + '/' + product.image" alt="" v-else/>
                     <!-- prezzo -->
                     <span class="h5">{{ product.price }}€</span>
                   </div>
@@ -140,7 +146,7 @@
                               class="btn btn-secondary"
                               data-bs-dismiss="modal"
                             >
-                              Close
+                              No
                             </button>
                             <button
                               type="button"
@@ -148,7 +154,7 @@
                               @click="changeRestaurant()"
                               data-bs-dismiss="modal"
                             >
-                              Save
+                              Empty
                             </button>
                           </div>
                         </div>
@@ -164,7 +170,7 @@
             <div class="shopping_cart p-3">
               <div class="row">
                 <div class="col-12">
-                  <h5>Il tuo ordine</h5>
+                  <h5>Your order</h5>
                 </div>
                 <!-- /.col-12 -->
               </div>
@@ -251,7 +257,12 @@
           <!-- /.col-4 -->
           <div class="col-4" v-else>
             <div
-              class="empty_shopping_cart d-flex justify-content-center align-items-center"
+              class="
+                empty_shopping_cart
+                d-flex
+                justify-content-center
+                align-items-center
+              "
             >
               <h4 class="text-muted">The cart is empty!</h4>
             </div>
@@ -371,6 +382,7 @@ export default {
       //console.log(cart);
       //remove product from shopping cart
       cart.splice(index, 1);
+      this.calculateTotal();
       //update local storage shopping cart
       this.saveShoppingCart();
     },

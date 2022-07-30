@@ -14,9 +14,9 @@
             alt="#"
           />
           <div class="my_carousel_caption container">
-            <h1>Il cibo che vuoi...</h1>
+            <h1>The food you want...</h1>
             <p class="d-none d-md-block">
-              I migliori ristoranti della città...
+              Best restuarants in town...
             </p>
           </div>
         </div>
@@ -27,8 +27,8 @@
             alt="#"
           />
           <div class="my_carousel_caption">
-            <h1>dove vuoi...</h1>
-            <p class="d-none d-md-block">a pochi passi da te...</p>
+            <h1>where do you want...</h1>
+            <p class="d-none d-md-block">very closed to you...</p>
           </div>
         </div>
         <div class="carousel-item">
@@ -38,8 +38,8 @@
             alt="#"
           />
           <div class="my_carousel_caption">
-            <h1>...e quando vuoi!</h1>
-            <p class="d-none d-md-block">...pronti in un battito d'occhio!</p>
+            <h1>...whenever you want!</h1>
+            <p class="d-none d-md-block">...ready in the blink of an eye!</p>
           </div>
         </div>
       </div>
