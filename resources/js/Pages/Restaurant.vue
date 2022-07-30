@@ -1,8 +1,8 @@
 <template>
   <div v-if="!loading">
-    <div class="container mt-4 restaurant_main">
-      <div class="row ">
-        <div class="col-xs-12 col-lg-6 p-3 mb-4 mb-lg-0 restaurant_image">
+    <div class="container-fluid mt-4">
+      <div class="row row-cols-2">
+        <div class="col restaurant_image">
           <img
             class="image_fluid"
             :src="'/img' + '/' + restaurant.restaurant_name + '.jpeg'"
@@ -28,23 +28,23 @@
             v-else
           />
         </div>
-        <div class="col col-xs-12 col-lg-6 p-3 mb-4 mb-lg-0 restaurant_info">
+        <div class="col restaurant_info">
           <div class="title">
-            <span class="display-2 bg-light ms-1">{{ restaurant.restaurant_name }}</span>
+            <h1 class="display-3 bg-light">{{ restaurant.restaurant_name }}</h1>
           </div>
           <div class="info">
-            <div class="tipologie my-4 ">
-              <!-- <strong>Tipologie:</strong> -->
+            <div class="tipologie mb-4">
+              <strong>Tipologie:</strong>
               <span
-                class=" bg_brand rounded-pill p-1 ms-2 wrap_next_line"
+                class="ms-2"
                 v-for="type in restaurant.types"
                 :key="type.id"
                 >{{ type.name }}</span
               >
             </div>
 
-            <div class="address ms-2 fs-5">
-              <strong >Contatto:</strong>
+            <div class="address">
+              <strong>Indirizzo:</strong>
               <span>{{ restaurant.address }}</span>
             </div>
           </div>
@@ -54,25 +54,22 @@
 
     <!-- prodotti del ristorante -->
 
-    <section class="products mb-4">
-      <!-- <div class="container-fluid text-center display-5 mt-4 p-4">
+    <section class="products">
+      <div class="container-fluid text-center display-5 mt-4 p-4">
         <div class="hr_separator mb-4"></div>
-        <span class="display-5">I Nostri Piatti</span>
-      </div> -->
+        <h2>I Nostri Piatti</h2>
+      </div>
 
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-12 col-lg-8">
-            <div class="row g-3 mt-1 mb-4 mb-lg-0">
+          <div class="col-8">
+            <div class="row row-cols-3 g-3 mt-1">
               <div
-                class="col-12 col-md-6 col-lg-4 "
+                class="col"
                 v-for="product in restaurant.products"
                 :key="product.id"
               >
-                <div
-                  class="my_plate_card alternative"
-                  v-if="product.visibility == 1"
-                >
+                <div class="my_plate_card">
                   <div class="card_image">
                     <img :src="'/storage/' + '/' + product.image" alt="" />
                     <!-- prezzo -->
@@ -83,42 +80,23 @@
                       {{ product.name }}
                     </h2>
                     <hr />
-                    <p>PRODOTTO ATTUALMENTE NON DISPONIBILE</p>
-                  </div>
-                </div>
-                <div class="my_plate_card d-flex flex-column justify-content-between " v-else>
-                  <div class="card_content">
-                    <div class="card_image">
-                      <img v-if="product.image === null" src="/img/coming_soon.jpeg" alt="default img">
-                      <img v-else :src="'/storage/' + '/' + product.image" alt="product.name" />
-                      <!-- prezzo -->
-                      <span class="h5">{{ product.price }}€</span>
-                    </div>
-                    <div class="card_text">
-                      <h2 class="product_title pt-3">
-                        {{ product.name }}
-                      </h2>
-                      <hr />
-                      <p class="scrollable">{{ product.description }}</p>
+                    <p>{{ product.description }}</p>
 
-                    </div>
-                  </div>
                     <!-- Button trigger modal -->
-                   <div class="buttons_add ">
-                      <button
+                    <button
                       v-if="
-                        shopping_cart.length > 0 &&
-                        currentRestaurant != product.user_id
+                        shopping_cart.length > 0 && currentRestaurant === false
                       "
                       type="button"
-                      class="product_btn btn bg_brand text-white add_to_cart w-100"
+                      class="product_btn btn add_to_cart"
                       data-bs-toggle="modal"
                       data-bs-target="#modelId"
                     >
-                      Aggiungi
+                      Add to cart
                     </button>
+
                     <button
-                      class="product_btn btn bg_brand text- white add_to_cart w-100 text-white"
+                      class="product_btn btn add_to_cart"
                       @click="renderProductsInCart($event)"
                       :data-product-img="product.image"
                       :data-product-price="product.price"
@@ -127,10 +105,8 @@
                       :data-product-user_id="product.user_id"
                       v-else
                     >
-                      Aggiungi
+                      Add to cart
                     </button>
-                   </div>
-              
 
                     <!-- Modal -->
                     <div
@@ -145,7 +121,7 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title">
-                              Spiacente, non puoi ordinare da ristoranti differenti
+                              You can't place orders from different restuarants
                             </h5>
                             <button
                               type="button"
@@ -155,7 +131,8 @@
                             ></button>
                           </div>
                           <div class="modal-body">
-                            Vuoi svuotare il carrello prima di aggiungere il prodotto di questo ristorante? 
+                            Do you want to empty your shopping cart? Then you
+                            will be able to add new products.
                           </div>
                           <div class="modal-footer">
                             <button
@@ -163,27 +140,28 @@
                               class="btn btn-secondary"
                               data-bs-dismiss="modal"
                             >
-                              No, grazie
+                              Close
                             </button>
                             <button
                               type="button"
-                              class="btn bg_brand text-white"
+                              class="btn btn-primary"
                               @click="changeRestaurant()"
                               data-bs-dismiss="modal"
                             >
-                              Svuota
+                              Save
                             </button>
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- /.col-10 -->
-          <div class="col-12 col-lg-4" v-if="shopping_cart.length > 0">
-            <div class="shopping_cart p-3 mt-0 mt-lg-4">
+          <div class="col-4" v-if="shopping_cart.length > 0">
+            <div class="shopping_cart p-3">
               <div class="row">
                 <div class="col-12">
                   <h5>Il tuo ordine</h5>
@@ -192,7 +170,7 @@
               </div>
               <!-- /.row -->
               <div
-                class="row purchased_products mb-3 align-items-center"
+                class="row purchased_products mb-3"
                 v-for="(purchased_product, index) in shopping_cart"
                 :key="purchased_product.id"
               >
@@ -206,7 +184,7 @@
                 <div
                   class="col-6 d-flex align-items-center justify-content-end"
                 >
-                  <div class="circle ms-2 me-2">
+                  <div class="circle">
                     <a
                       class="remove decoration-none"
                       @click="changeQuantity('minus', purchased_product)"
@@ -217,7 +195,7 @@
                   <!-- /.circle -->
 
                   <span class="qty fs-5 mx-1">{{ purchased_product.qty }}</span>
-                  <div class="circle ms-2 me-4">
+                  <div class="circle">
                     <a
                       class="add"
                       @click="changeQuantity('plus', purchased_product)"
@@ -231,9 +209,9 @@
                     >{{ purchased_product.price }}€</span
                   >
                   <a
-                    class="text-danger fs-4 ms-4"
+                    class="btn btn-danger ms-2 text-white"
                     @click="removeProduct(index)"
-                    ><i class="fas fa-times-circle p-0"></i></a
+                    >Remove</a
                   >
                   <!-- /.btn btn-danger -->
                 </div>
@@ -244,7 +222,7 @@
 
               <div class="row total">
                 <div class="col-6">
-                  <h5>Totale:</h5>
+                  <h5>Total:</h5>
                 </div>
                 <!-- /.col-6 -->
                 <div class="col-6 text-end">
@@ -258,9 +236,9 @@
                   <router-link
                     name="buy_now"
                     id="buy_now"
-                    class="btn bg_brand text-white"
+                    class="btn btn-primary text-white"
                     :to="{ name: 'checkout' }"
-                    >Compra ora</router-link
+                    >Buy now</router-link
                   >
                 </div>
                 <!-- /.col-12 -->
@@ -273,12 +251,7 @@
           <!-- /.col-4 -->
           <div class="col-4" v-else>
             <div
-              class="
-                empty_shopping_cart
-                d-flex
-                justify-content-center
-                align-items-center
-              "
+              class="empty_shopping_cart d-flex justify-content-center align-items-center"
             >
               <h4 class="text-muted">The cart is empty!</h4>
             </div>
@@ -308,7 +281,7 @@ export default {
       shopping_cart: [],
       total: 0,
       qty: 1,
-      currentRestaurant: null,
+      currentRestaurant: false,
     };
   },
   methods: {
@@ -316,7 +289,7 @@ export default {
       axios
         .get("/api/restaurant/" + this.$route.params.id)
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           if (response.data.status_code === 404) {
             this.loading = false;
           } else {
@@ -349,22 +322,18 @@ export default {
       //check if the object is alredy in the array
       if (!cart.some((product) => product.id === purchased_product.id)) {
         //push the purchased products in the shopping cart array
-        //console.log(purchased_product.user_id);
         cart.push(purchased_product);
-
-        //console.log(this.currentRestaurant);
-        localStorage.setItem("restaurant_id", this.restaurant.id);
-        this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
-        window.dispatchEvent(
-          new CustomEvent("restaurant_id-changed", {
-            detail: { storage: localStorage.getItem("restaurant_id") },
-          })
-        );
       }
-
+      //check if products id and products id in shopping cart corresponds
+      if (cart.some((product) => product.user_id != restaurant.id)) {
+        //change currentRestaurant value
+        this.currentRestaurant = false;
+      } else {
+        //change currentRestaurant value
+        this.currentRestaurant = true;
+      }
       //console.log(cart);
-      console.log(this.currentRestaurant);
-
+      //console.log(this.currentRestaurant);
       //calculate total
       this.calculateTotal(qty);
       //save shopping cart in local storage
@@ -402,12 +371,9 @@ export default {
       //console.log(cart);
       //remove product from shopping cart
       cart.splice(index, 1);
-      //calculate total
-      this.calculateTotal();
       //update local storage shopping cart
       this.saveShoppingCart();
     },
-
     saveShoppingCart() {
       //save datas in local storage
       if (this.shopping_cart.length > 0) {
@@ -420,14 +386,12 @@ export default {
         localStorage.removeItem("total");
       }
     },
-
     changeRestaurant() {
       //empty shopping cart
       this.shopping_cart = [];
       //update local storage shopping cart
       this.saveShoppingCart();
     },
-
     getShoppingCartItems() {
       //get items from shopping cart
       if (
@@ -451,34 +415,11 @@ export default {
     this.getRestaurant();
     //get shopping cart items
     this.getShoppingCartItems();
-    if (localStorage.getItem("restaurant_id")) {
-      this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
-    }
-    window.addEventListener("restaurant_id-changed", () => {
-      this.currentRestaurant = Number(localStorage.getItem("restaurant_id"));
-      //console.log("storage updated");
-    });
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
-.restaurant_main{
-  min-width: 320px;
-}
-.products{
-  min-width: 320px;
-}
-
-.bg_brand{
-  background-color: #00ccbc;
-}
-
-.wrap_next_line{
-  white-space: normal
-}
-
 /* Restaurant */
 .restaurant_image {
   img {
@@ -492,12 +433,10 @@ export default {
 /* Shopping cart */
 .shopping_cart {
   border: 1px solid lightgray;
-  min-width: 320px;
 }
 .circle {
-  min-width: 18px;
+  width: 18px;
   height: 18px;
-  padding: 2px;
   border: 2px solid #00ccbc;
   border-radius: 50%;
   display: flex;
@@ -524,8 +463,6 @@ section.products {
   margin: auto;
 }
 .my_plate_card {
-  min-height: 370px;
-  text-align: center;
   padding: 1rem;
   text-align: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -568,24 +505,9 @@ section.products {
       margin: 16px 0 16px;
     }
     .product_btn {
-      // background-color: rgba(red, 0.95);
+      background-color: rgba(red, 0.95);
       color: white;
     }
   }
-}
-
-.scrollable{
-overflow-y: auto;
-max-height: 300px;
-  .card_text {
-    text-align: left;
-    overflow: auto
-  }
-
-
-}
-
-.my_plate_card.alternative {
-  filter: brightness(0.5);
 }
 </style>
