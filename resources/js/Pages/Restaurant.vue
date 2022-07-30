@@ -54,11 +54,11 @@
 
           <div class="caption mt-4">
             <p>
-              Ordina il tuo piatto preferito a casa da
+              Order your favourite dish
               <strong class="rest_name">{{
                 restaurant.restaurant_name
               }}</strong>
-              grazie alla consegna a domicilio di deliveboo
+              thanks to home delivery
             </p>
           </div>
         </div>
@@ -104,8 +104,7 @@
           <div class="menu mt-4">
             <h3><i class="fas fa-utensils"></i> Menu</h3>
             <p class="caption-menu">
-              Seleziona i piatti per scegliere la quantità e aggiungerli al
-              carrello
+              Select a dish and add it to the cart
             </p>
           </div>
           <div class="col-12 col-lg-8">
@@ -129,7 +128,7 @@
                       {{ product.name }}
                     </h2>
                     <hr />
-                    <p>PRODOTTO ATTUALMENTE NON DISPONIBILE</p>
+                    <p>NOT AVAILABLE!</p>
                   </div>
                 </div>
                 <div
@@ -185,7 +184,7 @@
                       data-bs-toggle="modal"
                       data-bs-target="#modelId"
                     >
-                      Aggiungi
+                      Add
                     </button>
                     <button
                       class="
@@ -206,7 +205,7 @@
                       :data-product-user_id="product.user_id"
                       v-else
                     >
-                      Aggiungi
+                      Add
                     </button>
                   </div>
 
@@ -223,8 +222,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title">
-                            Spiacente, non puoi ordinare da ristoranti
-                            differenti
+                            Sorry! You can't place orders from different restaurants!
                           </h5>
                           <button
                             type="button"
@@ -234,8 +232,7 @@
                           ></button>
                         </div>
                         <div class="modal-body">
-                          Vuoi svuotare il carrello prima di aggiungere il
-                          prodotto di questo ristorante?
+                          Do you want to empty your cart? You'll be able to add new products
                         </div>
                         <div class="modal-footer">
                           <button
@@ -243,7 +240,7 @@
                             class="btn btn-secondary"
                             data-bs-dismiss="modal"
                           >
-                            No, grazie
+                            No
                           </button>
                           <button
                             type="button"
@@ -251,7 +248,7 @@
                             @click="changeRestaurant()"
                             data-bs-dismiss="modal"
                           >
-                            Svuota
+                            Empty
                           </button>
                         </div>
                       </div>
@@ -266,7 +263,7 @@
             <div class="shopping_cart p-3 mt-0 mt-lg-4">
               <div class="row">
                 <div class="col-12">
-                  <h5>Il tuo ordine</h5>
+                  <h5>Your order</h5>
                 </div>
                 <!-- /.col-12 -->
               </div>
@@ -325,7 +322,7 @@
 
               <div class="row total">
                 <div class="col-6">
-                  <h5 class="fs-h5">TOTALE:</h5>
+                  <h5 class="fs-h5">TOTAL:</h5>
                 </div>
                 <!-- /.col-6 -->
                 <div class="col-6 text-end">
@@ -341,7 +338,7 @@
                     id="buy_now"
                     class="btn bg_brand text-white"
                     :to="{ name: 'checkout' }"
-                    >Compra ora</router-link
+                    >Buy now</router-link
                   >
                 </div>
                 <!-- /.col-12 -->
@@ -377,12 +374,12 @@
                 </svg>
               </span>
               <span>
-                <h5 class="text-muted">Il carrello è vuoto!</h5>
+                <h5 class="text-muted">The cart is empty!</h5>
               </span>
 
               <div class="button_disabled">
                 <button class="btn btn-basket" disabled type="button">
-                   <span>Vai al pagamento</span>
+                   <span>Checkout</span>
               </button>
               </div>
               

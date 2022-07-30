@@ -1,7 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
 @import 'variables';
 //Font-Awesome
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
@@ -10,28 +9,33 @@
 @import "~@fortawesome/fontawesome-free/scss/brands";
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
 body {
     font-size: .875rem;
 }
 
-.font-fa{
-  font-family: 'Montserrat', sans-serif;
+.product_image {
+    object-fit: cover;
 }
 
-.font-side{
-  font-family: 'Montserrat', sans-serif;
+.font-fa {
+    font-family: 'Montserrat', sans-serif;
 }
+
+.font-side {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .feather {
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
 }
 
-.container-sm{
+.container-sm {
     max-width: 600px !important;
     height: 700px;
 }
+
 
 /*
    * Sidebar
@@ -69,7 +73,7 @@ body {
     /* Scrollable contents if viewport is shorter than content. */
 }
 
-.bg-head{
+.bg-head {
     background-color: #009688;
 }
 
@@ -80,7 +84,7 @@ body {
     color: #868689e0;
 }
 
-.icon-dashboard{
+.icon-dashboard {
     background-color: #035336;
     top: -31px;
     position: absolute;
@@ -89,15 +93,15 @@ body {
     color: white !important;
 }
 
-.order{
+.order {
     background-color: #D81B60 !important;
 }
 
-.btn-green{
+.btn-green {
     background-color: #426658;
 }
 
-.weekend{
+.weekend {
     position: absolute;
     left: 70px;
     font-size: 12px;
@@ -110,13 +114,11 @@ body {
 }
 
 .sidebar .nav-link:hover,
-.sidebar .nav-link.active
-
- {
+.sidebar .nav-link.active {
     background-color: #110f0f;
 }
 
-.bg-side{
+.bg-side {
     background-color: #222d32;
 }
 
@@ -160,7 +162,7 @@ body {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-.not-visible{
+.not-visible {
     opacity: 0.6;
 }
 
@@ -177,125 +179,120 @@ body {
     overflow: hidden;
     z-index: 0;
     a {
-      color: inherit;
-      &:hover {
-        color: purple;
-      }
+        color: inherit;
+        &:hover {
+            color: purple;
+        }
     }
     &:hover {
-      .photo {
-        transform: scale(1.3) rotate(3deg);
-      }
+        .photo {
+            transform: scale(1.3) rotate(3deg);
+        }
     }
     .meta {
-      position: relative;
-      z-index: 0;
-      height: 200px;
+        position: relative;
+        z-index: 0;
+        height: 200px;
     }
     .photo {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform .2s;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-size: cover;
+        background-position: center;
+        transition: transform .2s;
     }
-    
     .description {
-      padding: 1rem;
-      background: white;
-      position: relative;
-      z-index: 1;
-      h1,
-      h4 {
-        font-family: Poppins, sans-serif;
-      }
-      h1 {
-        line-height: 1;
-        margin: 0;
-        font-size: 1.7rem;
-      }
-      h4 {
-        font-size: 1rem;
-        font-weight: 300;
-        text-transform: uppercase;
-        color: darkgray;
-        margin-top: 5px;
-      }
-      .read-more {
-        text-align: right;
-        a {
-          color: green;
-          display: inline-block;
-          position: relative;
-          &:after {
-            content: "\f061";
-            font-family: FontAwesome;
-            margin-left: -10px;
-            opacity: 0;
-            vertical-align: middle;
-            transition: margin .3s, opacity .3s;
-          }
-  
-          &:hover:after {
-            margin-left: 5px;
-            opacity: 1;
-          }
+        padding: 1rem;
+        background: white;
+        position: relative;
+        z-index: 1;
+        h1,
+        h4 {
+            font-family: Poppins, sans-serif;
         }
-      }
+        h1 {
+            line-height: 1;
+            margin: 0;
+            font-size: 1.7rem;
+        }
+        h4 {
+            font-size: 1rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            color: darkgray;
+            margin-top: 5px;
+        }
+        .read-more {
+            text-align: right;
+            a {
+                color: green;
+                display: inline-block;
+                position: relative;
+                &:after {
+                    content: "\f061";
+                    font-family: FontAwesome;
+                    margin-left: -10px;
+                    opacity: 0;
+                    vertical-align: middle;
+                    transition: margin .3s, opacity .3s;
+                }
+                &:hover:after {
+                    margin-left: 5px;
+                    opacity: 1;
+                }
+            }
+        }
     }
     p {
-      position: relative;
-      margin: 1rem 0 0;
-      &:first-of-type {
-        margin-top: 1.25rem;
-        &:before {
-          content: "";
-          position: absolute;
-          height: 5px;
-          background: green;
-          width: 35px;
-          top: -0.75rem;
-          border-radius: 3px;
+        position: relative;
+        margin: 1rem 0 0;
+        &:first-of-type {
+            margin-top: 1.25rem;
+            &:before {
+                content: "";
+                position: absolute;
+                height: 5px;
+                background: green;
+                width: 35px;
+                top: -0.75rem;
+                border-radius: 3px;
+            }
         }
-      }
     }
-
-  
-  
     @media (min-width: 640px) {
-      flex-direction: row;
-      max-width: 1100px;
-      height: 400px;
-      .meta {
-        flex-basis: 40%;
-        height: auto;
-      }
-      .description {
-        flex-basis: 60%;
-        &:before {
-          transform: skewX(-3deg);
-          content: "";
-          background: #fff;
-          width: 30px;
-          position: absolute;
-          left: -10px;
-          top: 0;
-          bottom: 0;
-          z-index: -1;
+        flex-direction: row;
+        max-width: 1100px;
+        height: 400px;
+        .meta {
+            flex-basis: 40%;
+            height: auto;
         }
-      }
-      &.alt {
-        flex-direction: row-reverse;
         .description {
-          &:before {
-            left: inherit;
-            right: -10px;
-            transform: skew(3deg)
-          }
+            flex-basis: 60%;
+            &:before {
+                transform: skewX(-3deg);
+                content: "";
+                background: #fff;
+                width: 30px;
+                position: absolute;
+                left: -10px;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+            }
         }
-      }
+        &.alt {
+            flex-direction: row-reverse;
+            .description {
+                &:before {
+                    left: inherit;
+                    right: -10px;
+                    transform: skew(3deg)
+                }
+            }
+        }
     }
-  }
+}

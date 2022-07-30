@@ -120,7 +120,7 @@
                   >
                 </div>
                 <div class="scrollable">
-                  <div class="card_text p-3">
+                  <div class="card_text p-3 text-center">
                     <router-link
                       class="text-decoration-none text-reset"
                       :to="{
