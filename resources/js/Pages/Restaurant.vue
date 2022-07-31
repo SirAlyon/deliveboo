@@ -769,4 +769,13 @@ section.products {
 .my_plate_card.alternative {
   filter: brightness(0.5);
 }
+
+/* Effects */
+.my_plate_card {
+  transition: all 2000ms;
+}
+.my_plate_card:hover {
+  transform: scale(1.1);
+  transition: all 2000ms;
+}
 </style>

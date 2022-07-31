@@ -407,9 +407,6 @@ export default {
   }
 }
 
-input:checked {
-  background-color: #00c1b2;
-}
 
 /* Effects and animations */
 .banner img {
