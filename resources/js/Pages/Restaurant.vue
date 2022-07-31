@@ -776,6 +776,6 @@ section.products {
 }
 .my_plate_card:hover {
   transform: scale(1.1);
-  transition: all 2000ms;
+  transition: all 1000ms;
 }
 </style>
