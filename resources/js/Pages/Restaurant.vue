@@ -552,8 +552,8 @@ export default {
     },
 
     trimText(text) {
-            if (text.length > 60) {
-                return text.slice(0, 60) + "...";
+            if (text.length > 80) {
+                return text.slice(0, 80) + "...";
             }
             return text;
         },
