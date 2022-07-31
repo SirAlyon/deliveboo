@@ -34,7 +34,7 @@
                     <td>{{$product->name}}</td>
                     <td>{{$product->price}}</td>
                     
-                    <td><img  width="140" height="100" class="text-center" src="{{asset('storage/' . $product->image)}}" alt="image {{$product->name}}"></td>
+                    <td><img  width="140" height="100" class="text-center object-fit" src="{{asset('storage/' . $product->image)}}" alt="image {{$product->name}}"></td>
                     <td>    
                         @if ($product->visibility == 0)
                             <i class="fa-solid fa-eye"></i>
