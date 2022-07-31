@@ -407,7 +407,29 @@ export default {
   }
 }
 
-input:checked {
-  background-color: #00c1b2;
+
+/* Effects and animations */
+.banner img {
+  transition: all 2s;
 }
+.banner img:hover {
+  transform: scale(1.2);
+  transition: all 2s;
+}
+
+.my_rest_card img {
+  transition: all 1s;
+}
+
+.my_rest_card img:hover {
+  filter: brightness(0.5);
+}
+
+.my_rest_card:hover {
+  color: #00b8a9;
+  transition: all 100ms;
+}
+
+
+
 </style>

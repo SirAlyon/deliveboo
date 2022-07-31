@@ -552,8 +552,8 @@ export default {
     },
 
     trimText(text) {
-            if (text.length > 60) {
-                return text.slice(0, 60) + "...";
+            if (text.length > 80) {
+                return text.slice(0, 80) + "...";
             }
             return text;
         },
@@ -768,5 +768,14 @@ section.products {
 
 .my_plate_card.alternative {
   filter: brightness(0.5);
+}
+
+/* Effects */
+.my_plate_card {
+  transition: all 2000ms;
+}
+.my_plate_card:hover {
+  transform: scale(1.1);
+  transition: all 1000ms;
 }
 </style>
