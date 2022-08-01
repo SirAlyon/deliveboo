@@ -16,7 +16,7 @@
           <div class="my_carousel_caption container">
             <h1>The food you want...</h1>
             <p class="d-none d-md-block">
-              Best restuarants in town...
+              Best restaurants in town...
             </p>
           </div>
         </div>

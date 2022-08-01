@@ -771,11 +771,11 @@ section.products {
 }
 
 /* Effects */
-.my_plate_card {
-  transition: all 2000ms;
-}
-.my_plate_card:hover {
-  transform: scale(1.1);
-  transition: all 1000ms;
-}
+// .my_plate_card {
+//   transition: all 2000ms;
+// }
+// .my_plate_card:hover {
+//   transform: scale(1.1);
+//   transition: all 1000ms;
+// }
 </style>
